@@ -2,907 +2,1736 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#ffffff">
-
-<title>WEIREN — Oversized Acid Washed T-Shirts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#111111">
+<meta name="description" content="WEIREN® — Designed for the Few. Contemporary oversized streetwear.">
+<title>WEIREN® — Designed for the Few</title>
 
 <style>
 /* =========================================================
-   WEIREN
-   MOBILE-FIRST FASHION STORE
-========================================================= */
+   WEIREN®
+   PREMIUM STREETWEAR E-COMMERCE EXPERIENCE
+   SINGLE-FILE BUILD
+   ========================================================= */
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root{
+  --black:#101010;
+  --ink:#171717;
+  --charcoal:#242424;
+  --white:#ffffff;
+  --offwhite:#f7f6f3;
+  --paper:#f0efeb;
+  --stone:#d8d6d0;
+  --muted:#777570;
+  --line:#deddd8;
+  --earth:#766656;
+  --soft-earth:#b9a998;
+  --success:#315d42;
+
+  --max:1440px;
+  --header:76px;
+
+  --radius-sm:8px;
+  --radius-md:14px;
+  --radius-lg:22px;
+
+  --ease:cubic-bezier(.22,.61,.36,1);
 }
 
-html {
-  scroll-behavior: smooth;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #fff;
-  color: #111;
-  overflow-x: hidden;
+html{
+  scroll-behavior:smooth;
+  background:var(--offwhite);
+}
+
+body{
+  font-family:"DM Sans",Arial,sans-serif;
+  color:var(--ink);
+  background:var(--offwhite);
+  line-height:1.5;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+body.no-scroll{
+  overflow:hidden;
+}
+
+img{
+  display:block;
+  max-width:100%;
 }
 
 button,
-input {
-  font: inherit;
+input{
+  font:inherit;
 }
 
-button {
-  border: 0;
-  background: none;
-  cursor: pointer;
+button{
+  border:0;
+  cursor:pointer;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
-img {
-  display: block;
-  width: 100%;
+::selection{
+  background:#111;
+  color:#fff;
+}
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+.container{
+  width:min(calc(100% - 40px),var(--max));
+  margin-inline:auto;
+}
+
+.section{
+  padding:110px 0;
+}
+
+.section-sm{
+  padding:70px 0;
+}
+
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:700;
+}
+
+.eyebrow::before{
+  content:"";
+  width:24px;
+  height:1px;
+  background:currentColor;
+}
+
+.section-title{
+  font-family:"Manrope",Arial,sans-serif;
+  font-size:clamp(36px,5vw,76px);
+  line-height:.98;
+  letter-spacing:-.055em;
+  font-weight:700;
+}
+
+.section-copy{
+  max-width:560px;
+  color:#686762;
+  font-size:15px;
+  line-height:1.75;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.upper{
+  text-transform:uppercase;
+  letter-spacing:.12em;
+}
+
+.btn{
+  min-height:48px;
+  padding:0 22px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  border:1px solid var(--black);
+  background:var(--black);
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  transition:
+    transform .25s var(--ease),
+    background .25s var(--ease),
+    color .25s var(--ease);
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn:active{
+  transform:translateY(0);
+}
+
+.btn-light{
+  background:#fff;
+  color:#111;
+  border-color:#fff;
+}
+
+.btn-outline{
+  background:transparent;
+  color:#111;
+  border-color:#111;
+}
+
+.btn-outline:hover{
+  background:#111;
+  color:#fff;
+}
+
+.btn-small{
+  min-height:42px;
+  padding:0 17px;
+  font-size:10px;
+}
+
+/* =========================================================
+   ANNOUNCEMENT
+   ========================================================= */
+
+.announcement{
+  height:32px;
+  background:#111;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  font-size:9px;
+  letter-spacing:.19em;
+  text-transform:uppercase;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.announcement-track{
+  display:flex;
+  gap:55px;
+  animation:announcement 24s linear infinite;
+}
+
+@keyframes announcement{
+  from{transform:translateX(0)}
+  to{transform:translateX(-35%)}
 }
 
 /* =========================================================
    HEADER
-========================================================= */
+   ========================================================= */
 
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 62px;
-  background: rgba(255,255,255,.96);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #eee;
-  z-index: 1000;
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  height:var(--header);
+  background:rgba(247,246,243,.94);
+  border-bottom:1px solid rgba(0,0,0,.08);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
 }
 
-.header-inner {
-  height: 100%;
-  width: 100%;
-  padding: 0 14px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
+.nav{
+  height:100%;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
 }
 
-.header-left,
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+.brand{
+  font-family:"Manrope",Arial,sans-serif;
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:.2em;
+  line-height:1;
 }
 
-.header-right {
-  justify-content: flex-end;
+.brand small{
+  font-size:7px;
+  letter-spacing:.1em;
+  vertical-align:top;
+  position:relative;
+  top:-6px;
 }
 
-.logo {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 5px;
-  text-align: center;
+.nav-links{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:32px;
+  list-style:none;
 }
 
-.header-btn {
-  font-size: 10px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  white-space: nowrap;
+.nav-links a{
+  position:relative;
+  font-size:10px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:#44433f;
+  padding:8px 0;
 }
 
-.desktop-nav {
-  display: none;
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:100%;
+  bottom:3px;
+  height:1px;
+  background:#111;
+  transition:right .3s var(--ease);
 }
 
-.menu-btn {
-  font-size: 18px;
-  line-height: 1;
+.nav-links a:hover::after{
+  right:0;
 }
 
-.bag-button {
-  position: relative;
+.nav-actions{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:7px;
 }
 
-.bag-count {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 15px;
-  height: 15px;
-  padding: 0 4px;
-  margin-left: 3px;
-  border-radius: 50%;
-  background: #111;
-  color: white;
-  font-size: 8px;
+.icon-btn{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:transparent;
+  display:grid;
+  place-items:center;
+  transition:background .2s,transform .2s;
+  position:relative;
 }
 
-/* =========================================================
-   MOBILE MENU
-========================================================= */
-
-.mobile-menu {
-  position: fixed;
-  top: 62px;
-  left: 0;
-  width: 100%;
-  height: calc(100vh - 62px);
-  background: #fff;
-  z-index: 999;
-  transform: translateX(-100%);
-  transition: transform .35s ease;
-  padding: 30px 20px;
+.icon-btn:hover{
+  background:#e9e8e3;
+  transform:translateY(-1px);
 }
 
-.mobile-menu.active {
-  transform: translateX(0);
+.icon-btn svg{
+  width:18px;
+  height:18px;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:1.7;
 }
 
-.mobile-menu a {
-  display: block;
-  padding: 17px 0;
-  border-bottom: 1px solid #eee;
-  font-size: 13px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+.cart-count{
+  position:absolute;
+  top:2px;
+  right:1px;
+  min-width:16px;
+  height:16px;
+  padding:0 4px;
+  border-radius:20px;
+  background:#111;
+  color:#fff;
+  font-size:8px;
+  display:grid;
+  place-items:center;
 }
 
-/* =========================================================
-   PAGE
-========================================================= */
-
-main {
-  padding-top: 62px;
+.menu-btn{
+  display:none;
 }
 
 /* =========================================================
    HERO
-========================================================= */
+   ========================================================= */
 
-.hero {
-  width: 100%;
-  min-height: calc(100svh - 62px);
-  display: flex;
-  align-items: flex-end;
-  background: #f1f0ec;
+.hero{
+  min-height:calc(100svh - var(--header) - 32px);
+  background:#e6e3dc;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:flex-end;
 }
 
-.hero-content {
-  width: 100%;
-  padding: 28px 16px 24px;
+.hero-image{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  filter:saturate(.82) contrast(.96);
 }
 
-.hero-label {
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.06) 45%,rgba(0,0,0,.67));
 }
 
-.hero-title {
-  font-size: clamp(42px, 14vw, 100px);
-  line-height: .88;
-  font-weight: 500;
-  letter-spacing: -3px;
-  max-width: 650px;
+.hero-content{
+  position:relative;
+  z-index:2;
+  color:#fff;
+  width:100%;
+  padding:80px 0 62px;
 }
 
-.hero-subtitle {
-  margin-top: 20px;
-  max-width: 310px;
-  font-size: 12px;
-  line-height: 1.5;
-  color: #555;
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);
+  gap:40px;
+  align-items:end;
 }
 
-.hero-action {
-  display: inline-flex;
-  margin-top: 24px;
-  padding-bottom: 4px;
-  border-bottom: 1px solid #111;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+.hero-title{
+  font-family:"Manrope",Arial,sans-serif;
+  font-size:clamp(60px,11vw,170px);
+  line-height:.79;
+  letter-spacing:-.075em;
+  font-weight:800;
+  max-width:1000px;
+}
+
+.hero-title span{
+  display:block;
+}
+
+.hero-meta{
+  justify-self:end;
+  max-width:330px;
+}
+
+.hero-meta p{
+  font-size:14px;
+  line-height:1.7;
+  color:rgba(255,255,255,.82);
+  margin-bottom:22px;
+}
+
+.hero-kicker{
+  color:rgba(255,255,255,.65);
+  margin-bottom:18px;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.hero-scroll{
+  position:absolute;
+  right:40px;
+  bottom:65px;
+  z-index:3;
+  writing-mode:vertical-rl;
+  font-size:9px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.72);
 }
 
 /* =========================================================
-   SECTION
-========================================================= */
+   MANIFESTO
+   ========================================================= */
 
-.section {
-  width: 100%;
-  padding: 48px 14px;
+.manifesto{
+  background:#111;
+  color:#fff;
 }
 
-.section-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 20px;
+.manifesto-inner{
+  display:grid;
+  grid-template-columns:1fr 1.6fr;
+  gap:70px;
+  align-items:start;
 }
 
-.section-title {
-  font-size: 12px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+.manifesto-mark{
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:#777;
 }
 
-.section-link {
-  font-size: 9px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  text-decoration: underline;
+.manifesto-text{
+  font-family:"Manrope",Arial,sans-serif;
+  font-size:clamp(30px,4.6vw,66px);
+  line-height:1.04;
+  letter-spacing:-.045em;
+  font-weight:500;
+}
+
+.manifesto-text strong{
+  font-weight:800;
+}
+
+/* =========================================================
+   COLLECTION INTRO
+   ========================================================= */
+
+.collection-intro{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:end;
+}
+
+.collection-intro-right{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:30px;
+}
+
+.collection-note{
+  max-width:360px;
 }
 
 /* =========================================================
    PRODUCT GRID
-========================================================= */
+   ========================================================= */
 
-.product-grid {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px 8px;
+.product-toolbar{
+  margin-top:55px;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
 }
 
-.product-card {
-  min-width: 0;
+.filter-buttons{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
 }
 
-.product-image {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  background: #f3f2ef;
-  overflow: hidden;
+.filter-btn{
+  padding:8px 13px;
+  background:transparent;
+  color:#777;
+  border:1px solid transparent;
+  font-size:9px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  font-weight:700;
 }
 
-.product-image-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #aaa;
-  font-size: 8px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+.filter-btn.active,
+.filter-btn:hover{
+  border-color:#111;
+  color:#111;
 }
 
-.product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.product-count{
+  font-size:9px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:#8a8984;
 }
 
-.wishlist {
-  position: absolute;
-  top: 9px;
-  right: 9px;
-  width: 28px;
-  height: 28px;
-  background: rgba(255,255,255,.9);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  z-index: 2;
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+  margin-top:22px;
 }
 
-.product-info {
-  padding-top: 9px;
+.product-card{
+  min-width:0;
+  position:relative;
+  cursor:pointer;
 }
 
-.product-name {
-  font-size: 10px;
-  line-height: 1.3;
-  text-transform: uppercase;
-  letter-spacing: .6px;
+.product-media{
+  position:relative;
+  overflow:hidden;
+  aspect-ratio:4/5;
+  background:#e5e3dd;
 }
 
-.product-meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 5px;
-  margin-top: 5px;
-  color: #666;
-  font-size: 9px;
+.product-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .7s var(--ease);
 }
 
-.product-price {
-  color: #111;
+.product-card:hover .product-media img{
+  transform:scale(1.035);
+}
+
+.product-badge{
+  position:absolute;
+  left:12px;
+  top:12px;
+  z-index:2;
+  background:#111;
+  color:#fff;
+  padding:6px 9px;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.wishlist{
+  position:absolute;
+  right:10px;
+  top:10px;
+  z-index:3;
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:rgba(255,255,255,.9);
+  transition:transform .2s;
+}
+
+.wishlist:hover{
+  transform:scale(1.08);
+}
+
+.wishlist svg{
+  width:16px;
+  height:16px;
+  stroke:#111;
+  fill:none;
+  stroke-width:1.6;
+}
+
+.wishlist.active svg{
+  fill:#111;
+}
+
+.quick-add{
+  position:absolute;
+  bottom:12px;
+  left:12px;
+  right:12px;
+  min-height:43px;
+  background:rgba(255,255,255,.94);
+  color:#111;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  transform:translateY(70px);
+  transition:transform .35s var(--ease);
+}
+
+.product-card:hover .quick-add{
+  transform:translateY(0);
+}
+
+.product-info{
+  padding:14px 1px 0;
+}
+
+.product-category{
+  font-size:8px;
+  color:#898781;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+
+.product-name{
+  font-family:"Manrope",Arial,sans-serif;
+  font-size:14px;
+  letter-spacing:-.02em;
+  font-weight:700;
+}
+
+.product-bottom{
+  margin-top:8px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.product-price{
+  font-size:12px;
+  font-weight:600;
+}
+
+.product-color{
+  color:#888780;
+  font-size:10px;
 }
 
 /* =========================================================
-   BRAND STATEMENT
-========================================================= */
+   EDITORIAL
+   ========================================================= */
 
-.statement {
-  width: 100%;
-  background: #111;
-  color: #fff;
-  padding: 55px 16px;
+.editorial{
+  background:#e8e5de;
 }
 
-.statement-small {
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  opacity: .65;
+.editorial-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  min-height:720px;
 }
 
-.statement-title {
-  margin-top: 22px;
-  font-size: clamp(35px, 11vw, 90px);
-  line-height: .92;
-  font-weight: 400;
-  letter-spacing: -2px;
-  max-width: 850px;
+.editorial-image{
+  min-height:500px;
+  overflow:hidden;
 }
 
-.statement-copy {
-  margin-top: 24px;
-  max-width: 400px;
-  font-size: 11px;
-  line-height: 1.6;
-  color: #aaa;
+.editorial-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform 1s var(--ease);
+}
+
+.editorial:hover .editorial-image img{
+  transform:scale(1.025);
+}
+
+.editorial-copy{
+  padding:clamp(40px,7vw,110px);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.editorial-copy h2{
+  font-family:"Manrope",Arial,sans-serif;
+  font-size:clamp(45px,6vw,92px);
+  line-height:.9;
+  letter-spacing:-.065em;
+  max-width:650px;
+}
+
+.editorial-copy p{
+  max-width:430px;
+  color:#686762;
+  font-size:14px;
+  line-height:1.8;
+}
+
+.editorial-footer{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.editorial-number{
+  font-size:10px;
+  color:#99968f;
+  letter-spacing:.15em;
 }
 
 /* =========================================================
-   ABOUT
-========================================================= */
+   LOOKBOOK
+   ========================================================= */
 
-.about {
-  padding: 55px 16px;
+.lookbook-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:30px;
+  margin-bottom:45px;
 }
 
-.about-label {
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+.lookbook-grid{
+  display:grid;
+  grid-template-columns:1.4fr .8fr .8fr;
+  grid-template-rows:270px 270px;
+  gap:14px;
 }
 
-.about-title {
-  margin-top: 18px;
-  font-size: 38px;
-  line-height: .95;
-  font-weight: 400;
-  letter-spacing: -1.5px;
+.lookbook-item{
+  position:relative;
+  overflow:hidden;
+  background:#ddd;
 }
 
-.about-copy {
-  margin-top: 20px;
-  max-width: 500px;
-  font-size: 11px;
-  line-height: 1.65;
-  color: #555;
+.lookbook-item:first-child{
+  grid-row:span 2;
+}
+
+.lookbook-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .8s var(--ease);
+}
+
+.lookbook-item:hover img{
+  transform:scale(1.035);
+}
+
+.lookbook-label{
+  position:absolute;
+  left:16px;
+  bottom:15px;
+  z-index:2;
+  color:#fff;
+  font-size:9px;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  font-weight:700;
+  text-shadow:0 1px 8px rgba(0,0,0,.4);
+}
+
+/* =========================================================
+   VALUES
+   ========================================================= */
+
+.values{
+  background:#111;
+  color:#fff;
+}
+
+.values-header{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  margin-bottom:65px;
+}
+
+.values-title{
+  font-family:"Manrope",Arial,sans-serif;
+  font-size:clamp(42px,6vw,84px);
+  line-height:.92;
+  letter-spacing:-.06em;
+}
+
+.values-copy{
+  max-width:430px;
+  color:#989691;
+  font-size:14px;
+  line-height:1.8;
+  align-self:end;
+}
+
+.values-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid #363636;
+}
+
+.value{
+  padding:30px 30px 35px 0;
+  border-right:1px solid #363636;
+  margin-right:30px;
+}
+
+.value:last-child{
+  border-right:0;
+}
+
+.value-num{
+  color:#777;
+  font-size:9px;
+  letter-spacing:.18em;
+  margin-bottom:65px;
+}
+
+.value h3{
+  font-family:"Manrope",Arial,sans-serif;
+  font-size:24px;
+  letter-spacing:-.03em;
+  margin-bottom:13px;
+}
+
+.value p{
+  color:#92918d;
+  font-size:12px;
+  line-height:1.75;
+  max-width:300px;
+}
+
+/* =========================================================
+   SIZE GUIDE
+   ========================================================= */
+
+.size-section{
+  background:#f1f0ec;
+}
+
+.size-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:start;
+}
+
+.size-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:11px;
+}
+
+.size-table th,
+.size-table td{
+  padding:15px 12px;
+  text-align:left;
+  border-bottom:1px solid var(--line);
+}
+
+.size-table th{
+  font-size:9px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#888;
+}
+
+/* =========================================================
+   NEWSLETTER
+   ========================================================= */
+
+.newsletter{
+  background:#d9d6ce;
+  text-align:center;
+}
+
+.newsletter-inner{
+  max-width:760px;
+  margin:auto;
+}
+
+.newsletter h2{
+  font-family:"Manrope",Arial,sans-serif;
+  font-size:clamp(42px,6vw,78px);
+  line-height:.92;
+  letter-spacing:-.06em;
+  margin-bottom:22px;
+}
+
+.newsletter p{
+  color:#696762;
+  max-width:510px;
+  margin:0 auto 30px;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.newsletter-form{
+  max-width:500px;
+  margin:auto;
+  display:flex;
+  border-bottom:1px solid #111;
+}
+
+.newsletter-form input{
+  flex:1;
+  min-width:0;
+  height:52px;
+  background:transparent;
+  border:0;
+  outline:0;
+  font-size:12px;
+  color:#111;
+}
+
+.newsletter-form input::placeholder{
+  color:#88857e;
+}
+
+.newsletter-form button{
+  background:transparent;
+  padding:0 10px;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.15em;
+  text-transform:uppercase;
 }
 
 /* =========================================================
    FOOTER
-========================================================= */
+   ========================================================= */
 
-.footer {
-  width: 100%;
-  border-top: 1px solid #eee;
-  padding: 32px 16px 28px;
+footer{
+  background:#111;
+  color:#fff;
+  padding:75px 0 25px;
 }
 
-.footer-logo {
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 4px;
+.footer-top{
+  display:grid;
+  grid-template-columns:1.6fr 1fr 1fr 1fr;
+  gap:40px;
+  padding-bottom:75px;
 }
 
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-  margin-top: 30px;
+.footer-brand{
+  font-family:"Manrope",Arial,sans-serif;
+  font-size:31px;
+  font-weight:800;
+  letter-spacing:.2em;
 }
 
-.footer-heading {
-  margin-bottom: 12px;
-  font-size: 9px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+.footer-description{
+  color:#888;
+  max-width:290px;
+  font-size:11px;
+  line-height:1.8;
+  margin-top:20px;
 }
 
-.footer a {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 10px;
-  color: #666;
+.footer-column h4{
+  font-size:9px;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  color:#777;
+  margin-bottom:20px;
 }
 
-.footer-bottom {
-  margin-top: 35px;
-  padding-top: 16px;
-  border-top: 1px solid #eee;
-  font-size: 8px;
-  color: #999;
-  letter-spacing: 1px;
+.footer-column a{
+  display:block;
+  color:#d0cfca;
+  font-size:11px;
+  margin-bottom:11px;
+  transition:color .2s;
 }
 
-/* =========================================================
-   SEARCH
-========================================================= */
-
-.search-panel {
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,.98);
-  z-index: 2000;
-  display: none;
-  padding: 25px 16px;
+.footer-column a:hover{
+  color:#fff;
 }
 
-.search-panel.active {
-  display: block;
-}
-
-.search-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.search-title {
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-
-.close-btn {
-  font-size: 24px;
-  font-weight: 300;
-}
-
-.search-input {
-  width: 100%;
-  border: 0;
-  border-bottom: 1px solid #111;
-  padding: 30px 0 12px;
-  outline: none;
-  font-size: 22px;
-  background: transparent;
-}
-
-.search-results {
-  margin-top: 25px;
-}
-
-.search-result {
-  display: block;
-  padding: 14px 0;
-  border-bottom: 1px solid #eee;
-  font-size: 11px;
-  text-transform: uppercase;
+.footer-bottom{
+  border-top:1px solid #2b2b2b;
+  padding-top:22px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  color:#666;
+  font-size:9px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
 }
 
 /* =========================================================
-   PRODUCT VIEW
-========================================================= */
+   CART DRAWER
+   ========================================================= */
 
-.product-view {
-  position: fixed;
-  inset: 0;
-  background: #fff;
-  z-index: 3000;
-  overflow-y: auto;
-  display: none;
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.48);
+  z-index:500;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s;
 }
 
-.product-view.active {
-  display: block;
+.overlay.open{
+  opacity:1;
+  pointer-events:auto;
 }
 
-.product-view-header {
-  position: sticky;
-  top: 0;
-  height: 62px;
-  background: rgba(255,255,255,.96);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #eee;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
+.cart-drawer{
+  position:fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  width:min(460px,100%);
+  background:#f7f6f3;
+  z-index:510;
+  transform:translateX(100%);
+  transition:transform .45s var(--ease);
+  display:flex;
+  flex-direction:column;
 }
 
-.back-btn {
-  font-size: 10px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.cart-drawer.open{
+  transform:translateX(0);
 }
 
-.product-gallery {
-  width: 100%;
+.drawer-header{
+  min-height:76px;
+  padding:0 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
 }
 
-.gallery-image {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  background: #f3f2ef;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.drawer-title{
+  font-family:"Manrope",Arial,sans-serif;
+  font-size:18px;
+  font-weight:700;
 }
 
-.gallery-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.close-btn{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#e9e8e3;
+  display:grid;
+  place-items:center;
+  font-size:20px;
+  font-weight:300;
 }
 
-.gallery-placeholder {
-  font-size: 9px;
-  color: #aaa;
-  letter-spacing: 2px;
+.cart-items{
+  flex:1;
+  overflow:auto;
+  padding:20px 24px;
 }
 
-.product-details {
-  padding: 24px 16px 45px;
+.empty-cart{
+  height:100%;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  color:#888;
 }
 
-.product-detail-name {
-  font-size: 16px;
-  text-transform: uppercase;
-  letter-spacing: .7px;
+.empty-cart strong{
+  display:block;
+  color:#222;
+  font-family:"Manrope",Arial,sans-serif;
+  margin-bottom:8px;
 }
 
-.product-detail-price {
-  margin-top: 7px;
-  font-size: 12px;
+.cart-item{
+  display:grid;
+  grid-template-columns:82px 1fr auto;
+  gap:14px;
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
 }
 
-.product-description {
-  margin-top: 18px;
-  max-width: 500px;
-  color: #666;
-  font-size: 11px;
-  line-height: 1.6;
+.cart-item-image{
+  width:82px;
+  height:102px;
+  object-fit:cover;
+  background:#ddd;
 }
 
-.option-block {
-  margin-top: 28px;
+.cart-item-name{
+  font-family:"Manrope",Arial,sans-serif;
+  font-size:12px;
+  font-weight:700;
 }
 
-.option-label {
-  margin-bottom: 10px;
-  font-size: 9px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.cart-item-meta{
+  color:#888;
+  font-size:10px;
+  margin-top:5px;
 }
 
-.option-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
+.quantity{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-top:13px;
 }
 
-.option {
-  min-width: 42px;
-  height: 38px;
-  padding: 0 12px;
-  border: 1px solid #ddd;
-  font-size: 9px;
-  text-transform: uppercase;
+.qty-btn{
+  width:24px;
+  height:24px;
+  border:1px solid #ccc;
+  background:transparent;
+  font-size:13px;
 }
 
-.option.active {
-  border-color: #111;
-  background: #111;
-  color: #fff;
+.quantity span{
+  font-size:10px;
 }
 
-.quantity {
-  display: flex;
-  width: 110px;
-  height: 38px;
-  border: 1px solid #ddd;
-  align-items: center;
-  justify-content: space-between;
+.cart-item-price{
+  font-size:11px;
+  font-weight:700;
 }
 
-.quantity button {
-  width: 35px;
-  height: 100%;
+.remove-item{
+  color:#999;
+  font-size:9px;
+  background:none;
+  margin-top:8px;
 }
 
-.quantity span {
-  font-size: 10px;
+.cart-footer{
+  padding:20px 24px calc(20px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--line);
 }
 
-.add-button {
-  width: 100%;
-  height: 50px;
-  margin-top: 28px;
-  background: #111;
-  color: #fff;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+.cart-row{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:9px;
+  font-size:11px;
 }
 
-.detail-accordion {
-  border-top: 1px solid #eee;
-  margin-top: 28px;
+.cart-total{
+  font-family:"Manrope",Arial,sans-serif;
+  font-size:18px;
+  font-weight:800;
+  padding-top:10px;
+  margin-top:10px;
+  border-top:1px solid var(--line);
 }
 
-.accordion {
-  border-bottom: 1px solid #eee;
-}
-
-.accordion-button {
-  width: 100%;
-  padding: 17px 0;
-  display: flex;
-  justify-content: space-between;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.accordion-content {
-  display: none;
-  padding: 0 0 18px;
-  color: #666;
-  font-size: 10px;
-  line-height: 1.6;
-}
-
-.accordion.open .accordion-content {
-  display: block;
+.checkout{
+  width:100%;
+  margin-top:18px;
 }
 
 /* =========================================================
-   BAG
-========================================================= */
+   PRODUCT MODAL
+   ========================================================= */
 
-.bag-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.3);
-  z-index: 4000;
-  display: none;
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:600;
+  display:grid;
+  place-items:center;
+  padding:25px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s;
 }
 
-.bag-overlay.active {
-  display: block;
+.modal.open{
+  opacity:1;
+  pointer-events:auto;
 }
 
-.bag-drawer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: min(100%, 430px);
-  height: 100vh;
-  background: #fff;
-  z-index: 4001;
-  transform: translateX(100%);
-  transition: transform .3s ease;
-  display: flex;
-  flex-direction: column;
+.modal-card{
+  width:min(980px,100%);
+  max-height:calc(100svh - 50px);
+  overflow:auto;
+  background:#f7f6f3;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  transform:translateY(18px) scale(.985);
+  transition:transform .4s var(--ease);
 }
 
-.bag-drawer.active {
-  transform: translateX(0);
+.modal.open .modal-card{
+  transform:none;
 }
 
-.bag-header {
-  height: 62px;
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #eee;
+.modal-image{
+  min-height:600px;
+  background:#ddd;
 }
 
-.bag-title {
-  font-size: 11px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.modal-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.bag-items {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px;
+.modal-content{
+  padding:50px;
+  display:flex;
+  flex-direction:column;
 }
 
-.empty-bag {
-  padding-top: 50px;
-  text-align: center;
-  color: #888;
-  font-size: 10px;
+.modal-category{
+  font-size:9px;
+  color:#8b8983;
+  letter-spacing:.17em;
+  text-transform:uppercase;
 }
 
-.bag-item {
-  display: grid;
-  grid-template-columns: 82px 1fr auto;
-  gap: 12px;
-  margin-bottom: 18px;
+.modal-name{
+  font-family:"Manrope",Arial,sans-serif;
+  font-size:clamp(32px,4vw,55px);
+  line-height:.95;
+  letter-spacing:-.055em;
+  margin-top:13px;
 }
 
-.bag-item-image {
-  width: 82px;
-  height: 105px;
-  background: #f3f2ef;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 7px;
-  color: #aaa;
-  letter-spacing: 1px;
+.modal-price{
+  font-size:15px;
+  margin-top:20px;
+  font-weight:600;
 }
 
-.bag-item-name {
-  font-size: 10px;
-  text-transform: uppercase;
-  line-height: 1.4;
+.modal-description{
+  margin-top:28px;
+  color:#777570;
+  font-size:12px;
+  line-height:1.8;
 }
 
-.bag-item-meta {
-  margin-top: 6px;
-  font-size: 8px;
-  color: #777;
-  line-height: 1.6;
+.option-label{
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-top:30px;
+  margin-bottom:10px;
 }
 
-.bag-item-price {
-  font-size: 9px;
+.size-options{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
 }
 
-.remove-item {
-  margin-top: 8px;
-  font-size: 8px;
-  text-decoration: underline;
-  color: #777;
+.size-option{
+  width:44px;
+  height:40px;
+  border:1px solid #ccc;
+  background:transparent;
+  font-size:9px;
 }
 
-.bag-footer {
-  padding: 16px;
-  border-top: 1px solid #eee;
+.size-option.selected{
+  background:#111;
+  color:#fff;
+  border-color:#111;
 }
 
-.bag-total {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  margin-bottom: 15px;
+.modal-add{
+  margin-top:auto;
+  padding-top:35px;
 }
 
-.checkout {
-  width: 100%;
-  height: 48px;
-  background: #111;
-  color: #fff;
-  font-size: 9px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+.modal-close{
+  position:absolute;
+  top:25px;
+  right:25px;
+  z-index:10;
+}
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+
+.mobile-menu{
+  position:fixed;
+  inset:0;
+  z-index:400;
+  background:#111;
+  color:#fff;
+  transform:translateY(-100%);
+  transition:transform .45s var(--ease);
+  padding:95px 25px 35px;
+  display:flex;
+  flex-direction:column;
+}
+
+.mobile-menu.open{
+  transform:translateY(0);
+}
+
+.mobile-close{
+  position:absolute;
+  top:25px;
+  right:20px;
+  color:#111;
+  background:#fff;
+}
+
+.mobile-links{
+  list-style:none;
+}
+
+.mobile-links li{
+  border-bottom:1px solid #333;
+}
+
+.mobile-links a{
+  display:block;
+  padding:18px 0;
+  font-family:"Manrope",Arial,sans-serif;
+  font-size:33px;
+  line-height:1;
+  letter-spacing:-.04em;
+}
+
+.mobile-menu-footer{
+  margin-top:auto;
+  color:#777;
+  font-size:9px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
 }
 
 /* =========================================================
    TOAST
-========================================================= */
+   ========================================================= */
 
-.toast {
-  position: fixed;
-  left: 50%;
-  bottom: 20px;
-  transform: translate(-50%, 20px);
-  background: #111;
-  color: #fff;
-  padding: 11px 16px;
-  font-size: 9px;
-  letter-spacing: .5px;
-  opacity: 0;
-  pointer-events: none;
-  transition: .3s;
-  z-index: 5000;
-  white-space: nowrap;
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  z-index:1000;
+  transform:translate(-50%,20px);
+  opacity:0;
+  pointer-events:none;
+  background:#111;
+  color:#fff;
+  padding:13px 17px;
+  font-size:10px;
+  letter-spacing:.08em;
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
+  transition:.35s var(--ease);
 }
 
-.toast.show {
-  opacity: 1;
-  transform: translate(-50%, 0);
-}
-
-/* =========================================================
-   DESKTOP
-========================================================= */
-
-@media (min-width: 768px) {
-
-  .header-inner {
-    padding: 0 28px;
-  }
-
-  .menu-btn {
-    display: none;
-  }
-
-  .desktop-nav {
-    display: flex;
-    gap: 22px;
-  }
-
-  .desktop-nav a {
-    font-size: 9px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .hero {
-    min-height: 680px;
-  }
-
-  .hero-content {
-    padding: 50px;
-  }
-
-  .section {
-    padding: 80px 30px;
-  }
-
-  .product-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 18px;
-  }
-
-  .statement {
-    padding: 100px 50px;
-  }
-
-  .about {
-    padding: 100px 50px;
-  }
-
-  .footer {
-    padding: 45px 30px;
-  }
-
-  .footer-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .product-details {
-    max-width: 650px;
-    margin: auto;
-  }
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
 }
 
 /* =========================================================
-   LARGE DESKTOP
-========================================================= */
+   REVEAL
+   ========================================================= */
 
-@media (min-width: 1200px) {
+.reveal{
+  opacity:0;
+  transform:translateY(22px);
+  transition:
+    opacity .8s var(--ease),
+    transform .8s var(--ease);
+}
 
-  .header-inner {
-    padding: 0 45px;
+.reveal.visible{
+  opacity:1;
+  transform:none;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:1100px){
+
+  .product-grid{
+    grid-template-columns:repeat(3,1fr);
   }
 
-  .section {
-    padding-left: 45px;
-    padding-right: 45px;
+  .hero-title{
+    font-size:clamp(58px,11vw,120px);
   }
 
-  .product-grid {
-    gap: 25px 12px;
+  .lookbook-grid{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:330px 330px;
+  }
+
+  .lookbook-item:first-child{
+    grid-column:span 2;
+    grid-row:auto;
+  }
+
+  .footer-top{
+    grid-template-columns:1.5fr 1fr 1fr;
+  }
+}
+
+@media(max-width:800px){
+
+  :root{
+    --header:64px;
+  }
+
+  .container{
+    width:min(calc(100% - 28px),var(--max));
+  }
+
+  .section{
+    padding:75px 0;
+  }
+
+  .section-sm{
+    padding:50px 0;
+  }
+
+  .nav{
+    grid-template-columns:1fr auto;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .nav-actions .search-btn,
+  .nav-actions .account-btn{
+    display:none;
+  }
+
+  .menu-btn{
+    display:grid;
+  }
+
+  .brand{
+    font-size:19px;
+  }
+
+  .hero{
+    min-height:calc(100svh - var(--header) - 32px);
+  }
+
+  .hero-content{
+    padding:55px 0 35px;
+  }
+
+  .hero-grid{
+    grid-template-columns:1fr;
+    gap:25px;
+  }
+
+  .hero-title{
+    font-size:clamp(57px,17vw,100px);
+  }
+
+  .hero-meta{
+    justify-self:start;
+    max-width:420px;
+  }
+
+  .hero-meta p{
+    font-size:13px;
+  }
+
+  .hero-scroll{
+    display:none;
+  }
+
+  .manifesto-inner{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+
+  .collection-intro{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+
+  .collection-intro-right{
+    display:block;
+  }
+
+  .product-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:16px 10px;
+  }
+
+  .quick-add{
+    display:none;
+  }
+
+  .product-toolbar{
+    align-items:flex-start;
+    flex-direction:column;
+    margin-top:35px;
+  }
+
+  .editorial-grid{
+    grid-template-columns:1fr;
+    min-height:0;
+  }
+
+  .editorial-image{
+    aspect-ratio:1/1.1;
+    min-height:0;
+  }
+
+  .editorial-copy{
+    padding:45px 25px 50px;
+    gap:70px;
+  }
+
+  .lookbook-header{
+    display:block;
+  }
+
+  .lookbook-header .section-copy{
+    margin-top:20px;
+  }
+
+  .lookbook-grid{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:240px 240px 240px;
+  }
+
+  .lookbook-item:first-child{
+    grid-column:span 2;
+  }
+
+  .values-header{
+    grid-template-columns:1fr;
+    gap:25px;
+  }
+
+  .values-grid{
+    grid-template-columns:1fr;
+  }
+
+  .value{
+    border-right:0;
+    border-bottom:1px solid #363636;
+    margin:0;
+    padding:30px 0;
+  }
+
+  .value:last-child{
+    border-bottom:0;
+  }
+
+  .value-num{
+    margin-bottom:35px;
+  }
+
+  .size-grid{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+  .footer-top{
+    grid-template-columns:1fr 1fr;
+    gap:45px 25px;
+  }
+
+  .footer-top > :first-child{
+    grid-column:span 2;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .modal{
+    padding:0;
+  }
+
+  .modal-card{
+    max-height:100svh;
+    width:100%;
+    height:100%;
+    grid-template-columns:1fr;
+    overflow:auto;
+  }
+
+  .modal-image{
+    min-height:48svh;
+    height:48svh;
+  }
+
+  .modal-content{
+    padding:30px 22px 35px;
+  }
+
+  .modal-add{
+    padding-top:30px;
+  }
+
+  .modal-close{
+    top:15px;
+    right:15px;
+  }
+}
+
+@media(max-width:500px){
+
+  .announcement{
+    font-size:8px;
+  }
+
+  .hero-image{
+    object-position:center;
+  }
+
+  .hero-overlay{
+    background:
+      linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.04) 30%,rgba(0,0,0,.75));
+  }
+
+  .hero-title{
+    font-size:clamp(55px,17.5vw,83px);
+  }
+
+  .hero-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+
+  .hero-actions .btn{
+    width:100%;
+    padding:0 10px;
+  }
+
+  .product-grid{
+    gap:22px 9px;
+  }
+
+  .product-media{
+    aspect-ratio:3/4;
+  }
+
+  .product-info{
+    padding-top:10px;
+  }
+
+  .product-name{
+    font-size:12px;
+  }
+
+  .product-price{
+    font-size:10px;
+  }
+
+  .product-color{
+    font-size:9px;
+  }
+
+  .lookbook-grid{
+    grid-template-columns:1fr;
+    grid-template-rows:auto;
+  }
+
+  .lookbook-item,
+  .lookbook-item:first-child{
+    grid-column:auto;
+    aspect-ratio:1/1.15;
+  }
+
+  .newsletter-form{
+    width:100%;
+  }
+
+  .footer-top{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .footer-brand{
+    font-size:25px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    scroll-behavior:auto!important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+
+  .reveal{
+    opacity:1;
+    transform:none;
   }
 }
 </style>
@@ -911,48 +1740,73 @@ main {
 <body>
 
 <!-- =======================================================
+     ANNOUNCEMENT
+======================================================= -->
+
+<div class="announcement">
+  <div class="announcement-track">
+    <span>WEIREN® — DESIGNED FOR THE FEW</span>
+    <span>ACID WASH COLLECTION</span>
+    <span>OVERSIZED / RELAXED / ESSENTIAL</span>
+    <span>EST. 2024</span>
+    <span>WEIREN® — DESIGNED FOR THE FEW</span>
+    <span>ACID WASH COLLECTION</span>
+  </div>
+</div>
+
+<!-- =======================================================
      HEADER
 ======================================================= -->
 
-<header class="header">
-  <div class="header-inner">
+<header class="site-header">
+  <div class="container nav">
 
-    <div class="header-left">
+    <a href="#home" class="brand">
+      WEIREN<small>®</small>
+    </a>
 
-      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
-        ☰
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#collection">Collection</a></li>
+        <li><a href="#lookbook">Lookbook</a></li>
+        <li><a href="#story">Our Story</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+
+      <button class="icon-btn search-btn" aria-label="Search" onclick="focusSearch()">
+        <svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="6.5"></circle>
+          <path d="M16 16l5 5"></path>
+        </svg>
       </button>
 
-      <nav class="desktop-nav">
-        <a href="#new">NEW IN</a>
-        <a href="#tees">T-SHIRTS</a>
-        <a href="#about">ABOUT</a>
-      </nav>
+      <button class="icon-btn account-btn" aria-label="Account" onclick="showToast('Account coming soon')">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="8" r="3.5"></circle>
+          <path d="M5 20c.8-4 3.1-6 7-6s6.2 2 7 6"></path>
+        </svg>
+      </button>
+
+      <button class="icon-btn" aria-label="Shopping bag" onclick="openCart()">
+        <svg viewBox="0 0 24 24">
+          <path d="M5 8h14l-1 13H6L5 8z"></path>
+          <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+        </svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+
+      <button class="icon-btn menu-btn" aria-label="Open menu" onclick="openMobileMenu()">
+        <svg viewBox="0 0 24 24">
+          <path d="M4 8h16M4 16h16"></path>
+        </svg>
+      </button>
 
     </div>
-
-    <a href="#" class="logo">WEIREN</a>
-
-    <div class="header-right">
-
-      <button class="header-btn" id="searchBtn">
-        SEARCH
-      </button>
-
-      <button class="header-btn" id="wishlistBtn">
-        ♡
-      </button>
-
-      <button class="header-btn bag-button" id="bagBtn">
-        BAG
-        <span class="bag-count" id="bagCount">0</span>
-      </button>
-
-    </div>
-
   </div>
 </header>
-
 
 <!-- =======================================================
      MOBILE MENU
@@ -960,1303 +1814,1227 @@ main {
 
 <div class="mobile-menu" id="mobileMenu">
 
-  <a href="#new" class="menu-link">NEW IN</a>
-  <a href="#tees" class="menu-link">T-SHIRTS</a>
-  <a href="#about" class="menu-link">ABOUT</a>
-  <a href="#" id="mobileSearch">SEARCH</a>
+  <button class="close-btn mobile-close" onclick="closeMobileMenu()">×</button>
+
+  <ul class="mobile-links">
+    <li><a href="#shop" onclick="closeMobileMenu()">Shop</a></li>
+    <li><a href="#collection" onclick="closeMobileMenu()">Collection</a></li>
+    <li><a href="#lookbook" onclick="closeMobileMenu()">Lookbook</a></li>
+    <li><a href="#story" onclick="closeMobileMenu()">Our Story</a></li>
+  </ul>
+
+  <div class="mobile-menu-footer">
+    WEIREN® · EST. 2024 · DESIGNED FOR THE FEW
+  </div>
 
 </div>
-
-
-<main>
 
 <!-- =======================================================
      HERO
 ======================================================= -->
 
+<main id="home">
+
 <section class="hero">
 
-  <div class="hero-content">
+  <img
+    class="hero-image"
+    src="./20260907_194514_0001.png"
+    alt="WEIREN streetwear collection"
+    fetchpriority="high"
+  >
 
-    <div class="hero-label">
-      WEIREN / 001
+  <div class="hero-overlay"></div>
+
+  <div class="container hero-content">
+
+    <div class="hero-grid">
+
+      <div>
+
+        <div class="eyebrow hero-kicker">
+          WEIREN® / ACID WASH COLLECTION
+        </div>
+
+        <h1 class="hero-title">
+          <span>DESIGNED</span>
+          <span>FOR THE</span>
+          <span>FEW.</span>
+        </h1>
+
+      </div>
+
+      <div class="hero-meta">
+
+        <p>
+          Contemporary streetwear built around oversized silhouettes,
+          washed textures and a deliberately restrained visual language.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#shop" class="btn btn-light">
+            Shop Collection
+            <span>↗</span>
+          </a>
+
+          <a href="#story" class="btn btn-outline" style="border-color:#fff;color:#fff;">
+            Discover WEIREN
+          </a>
+        </div>
+
+      </div>
+
     </div>
 
-    <h1 class="hero-title">
-      LESS.<br>
-      BETTER.
-    </h1>
+  </div>
 
-    <p class="hero-subtitle">
-      Oversized acid-washed T-shirts.
-      Designed with intention. Made for everyday wear.
+  <div class="hero-scroll">
+    Scroll to explore
+  </div>
+
+</section>
+
+<!-- =======================================================
+     MANIFESTO
+======================================================= -->
+
+<section class="section manifesto">
+  <div class="container manifesto-inner reveal">
+
+    <div class="manifesto-mark">
+      WEIREN®<br>
+      EST. 2024
+    </div>
+
+    <div class="manifesto-text">
+      We don't design for everyone.
+      <strong>We design for the ones who know exactly what they want.</strong>
+    </div>
+
+  </div>
+</section>
+
+<!-- =======================================================
+     COLLECTION
+======================================================= -->
+
+<section class="section" id="collection">
+
+  <div class="container">
+
+    <div class="collection-intro reveal">
+
+      <div>
+        <div class="eyebrow">01 / Collection</div>
+
+        <h2 class="section-title" style="margin-top:22px;">
+          THE ACID<br>
+          WASH ERA.
+        </h2>
+      </div>
+
+      <div class="collection-intro-right">
+
+        <p class="section-copy collection-note">
+          Heavyweight proportions. Distinctive washed surfaces.
+          Neutral tones designed to live together, not compete.
+        </p>
+
+        <a href="#shop" class="btn btn-outline">
+          Explore all
+          <span>↓</span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =======================================================
+     SHOP
+======================================================= -->
+
+<section class="section-sm" id="shop">
+
+  <div class="container">
+
+    <div class="product-toolbar">
+
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all" onclick="filterProducts('all',this)">
+          All
+        </button>
+        <button class="filter-btn" data-filter="tee" onclick="filterProducts('tee',this)">
+          Tees
+        </button>
+        <button class="filter-btn" data-filter="hoodie" onclick="filterProducts('hoodie',this)">
+          Hoodies
+        </button>
+        <button class="filter-btn" data-filter="pants" onclick="filterProducts('pants',this)">
+          Pants
+        </button>
+        <button class="filter-btn" data-filter="sweatshirt" onclick="filterProducts('sweatshirt',this)">
+          Sweatshirts
+        </button>
+      </div>
+
+      <div class="product-count" id="productCount">
+        08 products
+      </div>
+
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+
+  </div>
+
+</section>
+
+<!-- =======================================================
+     EDITORIAL
+======================================================= -->
+
+<section class="editorial" id="story">
+
+  <div class="editorial-grid">
+
+    <div class="editorial-image">
+      <img
+        src="./20260907_194514_0000.png"
+        alt="WEIREN collection editorial"
+        loading="lazy"
+      >
+    </div>
+
+    <div class="editorial-copy">
+
+      <div>
+        <div class="eyebrow">02 / The WEIREN Uniform</div>
+
+        <h2 style="margin-top:35px;">
+          LESS<br>
+          NOISE.<br>
+          MORE<br>
+          PRESENCE.
+        </h2>
+      </div>
+
+      <div class="editorial-footer">
+
+        <p>
+          Every piece begins with proportion, texture and restraint.
+          The result is clothing that doesn't need to shout to be noticed.
+        </p>
+
+        <div class="editorial-number">
+          002 / 004
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =======================================================
+     LOOKBOOK
+======================================================= -->
+
+<section class="section" id="lookbook">
+
+  <div class="container">
+
+    <div class="lookbook-header reveal">
+
+      <div>
+        <div class="eyebrow">03 / Lookbook</div>
+
+        <h2 class="section-title" style="margin-top:22px;">
+          BUILT IN<br>
+          TEXTURE.
+        </h2>
+      </div>
+
+      <p class="section-copy">
+        Onyx. Earth. Stone. Three restrained tones,
+        designed to form a wardrobe rather than a collection of isolated pieces.
+      </p>
+
+    </div>
+
+    <div class="lookbook-grid reveal">
+
+      <div class="lookbook-item">
+        <img
+          src="./20260907_194514_0002.png"
+          alt="WEIREN lookbook"
+          loading="lazy"
+        >
+        <span class="lookbook-label">01 / THE SILHOUETTE</span>
+      </div>
+
+      <div class="lookbook-item">
+        <img
+          src="./20260907_194514_0000.png"
+          alt="WEIREN acid wash detail"
+          loading="lazy"
+        >
+        <span class="lookbook-label">02 / ACID WASH</span>
+      </div>
+
+      <div class="lookbook-item">
+        <img
+          src="./20260907_194514_0001.png"
+          alt="WEIREN collection"
+          loading="lazy"
+        >
+        <span class="lookbook-label">03 / ONYX</span>
+      </div>
+
+      <div class="lookbook-item">
+        <img
+          src="./20260907_194514_0002.png"
+          alt="WEIREN streetwear"
+          loading="lazy"
+        >
+        <span class="lookbook-label">04 / DESIGNED FOR THE FEW</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =======================================================
+     VALUES
+======================================================= -->
+
+<section class="section values">
+
+  <div class="container">
+
+    <div class="values-header reveal">
+
+      <div>
+        <div class="eyebrow" style="color:#777;">04 / Philosophy</div>
+
+        <h2 class="values-title" style="margin-top:22px;">
+          THE DETAILS<br>
+          MATTER.
+        </h2>
+      </div>
+
+      <p class="values-copy">
+        WEIREN is built around a simple idea:
+        when the silhouette, fabric, wash and proportion are right,
+        everything else can stay quiet.
+      </p>
+
+    </div>
+
+    <div class="values-grid reveal">
+
+      <article class="value">
+        <div class="value-num">01 / SILHOUETTE</div>
+        <h3>Oversized by intention.</h3>
+        <p>
+          Relaxed proportions create the foundation of the WEIREN uniform.
+          Wide shoulders, dropped lines and effortless movement.
+        </p>
+      </article>
+
+      <article class="value">
+        <div class="value-num">02 / TEXTURE</div>
+        <h3>Washed, never ordinary.</h3>
+        <p>
+          Acid-wash surfaces create natural variation across every garment,
+          giving simple forms a more distinctive visual character.
+        </p>
+      </article>
+
+      <article class="value">
+        <div class="value-num">03 / RESTRAINT</div>
+        <h3>Nothing unnecessary.</h3>
+        <p>
+          Neutral colors, considered graphics and quiet branding keep the
+          attention where it belongs: on the garment.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =======================================================
+     SIZE GUIDE
+======================================================= -->
+
+<section class="section size-section">
+
+  <div class="container size-grid reveal">
+
+    <div>
+      <div class="eyebrow">05 / Fit Guide</div>
+
+      <h2 class="section-title" style="margin-top:22px;">
+        FIND YOUR<br>
+        FIT.
+      </h2>
+
+      <p class="section-copy" style="margin-top:25px;">
+        WEIREN silhouettes are intentionally relaxed.
+        If you're between sizes, choose based on how oversized
+        you want the final fit to feel.
+      </p>
+
+      <button class="btn btn-outline" style="margin-top:28px;" onclick="showToast('Fit guide saved for your next visit')">
+        Save fit preference
+      </button>
+    </div>
+
+    <div>
+
+      <table class="size-table">
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Chest</th>
+            <th>Length</th>
+            <th>Fit</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>XS</td>
+            <td>52"</td>
+            <td>27"</td>
+            <td>Relaxed</td>
+          </tr>
+          <tr>
+            <td>S</td>
+            <td>54"</td>
+            <td>28"</td>
+            <td>Oversized</td>
+          </tr>
+          <tr>
+            <td>M</td>
+            <td>56"</td>
+            <td>29"</td>
+            <td>Oversized</td>
+          </tr>
+          <tr>
+            <td>L</td>
+            <td>58"</td>
+            <td>30"</td>
+            <td>Oversized</td>
+          </tr>
+          <tr>
+            <td>XL</td>
+            <td>60"</td>
+            <td>31"</td>
+            <td>Extra Oversized</td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =======================================================
+     NEWSLETTER
+======================================================= -->
+
+<section class="section newsletter">
+
+  <div class="container newsletter-inner reveal">
+
+    <div class="eyebrow" style="justify-content:center;">
+      WEIREN / PRIVATE ACCESS
+    </div>
+
+    <h2 style="margin-top:25px;">
+      DON'T MISS<br>
+      THE NEXT DROP.
+    </h2>
+
+    <p>
+      New collections, limited releases and WEIREN updates.
+      No unnecessary noise.
     </p>
 
-    <a href="#new" class="hero-action">
-      SHOP NEW IN
-    </a>
+    <form class="newsletter-form" onsubmit="subscribe(event)">
+      <input
+        type="email"
+        id="newsletterEmail"
+        placeholder="Your email address"
+        required
+      >
+      <button type="submit">
+        Join ↗
+      </button>
+    </form>
 
   </div>
-
-</section>
-
-
-<!-- =======================================================
-     NEW IN
-======================================================= -->
-
-<section class="section" id="new">
-
-  <div class="section-header">
-
-    <h2 class="section-title">
-      NEW IN
-    </h2>
-
-    <a href="#tees" class="section-link">
-      VIEW ALL
-    </a>
-
-  </div>
-
-  <div class="product-grid" id="productGrid"></div>
-
-</section>
-
-
-<!-- =======================================================
-     STATEMENT
-======================================================= -->
-
-<section class="statement">
-
-  <div class="statement-small">
-    THE WEIREN STANDARD
-  </div>
-
-  <h2 class="statement-title">
-    OVERSIZED.<br>
-    ACID WASHED.<br>
-    NOTHING EXTRA.
-  </h2>
-
-  <p class="statement-copy">
-    We focus on one thing: T-shirts.
-    Better proportions, heavier feel and
-    washed finishes designed to age naturally.
-  </p>
-
-</section>
-
-
-<!-- =======================================================
-     T-SHIRTS
-======================================================= -->
-
-<section class="section" id="tees">
-
-  <div class="section-header">
-
-    <h2 class="section-title">
-      T-SHIRTS
-    </h2>
-
-    <span class="section-link">
-      001 — 004
-    </span>
-
-  </div>
-
-  <div class="product-grid" id="teeGrid"></div>
-
-</section>
-
-
-<!-- =======================================================
-     ABOUT
-======================================================= -->
-
-<section class="about" id="about">
-
-  <div class="about-label">
-    ABOUT WEIREN
-  </div>
-
-  <h2 class="about-title">
-    MADE TO BE<br>
-    WORN.
-  </h2>
-
-  <p class="about-copy">
-    WEIREN is built around a simple idea:
-    fewer pieces, better design.
-    Our collection focuses on oversized
-    silhouettes and acid-washed finishes
-    without unnecessary details.
-  </p>
 
 </section>
 
 </main>
 
-
 <!-- =======================================================
      FOOTER
 ======================================================= -->
 
-<footer class="footer">
+<footer>
 
-  <div class="footer-logo">
-    WEIREN
-  </div>
+  <div class="container">
 
-  <div class="footer-grid">
+    <div class="footer-top">
 
-    <div>
-      <div class="footer-heading">SHOP</div>
-      <a href="#new">New In</a>
-      <a href="#tees">T-Shirts</a>
+      <div>
+        <div class="footer-brand">
+          WEIREN<sup style="font-size:9px;">®</sup>
+        </div>
+
+        <p class="footer-description">
+          Contemporary streetwear for the few.
+          Oversized silhouettes, washed textures and a deliberately
+          restrained visual language.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Shop</h4>
+        <a href="#shop">All Products</a>
+        <a href="#shop">T-Shirts</a>
+        <a href="#shop">Hoodies</a>
+        <a href="#shop">Pants</a>
+        <a href="#shop">Sweatshirts</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>Explore</h4>
+        <a href="#collection">Collection</a>
+        <a href="#lookbook">Lookbook</a>
+        <a href="#story">Our Story</a>
+        <a href="#" onclick="showToast('Size guide available above');return false;">Fit Guide</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>Follow</h4>
+        <a href="#" onclick="showToast('Instagram link can be connected here');return false;">Instagram</a>
+        <a href="#" onclick="showToast('Contact link can be connected here');return false;">Contact</a>
+        <a href="#" onclick="showToast('Shipping information coming soon');return false;">Shipping</a>
+        <a href="#" onclick="showToast('Returns information coming soon');return false;">Returns</a>
+      </div>
+
     </div>
 
-    <div>
-      <div class="footer-heading">INFO</div>
-      <a href="#about">About</a>
-      <a href="#">Shipping</a>
-      <a href="#">Returns</a>
+    <div class="footer-bottom">
+      <span>© 2024 WEIREN®. All rights reserved.</span>
+      <span>DESIGNED FOR THE FEW · EST. 2024</span>
     </div>
 
-    <div>
-      <div class="footer-heading">HELP</div>
-      <a href="#">Contact</a>
-      <a href="#">Size Guide</a>
-      <a href="#">FAQ</a>
-    </div>
-
-    <div>
-      <div class="footer-heading">SOCIAL</div>
-      <a href="#">Instagram</a>
-      <a href="#">Pinterest</a>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    © 2026 WEIREN. ALL RIGHTS RESERVED.
   </div>
 
 </footer>
 
-
 <!-- =======================================================
-     SEARCH
+     CART OVERLAY
 ======================================================= -->
 
-<div class="search-panel" id="searchPanel">
+<div class="overlay" id="overlay" onclick="closeAllOverlays()"></div>
 
-  <div class="search-top">
+<aside class="cart-drawer" id="cartDrawer">
 
-    <div class="search-title">
-      SEARCH
-    </div>
-
-    <button class="close-btn" id="closeSearch">
-      ×
-    </button>
-
+  <div class="drawer-header">
+    <div class="drawer-title">Your Bag</div>
+    <button class="close-btn" onclick="closeCart()">×</button>
   </div>
 
-  <input
-    type="text"
-    class="search-input"
-    id="searchInput"
-    placeholder="Search"
-    autocomplete="off"
-  >
+  <div class="cart-items" id="cartItems"></div>
 
-  <div class="search-results" id="searchResults"></div>
+  <div class="cart-footer">
 
-</div>
-
-
-<!-- =======================================================
-     PRODUCT VIEW
-======================================================= -->
-
-<div class="product-view" id="productView">
-
-  <div class="product-view-header">
-
-    <button class="back-btn" id="closeProduct">
-      ← BACK
-    </button>
-
-    <div class="logo">
-      WEIREN
+    <div class="cart-row">
+      <span>Subtotal</span>
+      <span id="cartSubtotal">₹0</span>
     </div>
 
-    <button class="header-btn" id="productBagBtn">
-      BAG
-    </button>
-
-  </div>
-
-  <div class="product-gallery" id="productGallery"></div>
-
-  <div class="product-details">
-
-    <h1 class="product-detail-name" id="detailName">
-      PRODUCT
-    </h1>
-
-    <div class="product-detail-price" id="detailPrice">
-      ₹0
+    <div class="cart-row">
+      <span>Shipping</span>
+      <span>Calculated at checkout</span>
     </div>
 
-    <p class="product-description" id="detailDescription">
-    </p>
-
-
-    <div class="option-block">
-
-      <div class="option-label">
-        COLOR
-      </div>
-
-      <div class="option-row" id="colorOptions"></div>
-
+    <div class="cart-row cart-total">
+      <span>Total</span>
+      <span id="cartTotal">₹0</span>
     </div>
 
-
-    <div class="option-block">
-
-      <div class="option-label">
-        SIZE
-      </div>
-
-      <div class="option-row" id="sizeOptions"></div>
-
-    </div>
-
-
-    <div class="option-block">
-
-      <div class="option-label">
-        QUANTITY
-      </div>
-
-      <div class="quantity">
-
-        <button id="minusQty">
-          −
-        </button>
-
-        <span id="quantity">
-          1
-        </span>
-
-        <button id="plusQty">
-          +
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <button class="add-button" id="addToBag">
-      ADD TO BAG
-    </button>
-
-
-    <div class="detail-accordion">
-
-      <div class="accordion">
-
-        <button class="accordion-button">
-          DESCRIPTION
-          <span>+</span>
-        </button>
-
-        <div class="accordion-content">
-          Oversized fit with a relaxed silhouette.
-          Acid-washed finish for a naturally worn appearance.
-          Designed for everyday styling.
-        </div>
-
-      </div>
-
-
-      <div class="accordion">
-
-        <button class="accordion-button">
-          FIT & SIZE
-          <span>+</span>
-        </button>
-
-        <div class="accordion-content">
-          Oversized fit.
-          For a more fitted appearance, choose one size down.
-          Refer to the size guide before ordering.
-        </div>
-
-      </div>
-
-
-      <div class="accordion">
-
-        <button class="accordion-button">
-          DELIVERY & RETURNS
-          <span>+</span>
-        </button>
-
-        <div class="accordion-content">
-          Delivery information and return policy will be
-          displayed here once WEIREN shipping is configured.
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =======================================================
-     BAG
-======================================================= -->
-
-<div class="bag-overlay" id="bagOverlay"></div>
-
-<aside class="bag-drawer" id="bagDrawer">
-
-  <div class="bag-header">
-
-    <div class="bag-title">
-      YOUR BAG
-    </div>
-
-    <button class="close-btn" id="closeBag">
-      ×
-    </button>
-
-  </div>
-
-  <div class="bag-items" id="bagItems"></div>
-
-  <div class="bag-footer">
-
-    <div class="bag-total">
-
-      <span>
-        TOTAL
-      </span>
-
-      <span id="bagTotal">
-        ₹0
-      </span>
-
-    </div>
-
-    <button class="checkout" id="checkout">
-      CHECKOUT
+    <button class="btn checkout" onclick="checkout()">
+      Checkout
+      <span>→</span>
     </button>
 
   </div>
 
 </aside>
 
+<!-- =======================================================
+     PRODUCT MODAL
+======================================================= -->
+
+<div class="modal" id="productModal">
+
+  <button class="close-btn modal-close" onclick="closeProductModal()">×</button>
+
+  <div class="modal-card">
+
+    <div class="modal-image">
+      <img id="modalImage" src="" alt="">
+    </div>
+
+    <div class="modal-content">
+
+      <div class="modal-category" id="modalCategory"></div>
+
+      <h2 class="modal-name" id="modalName"></h2>
+
+      <div class="modal-price" id="modalPrice"></div>
+
+      <p class="modal-description" id="modalDescription"></p>
+
+      <div class="option-label">
+        Select size
+      </div>
+
+      <div class="size-options" id="modalSizes">
+
+        <button class="size-option" onclick="selectSize(this)">XS</button>
+        <button class="size-option selected" onclick="selectSize(this)">S</button>
+        <button class="size-option" onclick="selectSize(this)">M</button>
+        <button class="size-option" onclick="selectSize(this)">L</button>
+        <button class="size-option" onclick="selectSize(this)">XL</button>
+
+      </div>
+
+      <div class="option-label">
+        Color
+      </div>
+
+      <div id="modalColor" style="font-size:12px;"></div>
+
+      <div class="modal-add">
+
+        <button class="btn" style="width:100%;" onclick="addModalProduct()">
+          Add to Bag
+          <span>+</span>
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
 <!-- =======================================================
      TOAST
 ======================================================= -->
 
-<div class="toast" id="toast">
-  ADDED TO BAG
-</div>
+<div class="toast" id="toast"></div>
 
+<!-- =======================================================
+     JAVASCRIPT
+======================================================= -->
 
 <script>
-
 /* =========================================================
-   PRODUCT DATA
-
-   IMPORTANT:
-   Keep image fields empty until real WEIREN product
-   images are available. No random internet clothing.
+   WEIREN PRODUCT DATA
 ========================================================= */
 
 const products = [
 
   {
-    id: 1,
-    name: "Washed Charcoal Oversized Tee",
-    price: 499,
-    color: "Charcoal",
-    images: [],
-    description:
-      "Heavy oversized silhouette with a deep charcoal washed finish."
+    id:1,
+    category:"tee",
+    type:"T-Shirt",
+    name:"Oversized Tee — Onyx",
+    price:2490,
+    color:"Onyx",
+    image:"./20260907_194514_0000.png",
+    badge:"Essential",
+    description:"A relaxed oversized tee in deep Onyx with a washed surface, dropped shoulders and a heavyweight everyday silhouette."
   },
 
   {
-    id: 2,
-    name: "Washed Black Oversized Tee",
-    price: 499,
-    color: "Black",
-    images: [],
-    description:
-      "Classic oversized T-shirt with a faded washed-black finish."
+    id:2,
+    category:"tee",
+    type:"T-Shirt",
+    name:"Oversized Tee — Earth",
+    price:2490,
+    color:"Earth",
+    image:"./20260907_194514_0001.png",
+    badge:"New",
+    description:"Earth-toned acid-wash cotton with a relaxed fit and understated WEIREN branding."
+  },
+
+  {
+    id:3,
+    category:"tee",
+    type:"T-Shirt",
+    name:"Oversized Tee — Stone",
+    price:2490,
+    color:"Stone",
+    image:"./20260907_194514_0002.png",
+    badge:"New",
+    description:"A muted Stone wash built around a clean oversized silhouette and versatile neutral palette."
+  },
+
+  {
+    id:4,
+    category:"hoodie",
+    type:"Hoodie",
+    name:"Acid Wash Hoodie — Onyx",
+    price:3990,
+    color:"Onyx",
+    image:"./20260907_194514_0000.png",
+    badge:"Core",
+    description:"Heavy relaxed hoodie construction with an acid-washed Onyx finish and a deliberately oversized shape."
+  },
+
+  {
+    id:5,
+    category:"hoodie",
+    type:"Hoodie",
+    name:"Acid Wash Hoodie — Earth",
+    price:3990,
+    color:"Earth",
+    image:"./20260907_194514_0001.png",
+    badge:"Core",
+    description:"A warm Earth wash combined with a generous hood, relaxed body and everyday streetwear proportions."
+  },
+
+  {
+    id:6,
+    category:"pants",
+    type:"Sweatpants",
+    name:"Acid Wash Sweatpants — Onyx",
+    price:3290,
+    color:"Onyx",
+    image:"./20260907_194514_0002.png",
+    badge:"Core",
+    description:"Baggy washed sweatpants with a relaxed leg, drawstring waist and understated WEIREN identity."
+  },
+
+  {
+    id:7,
+    category:"pants",
+    type:"Sweatpants",
+    name:"Acid Wash Sweatpants — Earth",
+    price:3290,
+    color:"Earth",
+    image:"./20260907_194514_0001.png",
+    badge:"New",
+    description:"Earth-toned relaxed sweatpants designed to pair naturally with the rest of the collection."
+  },
+
+  {
+    id:8,
+    category:"sweatshirt",
+    type:"Sweatshirt",
+    name:"Acid Wash Sweatshirt — Onyx",
+    price:3490,
+    color:"Onyx",
+    image:"./20260907_194514_0000.png",
+    badge:"Essential",
+    description:"A washed oversized crewneck with ribbed cuffs and hem, built for simple layering."
   }
 
 ];
-
 
 /* =========================================================
    STATE
 ========================================================= */
 
-let bag = [];
-
-let currentProduct = null;
-
-let currentSize = "M";
-
-let currentColor = "";
-
-let quantity = 1;
-
+let cart = JSON.parse(localStorage.getItem("weiren_cart") || "[]");
+let activeProduct = null;
+let currentFilter = "all";
 
 /* =========================================================
-   ELEMENTS
+   CURRENCY
 ========================================================= */
 
-const productGrid =
-  document.getElementById("productGrid");
-
-const teeGrid =
-  document.getElementById("teeGrid");
-
-const bagCount =
-  document.getElementById("bagCount");
-
-const bagDrawer =
-  document.getElementById("bagDrawer");
-
-const bagOverlay =
-  document.getElementById("bagOverlay");
-
-const bagItems =
-  document.getElementById("bagItems");
-
-const bagTotal =
-  document.getElementById("bagTotal");
-
-const toast =
-  document.getElementById("toast");
-
-
-/* =========================================================
-   PRODUCT CARD
-========================================================= */
-
-function productCard(product) {
-
-  const card = document.createElement("article");
-
-  card.className = "product-card";
-
-  card.innerHTML = `
-
-    <div
-      class="product-image"
-      data-product="${product.id}"
-    >
-
-      <button
-        class="wishlist"
-        data-wishlist="${product.id}"
-      >
-        ♡
-      </button>
-
-      ${
-        product.images.length
-        ?
-        `<img
-          src="${product.images[0]}"
-          alt="${product.name}"
-        >`
-        :
-        `
-        <div class="product-image-placeholder">
-          PRODUCT IMAGE
-        </div>
-        `
-      }
-
-    </div>
-
-    <div
-      class="product-info"
-      data-product="${product.id}"
-    >
-
-      <div class="product-name">
-        ${product.name}
-      </div>
-
-      <div class="product-meta">
-
-        <span>
-          ${product.color}
-        </span>
-
-        <span class="product-price">
-          ₹${product.price.toLocaleString("en-IN")}
-        </span>
-
-      </div>
-
-    </div>
-
-  `;
-
-  return card;
+function money(value){
+  return "₹" + Number(value).toLocaleString("en-IN");
 }
-
 
 /* =========================================================
    RENDER PRODUCTS
 ========================================================= */
 
-function renderProducts() {
+function renderProducts(filter = "all"){
 
-  productGrid.innerHTML = "";
+  const grid = document.getElementById("productGrid");
 
-  teeGrid.innerHTML = "";
+  const visible =
+    filter === "all"
+      ? products
+      : products.filter(product => product.category === filter);
 
-  products.forEach(product => {
+  document.getElementById("productCount").textContent =
+    String(visible.length).padStart(2,"0") + " products";
 
-    productGrid.appendChild(
-      productCard(product)
-    );
+  grid.innerHTML = visible.map(product => `
 
-    teeGrid.appendChild(
-      productCard(product)
-    );
+    <article class="product-card reveal visible" data-category="${product.category}">
 
-  });
-
-}
-
-renderProducts();
-
-
-/* =========================================================
-   PRODUCT CLICK
-========================================================= */
-
-document.addEventListener("click", event => {
-
-  const productTarget =
-    event.target.closest("[data-product]");
-
-  if (
-    productTarget &&
-    !event.target.closest("[data-wishlist]")
-  ) {
-
-    const id =
-      Number(productTarget.dataset.product);
-
-    openProduct(id);
-
-  }
-
-});
-
-
-/* =========================================================
-   OPEN PRODUCT
-========================================================= */
-
-function openProduct(id) {
-
-  const product =
-    products.find(p => p.id === id);
-
-  if (!product) return;
-
-  currentProduct = product;
-
-  currentSize = "M";
-
-  currentColor = product.color;
-
-  quantity = 1;
-
-  document.getElementById("detailName").textContent =
-    product.name;
-
-  document.getElementById("detailPrice").textContent =
-    "₹" + product.price.toLocaleString("en-IN");
-
-  document.getElementById("detailDescription").textContent =
-    product.description;
-
-
-  renderGallery(product);
-
-  renderColors(product);
-
-  renderSizes();
-
-  document.getElementById("quantity").textContent =
-    quantity;
-
-  document.getElementById("productView")
-    .classList.add("active");
-
-  document.body.style.overflow = "hidden";
-
-}
-
-
-/* =========================================================
-   PRODUCT GALLERY
-========================================================= */
-
-function renderGallery(product) {
-
-  const gallery =
-    document.getElementById("productGallery");
-
-  gallery.innerHTML = "";
-
-  if (!product.images.length) {
-
-    for (let i = 0; i < 3; i++) {
-
-      const image =
-        document.createElement("div");
-
-      image.className = "gallery-image";
-
-      image.innerHTML = `
-        <div class="gallery-placeholder">
-          PRODUCT IMAGE ${i + 1}
-        </div>
-      `;
-
-      gallery.appendChild(image);
-
-    }
-
-    return;
-
-  }
-
-
-  product.images.forEach(src => {
-
-    const image =
-      document.createElement("div");
-
-    image.className = "gallery-image";
-
-    image.innerHTML = `
-      <img
-        src="${src}"
-        alt="${product.name}"
+      <div
+        class="product-media"
+        onclick="openProduct(${product.id})"
+        role="button"
+        tabindex="0"
       >
-    `;
 
-    gallery.appendChild(image);
-
-  });
-
-}
-
-
-/* =========================================================
-   COLORS
-========================================================= */
-
-function renderColors(product) {
-
-  const container =
-    document.getElementById("colorOptions");
-
-  container.innerHTML = "";
-
-  const colors = [
-    product.color
-  ];
-
-  colors.forEach(color => {
-
-    const button =
-      document.createElement("button");
-
-    button.className =
-      "option active";
-
-    button.textContent =
-      color;
-
-    button.onclick = () => {
-
-      currentColor = color;
-
-      document
-        .querySelectorAll("#colorOptions .option")
-        .forEach(btn =>
-          btn.classList.remove("active")
-        );
-
-      button.classList.add("active");
-
-    };
-
-    container.appendChild(button);
-
-  });
-
-}
-
-
-/* =========================================================
-   SIZES
-========================================================= */
-
-function renderSizes() {
-
-  const container =
-    document.getElementById("sizeOptions");
-
-  container.innerHTML = "";
-
-  ["S", "M", "L", "XL", "XXL"].forEach(size => {
-
-    const button =
-      document.createElement("button");
-
-    button.className =
-      "option" +
-      (size === currentSize ? " active" : "");
-
-    button.textContent = size;
-
-    button.onclick = () => {
-
-      currentSize = size;
-
-      document
-        .querySelectorAll("#sizeOptions .option")
-        .forEach(btn =>
-          btn.classList.remove("active")
-        );
-
-      button.classList.add("active");
-
-    };
-
-    container.appendChild(button);
-
-  });
-
-}
-
-
-/* =========================================================
-   CLOSE PRODUCT
-========================================================= */
-
-document
-  .getElementById("closeProduct")
-  .onclick = () => {
-
-    document
-      .getElementById("productView")
-      .classList.remove("active");
-
-    document.body.style.overflow = "";
-
-  };
-
-
-/* =========================================================
-   QUANTITY
-========================================================= */
-
-document
-  .getElementById("minusQty")
-  .onclick = () => {
-
-    if (quantity > 1) {
-
-      quantity--;
-
-      document.getElementById("quantity")
-        .textContent = quantity;
-
-    }
-
-  };
-
-
-document
-  .getElementById("plusQty")
-  .onclick = () => {
-
-    if (quantity < 10) {
-
-      quantity++;
-
-      document.getElementById("quantity")
-        .textContent = quantity;
-
-    }
-
-  };
-
-
-/* =========================================================
-   ADD TO BAG
-========================================================= */
-
-document
-  .getElementById("addToBag")
-  .onclick = () => {
-
-    if (!currentProduct) return;
-
-    const existing =
-      bag.find(item =>
-        item.id === currentProduct.id &&
-        item.size === currentSize
-      );
-
-    if (existing) {
-
-      existing.quantity += quantity;
-
-    } else {
-
-      bag.push({
-
-        id: currentProduct.id,
-
-        name: currentProduct.name,
-
-        price: currentProduct.price,
-
-        color: currentColor,
-
-        size: currentSize,
-
-        quantity: quantity
-
-      });
-
-    }
-
-    updateBag();
-
-    showToast("ADDED TO BAG");
-
-  };
-
-
-/* =========================================================
-   BAG
-========================================================= */
-
-function updateBag() {
-
-  const count =
-    bag.reduce(
-      (total, item) =>
-        total + item.quantity,
-      0
-    );
-
-  bagCount.textContent = count;
-
-
-  bagItems.innerHTML = "";
-
-  if (!bag.length) {
-
-    bagItems.innerHTML = `
-      <div class="empty-bag">
-        YOUR BAG IS EMPTY
-      </div>
-    `;
-
-    bagTotal.textContent = "₹0";
-
-    return;
-
-  }
-
-
-  let total = 0;
-
-
-  bag.forEach((item, index) => {
-
-    total +=
-      item.price * item.quantity;
-
-    const row =
-      document.createElement("div");
-
-    row.className = "bag-item";
-
-    row.innerHTML = `
-
-      <div class="bag-item-image">
-        PRODUCT
-      </div>
-
-      <div>
-
-        <div class="bag-item-name">
-          ${item.name}
-        </div>
-
-        <div class="bag-item-meta">
-          COLOR: ${item.color}<br>
-          SIZE: ${item.size}<br>
-          QTY: ${item.quantity}
-        </div>
+        ${product.badge ? `
+          <span class="product-badge">
+            ${product.badge}
+          </span>
+        ` : ""}
 
         <button
-          class="remove-item"
-          data-remove="${index}"
+          class="wishlist"
+          aria-label="Add to wishlist"
+          onclick="event.stopPropagation();toggleWishlist(this)"
         >
-          REMOVE
+          <svg viewBox="0 0 24 24">
+            <path d="M20.8 8.7c0 5.5-8.8 10.3-8.8 10.3S3.2 14.2 3.2 8.7A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.6Z"></path>
+          </svg>
+        </button>
+
+        <img
+          src="${product.image}"
+          alt="${product.name}"
+          loading="lazy"
+          onerror="this.style.opacity='.25'"
+        >
+
+        <button
+          class="quick-add"
+          onclick="event.stopPropagation();quickAdd(${product.id})"
+        >
+          Quick Add +
         </button>
 
       </div>
 
-      <div class="bag-item-price">
-        ₹${(
-          item.price *
-          item.quantity
-        ).toLocaleString("en-IN")}
+      <div class="product-info">
+
+        <div class="product-category">
+          ${product.type}
+        </div>
+
+        <div class="product-name">
+          ${product.name}
+        </div>
+
+        <div class="product-bottom">
+          <div class="product-price">
+            ${money(product.price)}
+          </div>
+
+          <div class="product-color">
+            ${product.color}
+          </div>
+        </div>
+
+      </div>
+
+    </article>
+
+  `).join("");
+}
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function filterProducts(filter, button){
+
+  currentFilter = filter;
+
+  document.querySelectorAll(".filter-btn").forEach(btn=>{
+    btn.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  renderProducts(filter);
+
+  document.getElementById("shop").scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
+
+/* =========================================================
+   PRODUCT MODAL
+========================================================= */
+
+function openProduct(id){
+
+  const product = products.find(item => item.id === id);
+
+  if(!product) return;
+
+  activeProduct = product;
+
+  document.getElementById("modalImage").src = product.image;
+  document.getElementById("modalImage").alt = product.name;
+  document.getElementById("modalCategory").textContent =
+    product.type + " / WEIREN®";
+  document.getElementById("modalName").textContent =
+    product.name;
+  document.getElementById("modalPrice").textContent =
+    money(product.price);
+  document.getElementById("modalDescription").textContent =
+    product.description;
+  document.getElementById("modalColor").textContent =
+    product.color;
+
+  document.getElementById("productModal").classList.add("open");
+  document.getElementById("overlay").classList.add("open");
+  document.body.classList.add("no-scroll");
+}
+
+function closeProductModal(){
+
+  document.getElementById("productModal").classList.remove("open");
+
+  if(!document.getElementById("cartDrawer").classList.contains("open")){
+    document.getElementById("overlay").classList.remove("open");
+    document.body.classList.remove("no-scroll");
+  }
+}
+
+/* =========================================================
+   SIZE
+========================================================= */
+
+function selectSize(button){
+
+  document.querySelectorAll(".size-option").forEach(btn=>{
+    btn.classList.remove("selected");
+  });
+
+  button.classList.add("selected");
+}
+
+/* =========================================================
+   ADD PRODUCT
+========================================================= */
+
+function addModalProduct(){
+
+  if(!activeProduct) return;
+
+  const selected =
+    document.querySelector(".size-option.selected");
+
+  const size = selected ? selected.textContent : "S";
+
+  addToCart(activeProduct.id,size);
+
+  closeProductModal();
+}
+
+function quickAdd(id){
+
+  addToCart(id,"M");
+}
+
+function addToCart(id,size="M"){
+
+  const product = products.find(item => item.id === id);
+
+  if(!product) return;
+
+  const existing = cart.find(
+    item => item.id === id && item.size === size
+  );
+
+  if(existing){
+    existing.quantity += 1;
+  }else{
+    cart.push({
+      id:id,
+      size:size,
+      quantity:1
+    });
+  }
+
+  saveCart();
+
+  updateCartUI();
+
+  showToast(product.name + " added to bag");
+}
+
+/* =========================================================
+   CART
+========================================================= */
+
+function saveCart(){
+  localStorage.setItem("weiren_cart",JSON.stringify(cart));
+}
+
+function updateCartUI(){
+
+  const count = cart.reduce(
+    (sum,item)=>sum + item.quantity,
+    0
+  );
+
+  document.getElementById("cartCount").textContent = count;
+
+  const container = document.getElementById("cartItems");
+
+  if(!cart.length){
+
+    container.innerHTML = `
+      <div class="empty-cart">
+        <div>
+          <strong>Your bag is empty.</strong>
+          <span>Discover the latest WEIREN pieces.</span>
+        </div>
+      </div>
+    `;
+
+    document.getElementById("cartSubtotal").textContent = "₹0";
+    document.getElementById("cartTotal").textContent = "₹0";
+
+    return;
+  }
+
+  let subtotal = 0;
+
+  container.innerHTML = cart.map((item,index)=>{
+
+    const product = products.find(
+      product => product.id === item.id
+    );
+
+    if(!product) return "";
+
+    subtotal += product.price * item.quantity;
+
+    return `
+
+      <div class="cart-item">
+
+        <img
+          class="cart-item-image"
+          src="${product.image}"
+          alt="${product.name}"
+        >
+
+        <div>
+
+          <div class="cart-item-name">
+            ${product.name}
+          </div>
+
+          <div class="cart-item-meta">
+            ${product.color} · Size ${item.size}
+          </div>
+
+          <div class="quantity">
+
+            <button
+              class="qty-btn"
+              onclick="changeQuantity(${index},-1)"
+            >−</button>
+
+            <span>${item.quantity}</span>
+
+            <button
+              class="qty-btn"
+              onclick="changeQuantity(${index},1)"
+            >+</button>
+
+          </div>
+
+          <button
+            class="remove-item"
+            onclick="removeCartItem(${index})"
+          >
+            REMOVE
+          </button>
+
+        </div>
+
+        <div class="cart-item-price">
+          ${money(product.price * item.quantity)}
+        </div>
+
       </div>
 
     `;
 
-    bagItems.appendChild(row);
+  }).join("");
 
-  });
+  document.getElementById("cartSubtotal").textContent =
+    money(subtotal);
 
-
-  bagTotal.textContent =
-    "₹" + total.toLocaleString("en-IN");
-
+  document.getElementById("cartTotal").textContent =
+    money(subtotal);
 }
 
+function changeQuantity(index,delta){
 
-document.addEventListener("click", event => {
+  if(!cart[index]) return;
 
-  const remove =
-    event.target.closest("[data-remove]");
+  cart[index].quantity += delta;
 
-  if (!remove) return;
-
-  const index =
-    Number(remove.dataset.remove);
-
-  bag.splice(index, 1);
-
-  updateBag();
-
-});
-
-
-/* =========================================================
-   OPEN BAG
-========================================================= */
-
-function openBag() {
-
-  updateBag();
-
-  bagDrawer.classList.add("active");
-
-  bagOverlay.classList.add("active");
-
-}
-
-
-document
-  .getElementById("bagBtn")
-  .onclick = openBag;
-
-
-document
-  .getElementById("productBagBtn")
-  .onclick = openBag;
-
-
-document
-  .getElementById("closeBag")
-  .onclick = closeBag;
-
-
-bagOverlay.onclick = closeBag;
-
-
-function closeBag() {
-
-  bagDrawer.classList.remove("active");
-
-  bagOverlay.classList.remove("active");
-
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-const searchPanel =
-  document.getElementById("searchPanel");
-
-const searchInput =
-  document.getElementById("searchInput");
-
-const searchResults =
-  document.getElementById("searchResults");
-
-
-function openSearch() {
-
-  searchPanel.classList.add("active");
-
-  document.body.style.overflow = "hidden";
-
-  setTimeout(() => {
-    searchInput.focus();
-  }, 100);
-
-}
-
-
-function closeSearch() {
-
-  searchPanel.classList.remove("active");
-
-  document.body.style.overflow = "";
-
-  searchInput.value = "";
-
-  searchResults.innerHTML = "";
-
-}
-
-
-document
-  .getElementById("searchBtn")
-  .onclick = openSearch;
-
-
-document
-  .getElementById("mobileSearch")
-  .onclick = event => {
-
-    event.preventDefault();
-
-    document
-      .getElementById("mobileMenu")
-      .classList.remove("active");
-
-    openSearch();
-
-  };
-
-
-document
-  .getElementById("closeSearch")
-  .onclick = closeSearch;
-
-
-searchInput.addEventListener(
-  "input",
-  () => {
-
-    const query =
-      searchInput.value
-        .toLowerCase()
-        .trim();
-
-    searchResults.innerHTML = "";
-
-    if (!query) return;
-
-    const matches =
-      products.filter(product =>
-        product.name
-          .toLowerCase()
-          .includes(query)
-      );
-
-
-    if (!matches.length) {
-
-      searchResults.innerHTML = `
-        <div class="search-result">
-          NO PRODUCTS FOUND
-        </div>
-      `;
-
-      return;
-
-    }
-
-
-    matches.forEach(product => {
-
-      const result =
-        document.createElement("button");
-
-      result.className =
-        "search-result";
-
-      result.textContent =
-        product.name;
-
-      result.onclick = () => {
-
-        closeSearch();
-
-        openProduct(product.id);
-
-      };
-
-      searchResults.appendChild(result);
-
-    });
-
+  if(cart[index].quantity <= 0){
+    cart.splice(index,1);
   }
-);
 
+  saveCart();
+  updateCartUI();
+}
 
-/* =========================================================
-   MOBILE MENU
-========================================================= */
+function removeCartItem(index){
 
-document
-  .getElementById("menuBtn")
-  .onclick = () => {
+  if(!cart[index]) return;
 
-    document
-      .getElementById("mobileMenu")
-      .classList.toggle("active");
+  cart.splice(index,1);
 
-  };
+  saveCart();
+  updateCartUI();
 
-
-document
-  .querySelectorAll(".menu-link")
-  .forEach(link => {
-
-    link.onclick = () => {
-
-      document
-        .getElementById("mobileMenu")
-        .classList.remove("active");
-
-    };
-
-  });
-
+  showToast("Item removed");
+}
 
 /* =========================================================
-   WISHLIST
+   OPEN / CLOSE CART
 ========================================================= */
 
-document.addEventListener("click", event => {
+function openCart(){
 
-  const wishlist =
-    event.target.closest("[data-wishlist]");
+  closeProductModal();
 
-  if (!wishlist) return;
+  document.getElementById("cartDrawer").classList.add("open");
+  document.getElementById("overlay").classList.add("open");
+  document.body.classList.add("no-scroll");
 
-  event.stopPropagation();
+  updateCartUI();
+}
 
-  wishlist.textContent =
-    wishlist.textContent === "♡"
-    ? "♥"
-    : "♡";
+function closeCart(){
 
-});
+  document.getElementById("cartDrawer").classList.remove("open");
 
+  if(!document.getElementById("productModal").classList.contains("open")){
+    document.getElementById("overlay").classList.remove("open");
+    document.body.classList.remove("no-scroll");
+  }
+}
 
-document
-  .getElementById("wishlistBtn")
-  .onclick = () => {
+function closeAllOverlays(){
 
-    showToast("WISHLIST");
+  document.getElementById("cartDrawer").classList.remove("open");
+  document.getElementById("productModal").classList.remove("open");
+  document.getElementById("overlay").classList.remove("open");
 
-  };
-
-
-/* =========================================================
-   ACCORDIONS
-========================================================= */
-
-document
-  .querySelectorAll(".accordion-button")
-  .forEach(button => {
-
-    button.onclick = () => {
-
-      const accordion =
-        button.parentElement;
-
-      accordion.classList.toggle("open");
-
-      const icon =
-        button.querySelector("span");
-
-      icon.textContent =
-        accordion.classList.contains("open")
-        ? "−"
-        : "+";
-
-    };
-
-  });
-
+  document.body.classList.remove("no-scroll");
+}
 
 /* =========================================================
    CHECKOUT
 ========================================================= */
 
-document
-  .getElementById("checkout")
-  .onclick = () => {
+function checkout(){
 
-    if (!bag.length) {
+  if(!cart.length){
 
-      showToast("YOUR BAG IS EMPTY");
+    showToast("Your bag is empty");
 
-      return;
+    return;
+  }
 
-    }
+  showToast(
+    "Checkout is ready to connect to your payment system"
+  );
+}
 
-    showToast(
-      "CHECKOUT WILL BE CONNECTED NEXT"
-    );
+/* =========================================================
+   WISHLIST
+========================================================= */
 
-  };
+function toggleWishlist(button){
 
+  button.classList.toggle("active");
+
+  if(button.classList.contains("active")){
+    showToast("Added to wishlist");
+  }else{
+    showToast("Removed from wishlist");
+  }
+}
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+function openMobileMenu(){
+
+  document.getElementById("mobileMenu").classList.add("open");
+  document.body.classList.add("no-scroll");
+}
+
+function closeMobileMenu(){
+
+  document.getElementById("mobileMenu").classList.remove("open");
+  document.body.classList.remove("no-scroll");
+}
+
+/* =========================================================
+   NEWSLETTER
+========================================================= */
+
+function subscribe(event){
+
+  event.preventDefault();
+
+  const input = document.getElementById("newsletterEmail");
+
+  const email = input.value.trim();
+
+  if(!email) return;
+
+  localStorage.setItem(
+    "weiren_newsletter_email",
+    email
+  );
+
+  input.value = "";
+
+  showToast("You're on the WEIREN list.");
+}
 
 /* =========================================================
    TOAST
@@ -2264,7 +3042,9 @@ document
 
 let toastTimer;
 
-function showToast(message) {
+function showToast(message){
+
+  const toast = document.getElementById("toast");
 
   toast.textContent = message;
 
@@ -2272,49 +3052,133 @@ function showToast(message) {
 
   clearTimeout(toastTimer);
 
-  toastTimer =
-    setTimeout(() => {
-
-      toast.classList.remove("show");
-
-    }, 2200);
-
+  toastTimer = setTimeout(()=>{
+    toast.classList.remove("show");
+  },2600);
 }
 
-
 /* =========================================================
-   ESC KEY
+   SEARCH
 ========================================================= */
 
-document.addEventListener(
-  "keydown",
-  event => {
+function focusSearch(){
 
-    if (event.key !== "Escape") return;
+  const existing =
+    document.getElementById("shop");
 
-    closeSearch();
+  existing.scrollIntoView({
+    behavior:"smooth"
+  });
 
-    closeBag();
+  setTimeout(()=>{
+    showToast("Use the collection filters to browse");
+  },500);
+}
 
-    document
-      .getElementById("productView")
-      .classList.remove("active");
+/* =========================================================
+   REVEAL ON SCROLL
+========================================================= */
 
-    document
-      .getElementById("mobileMenu")
-      .classList.remove("active");
+function setupReveal(){
 
-    document.body.style.overflow = "";
+  const elements =
+    document.querySelectorAll(".reveal");
+
+  if(!("IntersectionObserver" in window)){
+
+    elements.forEach(el=>{
+      el.classList.add("visible");
+    });
+
+    return;
+  }
+
+  const observer =
+    new IntersectionObserver(
+      entries => {
+
+        entries.forEach(entry => {
+
+          if(entry.isIntersecting){
+
+            entry.target.classList.add("visible");
+
+            observer.unobserve(entry.target);
+
+          }
+
+        });
+
+      },
+      {
+        threshold:.12,
+        rootMargin:"0px 0px -50px 0px"
+      }
+    );
+
+  elements.forEach(el=>observer.observe(el));
+}
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
+
+document.addEventListener("keydown",event=>{
+
+  if(event.key === "Escape"){
+
+    closeAllOverlays();
+    closeMobileMenu();
 
   }
-);
 
+});
+
+/* =========================================================
+   PREVENT IMAGE DRAG
+========================================================= */
+
+document.addEventListener("dragstart",event=>{
+
+  if(event.target.tagName === "IMG"){
+    event.preventDefault();
+  }
+
+});
 
 /* =========================================================
    INITIALIZE
 ========================================================= */
 
-updateBag();
+document.addEventListener("DOMContentLoaded",()=>{
+
+  renderProducts("all");
+
+  updateCartUI();
+
+  setupReveal();
+
+});
+
+/* =========================================================
+   PRODUCT IMAGE FALLBACK
+   Keeps the layout intact if an uploaded asset is temporarily
+   unavailable while the platform is processing it.
+========================================================= */
+
+document.addEventListener("error",event=>{
+
+  const element = event.target;
+
+  if(
+    element &&
+    element.tagName === "IMG" &&
+    element.classList.contains("product-image")
+  ){
+    element.style.opacity = ".2";
+  }
+
+},true);
 
 </script>
 
