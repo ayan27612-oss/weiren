@@ -3,1088 +3,1011 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
 
-<title>WEIREN | Oversized T-Shirts</title>
+<title>WEIREN — Oversized Acid Washed T-Shirts</title>
 
 <style>
+/* =========================================================
+   WEIREN
+   MOBILE-FIRST FASHION STORE
+========================================================= */
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html{
-  scroll-behavior:smooth;
+html {
+  scroll-behavior: smooth;
 }
 
-body{
-  font-family:Arial, Helvetica, sans-serif;
-  background:#fff;
-  color:#111;
-  overflow-x:hidden;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fff;
+  color: #111;
+  overflow-x: hidden;
 }
 
 button,
-input{
-  font-family:inherit;
+input {
+  font: inherit;
 }
 
-button{
-  cursor:pointer;
+button {
+  border: 0;
+  background: none;
+  cursor: pointer;
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-/* =========================
+img {
+  display: block;
+  width: 100%;
+}
+
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
-.header{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:72px;
-  background:#fff;
-  z-index:1000;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 35px;
-  border-bottom:1px solid #eee;
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 62px;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #eee;
+  z-index: 1000;
 }
 
-.logo{
-  font-size:25px;
-  font-weight:700;
-  letter-spacing:5px;
+.header-inner {
+  height: 100%;
+  width: 100%;
+  padding: 0 14px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
 }
 
-.nav-left,
-.nav-right{
-  display:flex;
-  align-items:center;
-  gap:28px;
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
-.nav-left a,
-.nav-right button{
-  font-size:11px;
-  letter-spacing:1.5px;
-  background:none;
-  border:0;
-  color:#111;
+.header-right {
+  justify-content: flex-end;
 }
 
-.nav-right{
-  gap:20px;
+.logo {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-align: center;
 }
 
-.mobile-menu{
-  display:none;
-  background:none;
-  border:0;
-  font-size:20px;
+.header-btn {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
-/* =========================
-   SEARCH
-========================= */
-
-.search-panel{
-  position:fixed;
-  top:72px;
-  left:0;
-  width:100%;
-  background:#fff;
-  z-index:999;
-  padding:35px;
-  border-bottom:1px solid #ddd;
-  transform:translateY(-120%);
-  transition:transform .4s ease;
+.desktop-nav {
+  display: none;
 }
 
-.search-panel.active{
-  transform:translateY(0);
+.menu-btn {
+  font-size: 18px;
+  line-height: 1;
 }
 
-.search-panel input{
-  width:100%;
-  border:0;
-  border-bottom:1px solid #111;
-  padding:15px 0;
-  font-size:22px;
-  outline:none;
+.bag-button {
+  position: relative;
 }
 
-/* =========================
+.bag-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 4px;
+  margin-left: 3px;
+  border-radius: 50%;
+  background: #111;
+  color: white;
+  font-size: 8px;
+}
+
+/* =========================================================
    MOBILE MENU
-========================= */
+========================================================= */
 
-.mobile-nav{
-  position:fixed;
-  top:72px;
-  left:0;
-  width:100%;
-  background:#fff;
-  z-index:998;
-  padding:30px 20px;
-  display:none;
-  border-bottom:1px solid #ddd;
+.mobile-menu {
+  position: fixed;
+  top: 62px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 62px);
+  background: #fff;
+  z-index: 999;
+  transform: translateX(-100%);
+  transition: transform .35s ease;
+  padding: 30px 20px;
 }
 
-.mobile-nav.active{
-  display:block;
+.mobile-menu.active {
+  transform: translateX(0);
 }
 
-.mobile-nav a{
-  display:block;
-  padding:15px 0;
-  font-size:14px;
-  letter-spacing:2px;
-  border-bottom:1px solid #eee;
+.mobile-menu a {
+  display: block;
+  padding: 17px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
 
-/* =========================
+/* =========================================================
+   PAGE
+========================================================= */
+
+main {
+  padding-top: 62px;
+}
+
+/* =========================================================
    HERO
-========================= */
+========================================================= */
 
-.hero{
-  margin-top:72px;
-  min-height:82vh;
-  background:#e9e9e6;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
+.hero {
+  width: 100%;
+  min-height: calc(100svh - 62px);
+  display: flex;
+  align-items: flex-end;
+  background: #f1f0ec;
 }
 
-.hero-content{
-  width:100%;
-  max-width:1300px;
-  padding:70px 40px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  gap:50px;
+.hero-content {
+  width: 100%;
+  padding: 28px 16px 24px;
 }
 
-.hero-copy{
-  animation:fadeUp .8s ease forwards;
+.hero-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
 }
 
-.hero-kicker{
-  font-size:11px;
-  letter-spacing:3px;
-  margin-bottom:25px;
+.hero-title {
+  font-size: clamp(42px, 14vw, 100px);
+  line-height: .88;
+  font-weight: 500;
+  letter-spacing: -3px;
+  max-width: 650px;
 }
 
-.hero h1{
-  font-size:clamp(60px,9vw,135px);
-  line-height:.82;
-  font-weight:500;
-  letter-spacing:-7px;
+.hero-subtitle {
+  margin-top: 20px;
+  max-width: 310px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #555;
 }
 
-.hero-description{
-  margin-top:30px;
-  max-width:360px;
-  font-size:13px;
-  line-height:1.7;
-  color:#555;
+.hero-action {
+  display: inline-flex;
+  margin-top: 24px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #111;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
 
-.hero-button{
-  display:inline-block;
-  margin-top:30px;
-  padding:16px 35px;
-  background:#111;
-  color:#fff;
-  font-size:11px;
-  letter-spacing:2px;
-  transition:.3s;
+/* =========================================================
+   SECTION
+========================================================= */
+
+.section {
+  width: 100%;
+  padding: 48px 14px;
 }
 
-.hero-button:hover{
-  background:#444;
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-/* =========================
-   CSS T-SHIRT MOCKUP
-========================= */
-
-.mockup-area{
-  height:550px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  animation:fadeIn 1.2s ease forwards;
+.section-title {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
 
-.tshirt{
-  width:330px;
-  height:390px;
-  position:relative;
-  filter:drop-shadow(0 25px 25px rgba(0,0,0,.16));
+.section-link {
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: underline;
 }
 
-.tshirt-body{
-  position:absolute;
-  left:50px;
-  top:65px;
-  width:230px;
-  height:300px;
-  border-radius:8px 8px 15px 15px;
-  background:
-    radial-gradient(circle at 30% 25%,rgba(255,255,255,.22),transparent 25%),
-    radial-gradient(circle at 75% 60%,rgba(0,0,0,.18),transparent 30%),
-    linear-gradient(135deg,#4c4c4a,#292927 45%,#555550);
+/* =========================================================
+   PRODUCT GRID
+========================================================= */
+
+.product-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 8px;
 }
 
-.tshirt-body:before{
-  content:"";
-  position:absolute;
-  top:-5px;
-  left:77px;
-  width:76px;
-  height:35px;
-  background:#292927;
-  border-radius:50%;
-  border:5px solid #555550;
+.product-card {
+  min-width: 0;
 }
 
-.sleeve-left,
-.sleeve-right{
-  position:absolute;
-  top:68px;
-  width:95px;
-  height:145px;
-  background:linear-gradient(145deg,#454542,#292927);
+.product-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #f3f2ef;
+  overflow: hidden;
 }
 
-.sleeve-left{
-  left:-10px;
-  transform:rotate(25deg);
-  border-radius:25px 8px 8px 20px;
+.product-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-.sleeve-right{
-  right:-10px;
-  transform:rotate(-25deg);
-  border-radius:8px 25px 20px 8px;
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.tshirt-logo{
-  position:absolute;
-  top:185px;
-  left:0;
-  width:100%;
-  text-align:center;
-  color:#ddd;
-  font-size:18px;
-  letter-spacing:5px;
-  font-weight:bold;
+.wishlist {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  width: 28px;
+  height: 28px;
+  background: rgba(255,255,255,.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  z-index: 2;
 }
 
-/* =========================
-   SECTIONS
-========================= */
-
-.section{
-  padding:100px 35px;
+.product-info {
+  padding-top: 9px;
 }
 
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  margin-bottom:45px;
+.product-name {
+  font-size: 10px;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: .6px;
 }
 
-.section-title{
-  font-size:30px;
-  font-weight:400;
-  letter-spacing:-1px;
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  margin-top: 5px;
+  color: #666;
+  font-size: 9px;
 }
 
-.section-link{
-  font-size:11px;
-  letter-spacing:1.5px;
-  border-bottom:1px solid #111;
-  padding-bottom:5px;
+.product-price {
+  color: #111;
 }
 
-/* =========================
-   PRODUCTS
-========================= */
+/* =========================================================
+   BRAND STATEMENT
+========================================================= */
 
-.products{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
+.statement {
+  width: 100%;
+  background: #111;
+  color: #fff;
+  padding: 55px 16px;
 }
 
-.product-card{
-  cursor:pointer;
-  opacity:0;
-  transform:translateY(25px);
-  transition:opacity .7s ease,transform .7s ease;
+.statement-small {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: .65;
 }
 
-.product-card.visible{
-  opacity:1;
-  transform:translateY(0);
+.statement-title {
+  margin-top: 22px;
+  font-size: clamp(35px, 11vw, 90px);
+  line-height: .92;
+  font-weight: 400;
+  letter-spacing: -2px;
+  max-width: 850px;
 }
 
-.product-image{
-  background:#f1f1ef;
-  aspect-ratio:3/4;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
+.statement-copy {
+  margin-top: 24px;
+  max-width: 400px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #aaa;
 }
 
-.product-image .tshirt{
-  transform:scale(.58);
-  transition:transform .7s ease;
-}
-
-.product-card:hover .tshirt{
-  transform:scale(.63);
-}
-
-.product-info{
-  padding:14px 0 30px;
-  display:flex;
-  justify-content:space-between;
-  font-size:12px;
-}
-
-.product-price{
-  color:#555;
-}
-
-.product-color{
-  font-size:10px;
-  color:#777;
-  margin-top:5px;
-}
-
-/* Different product colors */
-
-.washed-grey .tshirt-body{
-  background:
-    radial-gradient(circle at 25% 20%,rgba(255,255,255,.25),transparent 25%),
-    radial-gradient(circle at 70% 70%,rgba(0,0,0,.16),transparent 30%),
-    linear-gradient(135deg,#777773,#4f4f4c,#888883);
-}
-
-.washed-brown .tshirt-body{
-  background:
-    radial-gradient(circle at 25% 20%,rgba(255,255,255,.2),transparent 25%),
-    radial-gradient(circle at 70% 70%,rgba(0,0,0,.2),transparent 30%),
-    linear-gradient(135deg,#6c5a4c,#43382f,#776354);
-}
-
-.washed-charcoal .tshirt-body{
-  background:
-    radial-gradient(circle at 30% 20%,rgba(255,255,255,.18),transparent 25%),
-    radial-gradient(circle at 70% 70%,rgba(0,0,0,.2),transparent 30%),
-    linear-gradient(135deg,#444442,#20201f,#555552);
-}
-
-.washed-black .tshirt-body{
-  background:
-    radial-gradient(circle at 25% 20%,rgba(255,255,255,.12),transparent 25%),
-    radial-gradient(circle at 70% 70%,rgba(0,0,0,.3),transparent 30%),
-    linear-gradient(135deg,#292928,#111,#393937);
-}
-
-/* =========================
-   EDITORIAL SECTION
-========================= */
-
-.editorial{
-  background:#111;
-  color:#fff;
-  min-height:65vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:80px 25px;
-}
-
-.editorial-content{
-  max-width:900px;
-}
-
-.editorial-small{
-  font-size:11px;
-  letter-spacing:4px;
-  margin-bottom:30px;
-  color:#aaa;
-}
-
-.editorial h2{
-  font-size:clamp(55px,9vw,130px);
-  line-height:.85;
-  font-weight:400;
-  letter-spacing:-7px;
-}
-
-.editorial p{
-  max-width:450px;
-  margin:35px auto 0;
-  color:#aaa;
-  font-size:13px;
-  line-height:1.7;
-}
-
-/* =========================
+/* =========================================================
    ABOUT
-========================= */
+========================================================= */
 
-.about{
-  padding:120px 35px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:80px;
+.about {
+  padding: 55px 16px;
 }
 
-.about h2{
-  font-size:clamp(45px,7vw,90px);
-  line-height:.9;
-  font-weight:400;
-  letter-spacing:-5px;
+.about-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-.about-text{
-  align-self:end;
-  max-width:450px;
+.about-title {
+  margin-top: 18px;
+  font-size: 38px;
+  line-height: .95;
+  font-weight: 400;
+  letter-spacing: -1.5px;
 }
 
-.about-text p{
-  font-size:14px;
-  line-height:1.8;
-  color:#555;
+.about-copy {
+  margin-top: 20px;
+  max-width: 500px;
+  font-size: 11px;
+  line-height: 1.65;
+  color: #555;
 }
 
-/* =========================
-   PRODUCT MODAL
-========================= */
-
-.product-modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  z-index:2000;
-  display:flex;
-  justify-content:flex-end;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .35s ease;
-}
-
-.product-modal.active{
-  opacity:1;
-  pointer-events:auto;
-}
-
-.product-panel{
-  width:min(700px,100%);
-  height:100%;
-  background:#fff;
-  overflow-y:auto;
-  transform:translateX(100%);
-  transition:transform .45s ease;
-}
-
-.product-modal.active .product-panel{
-  transform:translateX(0);
-}
-
-.close-product{
-  position:sticky;
-  top:0;
-  margin-left:auto;
-  display:block;
-  border:0;
-  background:#fff;
-  padding:20px;
-  font-size:20px;
-  z-index:5;
-}
-
-.product-detail-image{
-  height:620px;
-  background:#f0f0ee;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.product-detail-image .tshirt{
-  transform:scale(.95);
-}
-
-.product-detail-content{
-  padding:35px;
-}
-
-.detail-label{
-  font-size:10px;
-  letter-spacing:2px;
-  color:#777;
-  margin-bottom:10px;
-}
-
-.detail-name{
-  font-size:28px;
-  font-weight:400;
-}
-
-.detail-price{
-  margin-top:12px;
-  font-size:15px;
-}
-
-.option-title{
-  margin-top:35px;
-  font-size:11px;
-  letter-spacing:1.5px;
-}
-
-.options{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:12px;
-}
-
-.option{
-  min-width:48px;
-  padding:13px 16px;
-  background:#fff;
-  border:1px solid #ccc;
-  font-size:11px;
-}
-
-.option.selected{
-  background:#111;
-  color:#fff;
-  border-color:#111;
-}
-
-.quantity{
-  display:flex;
-  width:130px;
-  border:1px solid #ccc;
-  margin-top:12px;
-}
-
-.quantity button{
-  width:40px;
-  height:40px;
-  border:0;
-  background:#fff;
-}
-
-.quantity span{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:12px;
-}
-
-.add-bag{
-  width:100%;
-  margin-top:30px;
-  height:52px;
-  border:0;
-  background:#111;
-  color:#fff;
-  letter-spacing:2px;
-  font-size:11px;
-}
-
-.detail-accordion{
-  border-top:1px solid #ddd;
-  margin-top:35px;
-}
-
-.accordion-item{
-  border-bottom:1px solid #ddd;
-}
-
-.accordion-button{
-  width:100%;
-  padding:20px 0;
-  background:#fff;
-  border:0;
-  display:flex;
-  justify-content:space-between;
-  font-size:11px;
-  letter-spacing:1.5px;
-  text-align:left;
-}
-
-.accordion-content{
-  display:none;
-  padding:0 0 20px;
-  font-size:12px;
-  line-height:1.7;
-  color:#666;
-}
-
-.accordion-item.open .accordion-content{
-  display:block;
-}
-
-/* =========================
-   BAG
-========================= */
-
-.bag-drawer{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  z-index:2100;
-  opacity:0;
-  pointer-events:none;
-  transition:.3s;
-}
-
-.bag-drawer.active{
-  opacity:1;
-  pointer-events:auto;
-}
-
-.bag-panel{
-  position:absolute;
-  right:0;
-  top:0;
-  height:100%;
-  width:min(450px,100%);
-  background:#fff;
-  padding:30px;
-  transform:translateX(100%);
-  transition:.4s;
-  overflow-y:auto;
-}
-
-.bag-drawer.active .bag-panel{
-  transform:translateX(0);
-}
-
-.bag-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding-bottom:25px;
-  border-bottom:1px solid #ddd;
-}
-
-.bag-header h2{
-  font-size:20px;
-  font-weight:400;
-}
-
-.close-bag{
-  border:0;
-  background:#fff;
-  font-size:20px;
-}
-
-.bag-item{
-  display:flex;
-  gap:15px;
-  padding:20px 0;
-  border-bottom:1px solid #eee;
-}
-
-.bag-item-image{
-  width:90px;
-  height:110px;
-  background:#eee;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
-
-.bag-item-image .tshirt{
-  transform:scale(.25);
-}
-
-.bag-item-info{
-  flex:1;
-  font-size:12px;
-}
-
-.bag-item-info p{
-  margin-top:8px;
-  color:#666;
-}
-
-.bag-total{
-  display:flex;
-  justify-content:space-between;
-  padding:25px 0;
-  font-size:14px;
-}
-
-.checkout{
-  width:100%;
-  height:52px;
-  background:#111;
-  color:#fff;
-  border:0;
-  font-size:11px;
-  letter-spacing:2px;
-}
-
-.empty-bag{
-  text-align:center;
-  padding:80px 0;
-  color:#777;
-  font-size:13px;
-}
-
-/* =========================
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
-footer{
-  background:#111;
-  color:#fff;
-  padding:70px 35px 30px;
+.footer {
+  width: 100%;
+  border-top: 1px solid #eee;
+  padding: 32px 16px 28px;
 }
 
-.footer-grid{
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  gap:50px;
-  margin-bottom:80px;
+.footer-logo {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 4px;
 }
 
-.footer-logo{
-  font-size:30px;
-  letter-spacing:5px;
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-top: 30px;
 }
 
-.footer-column{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
+.footer-heading {
+  margin-bottom: 12px;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
 
-.footer-column strong{
-  font-size:10px;
-  letter-spacing:2px;
-  margin-bottom:8px;
+.footer a {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 10px;
+  color: #666;
 }
 
-.footer-column a{
-  font-size:11px;
-  color:#aaa;
+.footer-bottom {
+  margin-top: 35px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+  font-size: 8px;
+  color: #999;
+  letter-spacing: 1px;
 }
 
-.footer-bottom{
-  border-top:1px solid #333;
-  padding-top:20px;
-  color:#777;
-  font-size:10px;
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-panel {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,.98);
+  z-index: 2000;
+  display: none;
+  padding: 25px 16px;
 }
 
-/* =========================
-   ANIMATIONS
-========================= */
+.search-panel.active {
+  display: block;
+}
 
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(30px);
+.search-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-title {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.close-btn {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.search-input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #111;
+  padding: 30px 0 12px;
+  outline: none;
+  font-size: 22px;
+  background: transparent;
+}
+
+.search-results {
+  margin-top: 25px;
+}
+
+.search-result {
+  display: block;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   PRODUCT VIEW
+========================================================= */
+
+.product-view {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 3000;
+  overflow-y: auto;
+  display: none;
+}
+
+.product-view.active {
+  display: block;
+}
+
+.product-view-header {
+  position: sticky;
+  top: 0;
+  height: 62px;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #eee;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.back-btn {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.product-gallery {
+  width: 100%;
+}
+
+.gallery-image {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #f3f2ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-placeholder {
+  font-size: 9px;
+  color: #aaa;
+  letter-spacing: 2px;
+}
+
+.product-details {
+  padding: 24px 16px 45px;
+}
+
+.product-detail-name {
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: .7px;
+}
+
+.product-detail-price {
+  margin-top: 7px;
+  font-size: 12px;
+}
+
+.product-description {
+  margin-top: 18px;
+  max-width: 500px;
+  color: #666;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.option-block {
+  margin-top: 28px;
+}
+
+.option-label {
+  margin-bottom: 10px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.option-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.option {
+  min-width: 42px;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid #ddd;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.option.active {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+}
+
+.quantity {
+  display: flex;
+  width: 110px;
+  height: 38px;
+  border: 1px solid #ddd;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quantity button {
+  width: 35px;
+  height: 100%;
+}
+
+.quantity span {
+  font-size: 10px;
+}
+
+.add-button {
+  width: 100%;
+  height: 50px;
+  margin-top: 28px;
+  background: #111;
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.detail-accordion {
+  border-top: 1px solid #eee;
+  margin-top: 28px;
+}
+
+.accordion {
+  border-bottom: 1px solid #eee;
+}
+
+.accordion-button {
+  width: 100%;
+  padding: 17px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.accordion-content {
+  display: none;
+  padding: 0 0 18px;
+  color: #666;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.accordion.open .accordion-content {
+  display: block;
+}
+
+/* =========================================================
+   BAG
+========================================================= */
+
+.bag-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.3);
+  z-index: 4000;
+  display: none;
+}
+
+.bag-overlay.active {
+  display: block;
+}
+
+.bag-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(100%, 430px);
+  height: 100vh;
+  background: #fff;
+  z-index: 4001;
+  transform: translateX(100%);
+  transition: transform .3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.bag-drawer.active {
+  transform: translateX(0);
+}
+
+.bag-header {
+  height: 62px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+}
+
+.bag-title {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.bag-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.empty-bag {
+  padding-top: 50px;
+  text-align: center;
+  color: #888;
+  font-size: 10px;
+}
+
+.bag-item {
+  display: grid;
+  grid-template-columns: 82px 1fr auto;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.bag-item-image {
+  width: 82px;
+  height: 105px;
+  background: #f3f2ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7px;
+  color: #aaa;
+  letter-spacing: 1px;
+}
+
+.bag-item-name {
+  font-size: 10px;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.bag-item-meta {
+  margin-top: 6px;
+  font-size: 8px;
+  color: #777;
+  line-height: 1.6;
+}
+
+.bag-item-price {
+  font-size: 9px;
+}
+
+.remove-item {
+  margin-top: 8px;
+  font-size: 8px;
+  text-decoration: underline;
+  color: #777;
+}
+
+.bag-footer {
+  padding: 16px;
+  border-top: 1px solid #eee;
+}
+
+.bag-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  margin-bottom: 15px;
+}
+
+.checkout {
+  width: 100%;
+  height: 48px;
+  background: #111;
+  color: #fff;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translate(-50%, 20px);
+  background: #111;
+  color: #fff;
+  padding: 11px 16px;
+  font-size: 9px;
+  letter-spacing: .5px;
+  opacity: 0;
+  pointer-events: none;
+  transition: .3s;
+  z-index: 5000;
+  white-space: nowrap;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 768px) {
+
+  .header-inner {
+    padding: 0 28px;
   }
-  to{
-    opacity:1;
-    transform:translateY(0);
+
+  .menu-btn {
+    display: none;
+  }
+
+  .desktop-nav {
+    display: flex;
+    gap: 22px;
+  }
+
+  .desktop-nav a {
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .hero {
+    min-height: 680px;
+  }
+
+  .hero-content {
+    padding: 50px;
+  }
+
+  .section {
+    padding: 80px 30px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .statement {
+    padding: 100px 50px;
+  }
+
+  .about {
+    padding: 100px 50px;
+  }
+
+  .footer {
+    padding: 45px 30px;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .product-details {
+    max-width: 650px;
+    margin: auto;
   }
 }
 
-@keyframes fadeIn{
-  from{opacity:0;}
-  to{opacity:1;}
-}
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
 
-/* =========================
-   MOBILE
-========================= */
+@media (min-width: 1200px) {
 
-@media(max-width:800px){
-
-  .header{
-    height:65px;
-    padding:0 18px;
+  .header-inner {
+    padding: 0 45px;
   }
 
-  .nav-left{
-    display:none;
+  .section {
+    padding-left: 45px;
+    padding-right: 45px;
   }
 
-  .nav-right{
-    gap:15px;
-  }
-
-  .nav-right button{
-    font-size:10px;
-  }
-
-  .mobile-menu{
-    display:block;
-  }
-
-  .logo{
-    font-size:21px;
-  }
-
-  .search-panel{
-    top:65px;
-    padding:25px 18px;
-  }
-
-  .mobile-nav{
-    top:65px;
-  }
-
-  .hero{
-    margin-top:65px;
-    min-height:auto;
-  }
-
-  .hero-content{
-    grid-template-columns:1fr;
-    padding:60px 20px 30px;
-    gap:20px;
-  }
-
-  .hero h1{
-    font-size:78px;
-  }
-
-  .hero-description{
-    font-size:12px;
-  }
-
-  .mockup-area{
-    height:430px;
-  }
-
-  .mockup-area .tshirt{
-    transform:scale(.8);
-  }
-
-  .section{
-    padding:70px 18px;
-  }
-
-  .section-head{
-    margin-bottom:30px;
-  }
-
-  .section-title{
-    font-size:24px;
-  }
-
-  .products{
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-  }
-
-  .product-info{
-    display:block;
-    line-height:1.5;
-    padding-top:12px;
-  }
-
-  .product-price{
-    margin-top:4px;
-  }
-
-  .editorial{
-    min-height:55vh;
-  }
-
-  .editorial h2{
-    font-size:65px;
-  }
-
-  .about{
-    grid-template-columns:1fr;
-    padding:80px 20px;
-    gap:50px;
-  }
-
-  .about h2{
-    font-size:60px;
-  }
-
-  .product-detail-image{
-    height:450px;
-  }
-
-  .product-detail-image .tshirt{
-    transform:scale(.72);
-  }
-
-  .product-detail-content{
-    padding:25px 20px;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .footer-grid > :first-child{
-    grid-column:1 / -1;
-  }
-
-  footer{
-    padding:60px 20px 25px;
+  .product-grid {
+    gap: 25px 12px;
   }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- =========================
+<!-- =======================================================
      HEADER
-========================= -->
+======================================================= -->
 
 <header class="header">
+  <div class="header-inner">
 
-  <button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
+    <div class="header-left">
 
-  <a href="#" class="logo">WEIREN</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        ☰
+      </button>
 
-  <nav class="nav-left">
-    <a href="#new">NEW IN</a>
-    <a href="#tees">T-SHIRTS</a>
-    <a href="#about">ABOUT</a>
-  </nav>
+      <nav class="desktop-nav">
+        <a href="#new">NEW IN</a>
+        <a href="#tees">T-SHIRTS</a>
+        <a href="#about">ABOUT</a>
+      </nav>
 
-  <div class="nav-right">
+    </div>
 
-    <button onclick="toggleSearch()">SEARCH</button>
+    <a href="#" class="logo">WEIREN</a>
 
-    <button onclick="showWishlist()">♡</button>
+    <div class="header-right">
 
-    <button onclick="openBag()">
-      BAG (<span id="bagCount">0</span>)
-    </button>
+      <button class="header-btn" id="searchBtn">
+        SEARCH
+      </button>
+
+      <button class="header-btn" id="wishlistBtn">
+        ♡
+      </button>
+
+      <button class="header-btn bag-button" id="bagBtn">
+        BAG
+        <span class="bag-count" id="bagCount">0</span>
+      </button>
+
+    </div>
 
   </div>
-
 </header>
 
 
-<!-- SEARCH -->
+<!-- =======================================================
+     MOBILE MENU
+======================================================= -->
 
-<div class="search-panel" id="searchPanel">
+<div class="mobile-menu" id="mobileMenu">
 
-  <input
-    type="text"
-    id="searchInput"
-    placeholder="Search WEIREN..."
-    oninput="searchProducts()"
-  >
-
-</div>
-
-
-<!-- MOBILE NAV -->
-
-<div class="mobile-nav" id="mobileNav">
-
-  <a href="#new" onclick="toggleMobileMenu()">NEW IN</a>
-  <a href="#tees" onclick="toggleMobileMenu()">T-SHIRTS</a>
-  <a href="#about" onclick="toggleMobileMenu()">ABOUT</a>
+  <a href="#new" class="menu-link">NEW IN</a>
+  <a href="#tees" class="menu-link">T-SHIRTS</a>
+  <a href="#about" class="menu-link">ABOUT</a>
+  <a href="#" id="mobileSearch">SEARCH</a>
 
 </div>
 
 
-<!-- =========================
+<main>
+
+<!-- =======================================================
      HERO
-========================= -->
+======================================================= -->
 
 <section class="hero">
 
   <div class="hero-content">
 
-    <div class="hero-copy">
-
-      <div class="hero-kicker">
-        DROP 01 · 2026
-      </div>
-
-      <h1>
-        WEIREN
-      </h1>
-
-      <p class="hero-description">
-        Oversized acid-washed T-shirts.
-        Designed with a relaxed silhouette
-        and a deliberately worn finish.
-      </p>
-
-      <a href="#tees" class="hero-button">
-        SHOP T-SHIRTS
-      </a>
-
+    <div class="hero-label">
+      WEIREN / 001
     </div>
 
+    <h1 class="hero-title">
+      LESS.<br>
+      BETTER.
+    </h1>
 
-    <div class="mockup-area">
+    <p class="hero-subtitle">
+      Oversized acid-washed T-shirts.
+      Designed with intention. Made for everyday wear.
+    </p>
 
-      <div class="tshirt washed-black">
-
-        <div class="sleeve-left"></div>
-        <div class="sleeve-right"></div>
-
-        <div class="tshirt-body">
-
-          <div class="tshirt-logo">
-            WEIREN
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
+    <a href="#new" class="hero-action">
+      SHOP NEW IN
+    </a>
 
   </div>
 
 </section>
 
 
-<!-- =========================
+<!-- =======================================================
      NEW IN
-========================= -->
+======================================================= -->
 
 <section class="section" id="new">
 
-  <div class="section-head">
+  <div class="section-header">
 
     <h2 class="section-title">
       NEW IN
@@ -1096,281 +1019,123 @@ footer{
 
   </div>
 
-
-  <div class="products" id="tees">
-
-
-    <!-- PRODUCT 1 -->
-
-    <article
-      class="product-card"
-      data-name="WEIREN 001"
-      onclick="openProduct(0)"
-    >
-
-      <div class="product-image">
-
-        <div class="tshirt washed-black">
-
-          <div class="sleeve-left"></div>
-          <div class="sleeve-right"></div>
-
-          <div class="tshirt-body">
-
-            <div class="tshirt-logo">
-              WEIREN
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="product-info">
-
-        <div>
-          <div>WEIREN 001</div>
-          <div class="product-color">WASHED BLACK</div>
-        </div>
-
-        <div class="product-price">
-          ₹1,299
-        </div>
-
-      </div>
-
-    </article>
-
-
-    <!-- PRODUCT 2 -->
-
-    <article
-      class="product-card"
-      data-name="WEIREN 002"
-      onclick="openProduct(1)"
-    >
-
-      <div class="product-image">
-
-        <div class="tshirt washed-grey">
-
-          <div class="sleeve-left"></div>
-          <div class="sleeve-right"></div>
-
-          <div class="tshirt-body">
-
-            <div class="tshirt-logo">
-              WEIREN
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="product-info">
-
-        <div>
-          <div>WEIREN 002</div>
-          <div class="product-color">WASHED GREY</div>
-        </div>
-
-        <div class="product-price">
-          ₹1,299
-        </div>
-
-      </div>
-
-    </article>
-
-
-    <!-- PRODUCT 3 -->
-
-    <article
-      class="product-card"
-      data-name="WEIREN 003"
-      onclick="openProduct(2)"
-    >
-
-      <div class="product-image">
-
-        <div class="tshirt washed-brown">
-
-          <div class="sleeve-left"></div>
-          <div class="sleeve-right"></div>
-
-          <div class="tshirt-body">
-
-            <div class="tshirt-logo">
-              WEIREN
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="product-info">
-
-        <div>
-          <div>WEIREN 003</div>
-          <div class="product-color">WASHED BROWN</div>
-        </div>
-
-        <div class="product-price">
-          ₹1,399
-        </div>
-
-      </div>
-
-    </article>
-
-
-    <!-- PRODUCT 4 -->
-
-    <article
-      class="product-card"
-      data-name="WEIREN 004"
-      onclick="openProduct(3)"
-    >
-
-      <div class="product-image">
-
-        <div class="tshirt washed-charcoal">
-
-          <div class="sleeve-left"></div>
-          <div class="sleeve-right"></div>
-
-          <div class="tshirt-body">
-
-            <div class="tshirt-logo">
-              WEIREN
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="product-info">
-
-        <div>
-          <div>WEIREN 004</div>
-          <div class="product-color">WASHED CHARCOAL</div>
-        </div>
-
-        <div class="product-price">
-          ₹1,399
-        </div>
-
-      </div>
-
-    </article>
-
-
-  </div>
+  <div class="product-grid" id="productGrid"></div>
 
 </section>
 
 
-<!-- =========================
-     EDITORIAL
-========================= -->
+<!-- =======================================================
+     STATEMENT
+======================================================= -->
 
-<section class="editorial">
+<section class="statement">
 
-  <div class="editorial-content">
+  <div class="statement-small">
+    THE WEIREN STANDARD
+  </div>
 
-    <div class="editorial-small">
-      THE WEIREN STANDARD
-    </div>
+  <h2 class="statement-title">
+    OVERSIZED.<br>
+    ACID WASHED.<br>
+    NOTHING EXTRA.
+  </h2>
 
-    <h2>
-      LESS.<br>
-      BETTER.
+  <p class="statement-copy">
+    We focus on one thing: T-shirts.
+    Better proportions, heavier feel and
+    washed finishes designed to age naturally.
+  </p>
+
+</section>
+
+
+<!-- =======================================================
+     T-SHIRTS
+======================================================= -->
+
+<section class="section" id="tees">
+
+  <div class="section-header">
+
+    <h2 class="section-title">
+      T-SHIRTS
     </h2>
 
-    <p>
-      One category. Refined relentlessly.
-      WEIREN focuses on oversized acid-washed
-      T-shirts and nothing else.
-    </p>
+    <span class="section-link">
+      001 — 004
+    </span>
 
   </div>
+
+  <div class="product-grid" id="teeGrid"></div>
 
 </section>
 
 
-<!-- =========================
+<!-- =======================================================
      ABOUT
-========================= -->
+======================================================= -->
 
 <section class="about" id="about">
 
-  <div>
-
-    <h2>
-      MADE<br>
-      TO BE<br>
-      WORN.
-    </h2>
-
+  <div class="about-label">
+    ABOUT WEIREN
   </div>
 
-  <div class="about-text">
+  <h2 class="about-title">
+    MADE TO BE<br>
+    WORN.
+  </h2>
 
-    <p>
-      WEIREN is built around a simple idea:
-      take the everyday T-shirt and make the
-      silhouette unmistakable.
-    </p>
-
-    <br>
-
-    <p>
-      Oversized proportions. Washed textures.
-      Minimal design. No unnecessary noise.
-    </p>
-
-  </div>
+  <p class="about-copy">
+    WEIREN is built around a simple idea:
+    fewer pieces, better design.
+    Our collection focuses on oversized
+    silhouettes and acid-washed finishes
+    without unnecessary details.
+  </p>
 
 </section>
 
+</main>
 
-<!-- =========================
+
+<!-- =======================================================
      FOOTER
-========================= -->
+======================================================= -->
 
-<footer>
+<footer class="footer">
+
+  <div class="footer-logo">
+    WEIREN
+  </div>
 
   <div class="footer-grid">
 
-    <div class="footer-logo">
-      WEIREN
-    </div>
-
-    <div class="footer-column">
-
-      <strong>SHOP</strong>
-
+    <div>
+      <div class="footer-heading">SHOP</div>
       <a href="#new">New In</a>
       <a href="#tees">T-Shirts</a>
-
     </div>
 
-    <div class="footer-column">
-
-      <strong>INFO</strong>
-
+    <div>
+      <div class="footer-heading">INFO</div>
       <a href="#about">About</a>
-      <a href="#">Contact</a>
       <a href="#">Shipping</a>
       <a href="#">Returns</a>
+    </div>
 
+    <div>
+      <div class="footer-heading">HELP</div>
+      <a href="#">Contact</a>
+      <a href="#">Size Guide</a>
+      <a href="#">FAQ</a>
+    </div>
+
+    <div>
+      <div class="footer-heading">SOCIAL</div>
+      <a href="#">Instagram</a>
+      <a href="#">Pinterest</a>
     </div>
 
   </div>
@@ -1382,111 +1147,106 @@ footer{
 </footer>
 
 
-<!-- =========================
-     PRODUCT MODAL
-========================= -->
+<!-- =======================================================
+     SEARCH
+======================================================= -->
 
-<div class="product-modal" id="productModal">
+<div class="search-panel" id="searchPanel">
 
-  <div class="product-panel">
+  <div class="search-top">
 
-    <button
-      class="close-product"
-      onclick="closeProduct()"
-    >
+    <div class="search-title">
+      SEARCH
+    </div>
+
+    <button class="close-btn" id="closeSearch">
       ×
     </button>
 
+  </div>
 
-    <div
-      class="product-detail-image"
-      id="detailImage"
-    >
+  <input
+    type="text"
+    class="search-input"
+    id="searchInput"
+    placeholder="Search"
+    autocomplete="off"
+  >
+
+  <div class="search-results" id="searchResults"></div>
+
+</div>
+
+
+<!-- =======================================================
+     PRODUCT VIEW
+======================================================= -->
+
+<div class="product-view" id="productView">
+
+  <div class="product-view-header">
+
+    <button class="back-btn" id="closeProduct">
+      ← BACK
+    </button>
+
+    <div class="logo">
+      WEIREN
     </div>
 
+    <button class="header-btn" id="productBagBtn">
+      BAG
+    </button>
 
-    <div class="product-detail-content">
+  </div>
 
-      <div class="detail-label">
-        WEIREN · DROP 01
-      </div>
+  <div class="product-gallery" id="productGallery"></div>
 
-      <h2
-        class="detail-name"
-        id="detailName"
-      >
-        WEIREN 001
-      </h2>
+  <div class="product-details">
 
-      <div
-        class="detail-price"
-        id="detailPrice"
-      >
-        ₹1,299
-      </div>
+    <h1 class="product-detail-name" id="detailName">
+      PRODUCT
+    </h1>
+
+    <div class="product-detail-price" id="detailPrice">
+      ₹0
+    </div>
+
+    <p class="product-description" id="detailDescription">
+    </p>
 
 
-      <div class="option-title">
+    <div class="option-block">
+
+      <div class="option-label">
         COLOR
       </div>
 
-      <div class="options">
+      <div class="option-row" id="colorOptions"></div>
 
-        <button class="option selected">
-          BLACK
-        </button>
-
-        <button class="option">
-          GREY
-        </button>
-
-        <button class="option">
-          BROWN
-        </button>
-
-      </div>
+    </div>
 
 
-      <div class="option-title">
+    <div class="option-block">
+
+      <div class="option-label">
         SIZE
       </div>
 
-      <div class="options">
+      <div class="option-row" id="sizeOptions"></div>
 
-        <button class="option">
-          XS
-        </button>
-
-        <button class="option selected">
-          S
-        </button>
-
-        <button class="option">
-          M
-        </button>
-
-        <button class="option">
-          L
-        </button>
-
-        <button class="option">
-          XL
-        </button>
-
-        <button class="option">
-          XXL
-        </button>
-
-      </div>
+    </div>
 
 
-      <div class="option-title">
+    <div class="option-block">
+
+      <div class="option-label">
         QUANTITY
       </div>
 
       <div class="quantity">
 
-        <button onclick="changeQuantity(-1)">
+        <button id="minusQty">
           −
         </button>
 
@@ -1494,105 +1254,65 @@ footer{
           1
         </span>
 
-        <button onclick="changeQuantity(1)">
+        <button id="plusQty">
           +
         </button>
 
       </div>
 
-
-      <button
-        class="add-bag"
-        onclick="addToBag()"
-      >
-        ADD TO BAG
-      </button>
+    </div>
 
 
-      <div class="detail-accordion">
+    <button class="add-button" id="addToBag">
+      ADD TO BAG
+    </button>
 
 
-        <div class="accordion-item">
+    <div class="detail-accordion">
 
-          <button
-            class="accordion-button"
-            onclick="toggleAccordion(this)"
-          >
-            PRODUCT DETAILS
-            <span>+</span>
-          </button>
+      <div class="accordion">
 
-          <div class="accordion-content">
+        <button class="accordion-button">
+          DESCRIPTION
+          <span>+</span>
+        </button>
 
-            Oversized acid-washed T-shirt with
-            a relaxed silhouette and washed finish.
-            Designed for an intentionally loose fit.
-
-          </div>
-
+        <div class="accordion-content">
+          Oversized fit with a relaxed silhouette.
+          Acid-washed finish for a naturally worn appearance.
+          Designed for everyday styling.
         </div>
 
+      </div>
 
-        <div class="accordion-item">
 
-          <button
-            class="accordion-button"
-            onclick="toggleAccordion(this)"
-          >
-            FIT & SIZING
-            <span>+</span>
-          </button>
+      <div class="accordion">
 
-          <div class="accordion-content">
+        <button class="accordion-button">
+          FIT & SIZE
+          <span>+</span>
+        </button>
 
-            Oversized fit.
-            Take your usual size for the intended
-            WEIREN silhouette.
-
-          </div>
-
+        <div class="accordion-content">
+          Oversized fit.
+          For a more fitted appearance, choose one size down.
+          Refer to the size guide before ordering.
         </div>
 
+      </div>
 
-        <div class="accordion-item">
 
-          <button
-            class="accordion-button"
-            onclick="toggleAccordion(this)"
-          >
-            FABRIC
-            <span>+</span>
-          </button>
+      <div class="accordion">
 
-          <div class="accordion-content">
+        <button class="accordion-button">
+          DELIVERY & RETURNS
+          <span>+</span>
+        </button>
 
-            Heavyweight cotton construction with
-            an acid-washed finish.
-
-          </div>
-
+        <div class="accordion-content">
+          Delivery information and return policy will be
+          displayed here once WEIREN shipping is configured.
         </div>
-
-
-        <div class="accordion-item">
-
-          <button
-            class="accordion-button"
-            onclick="toggleAccordion(this)"
-          >
-            SHIPPING & RETURNS
-            <span>+</span>
-          </button>
-
-          <div class="accordion-content">
-
-            Shipping and return policies can be
-            configured before launch.
-
-          </div>
-
-        </div>
-
 
       </div>
 
@@ -1603,158 +1323,218 @@ footer{
 </div>
 
 
-<!-- =========================
-     BAG DRAWER
-========================= -->
+<!-- =======================================================
+     BAG
+======================================================= -->
 
-<div class="bag-drawer" id="bagDrawer">
+<div class="bag-overlay" id="bagOverlay"></div>
 
-  <div class="bag-panel">
+<aside class="bag-drawer" id="bagDrawer">
 
-    <div class="bag-header">
+  <div class="bag-header">
 
-      <h2>
-        YOUR BAG
-      </h2>
-
-      <button
-        class="close-bag"
-        onclick="closeBag()"
-      >
-        ×
-      </button>
-
+    <div class="bag-title">
+      YOUR BAG
     </div>
 
-    <div id="bagItems"></div>
+    <button class="close-btn" id="closeBag">
+      ×
+    </button>
 
   </div>
 
+  <div class="bag-items" id="bagItems"></div>
+
+  <div class="bag-footer">
+
+    <div class="bag-total">
+
+      <span>
+        TOTAL
+      </span>
+
+      <span id="bagTotal">
+        ₹0
+      </span>
+
+    </div>
+
+    <button class="checkout" id="checkout">
+      CHECKOUT
+    </button>
+
+  </div>
+
+</aside>
+
+
+<!-- =======================================================
+     TOAST
+======================================================= -->
+
+<div class="toast" id="toast">
+  ADDED TO BAG
 </div>
 
 
 <script>
 
-/* =========================
+/* =========================================================
    PRODUCT DATA
-========================= */
+
+   IMPORTANT:
+   Keep image fields empty until real WEIREN product
+   images are available. No random internet clothing.
+========================================================= */
 
 const products = [
 
   {
-    name:"WEIREN 001",
-    price:1299,
-    color:"WASHED BLACK",
-    className:"washed-black"
+    id: 1,
+    name: "Washed Grey Oversized Tee",
+    price: 1499,
+    color: "Washed Grey",
+    images: [],
+    description:
+      "Heavyweight oversized T-shirt with a soft acid-washed finish."
   },
 
   {
-    name:"WEIREN 002",
-    price:1299,
-    color:"WASHED GREY",
-    className:"washed-grey"
+    id: 2,
+    name: "Washed Brown Oversized Tee",
+    price: 1499,
+    color: "Washed Brown",
+    images: [],
+    description:
+      "Relaxed oversized T-shirt with a muted washed-brown finish."
   },
 
   {
-    name:"WEIREN 003",
-    price:1399,
-    color:"WASHED BROWN",
-    className:"washed-brown"
+    id: 3,
+    name: "Washed Charcoal Oversized Tee",
+    price: 1499,
+    color: "Washed Charcoal",
+    images: [],
+    description:
+      "Heavy oversized silhouette with a deep charcoal washed finish."
   },
 
   {
-    name:"WEIREN 004",
-    price:1399,
-    color:"WASHED CHARCOAL",
-    className:"washed-charcoal"
+    id: 4,
+    name: "Washed Black Oversized Tee",
+    price: 1499,
+    color: "Washed Black",
+    images: [],
+    description:
+      "Classic oversized T-shirt with a faded washed-black finish."
   }
 
 ];
 
 
-let selectedProduct = 0;
-let selectedSize = "S";
-let quantity = 1;
+/* =========================================================
+   STATE
+========================================================= */
+
 let bag = [];
 
+let currentProduct = null;
 
-/* =========================
-   MOBILE MENU
-========================= */
+let currentSize = "M";
 
-function toggleMobileMenu(){
+let currentColor = "";
 
-  document
-    .getElementById("mobileNav")
-    .classList.toggle("active");
-
-}
+let quantity = 1;
 
 
-/* =========================
-   SEARCH
-========================= */
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
-function toggleSearch(){
+const productGrid =
+  document.getElementById("productGrid");
 
-  document
-    .getElementById("searchPanel")
-    .classList.toggle("active");
+const teeGrid =
+  document.getElementById("teeGrid");
 
-  const input =
-    document.getElementById("searchInput");
+const bagCount =
+  document.getElementById("bagCount");
 
-  setTimeout(()=>{
-    input.focus();
-  },200);
+const bagDrawer =
+  document.getElementById("bagDrawer");
 
-}
+const bagOverlay =
+  document.getElementById("bagOverlay");
 
+const bagItems =
+  document.getElementById("bagItems");
 
-function searchProducts(){
+const bagTotal =
+  document.getElementById("bagTotal");
 
-  const query =
-    document
-      .getElementById("searchInput")
-      .value
-      .toLowerCase();
-
-  document
-    .querySelectorAll(".product-card")
-    .forEach(card=>{
-
-      const name =
-        card.dataset.name.toLowerCase();
-
-      card.style.display =
-        name.includes(query)
-        ? "block"
-        : "none";
-
-    });
-
-}
+const toast =
+  document.getElementById("toast");
 
 
-/* =========================
-   PRODUCT MODAL
-========================= */
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
 
-function createTshirt(className){
+function productCard(product) {
 
-  return `
+  const card = document.createElement("article");
 
-    <div class="tshirt ${className}">
+  card.className = "product-card";
 
-      <div class="sleeve-left"></div>
+  card.innerHTML = `
 
-      <div class="sleeve-right"></div>
+    <div
+      class="product-image"
+      data-product="${product.id}"
+    >
 
-      <div class="tshirt-body">
+      <button
+        class="wishlist"
+        data-wishlist="${product.id}"
+      >
+        ♡
+      </button>
 
-        <div class="tshirt-logo">
-          WEIREN
+      ${
+        product.images.length
+        ?
+        `<img
+          src="${product.images[0]}"
+          alt="${product.name}"
+        >`
+        :
+        `
+        <div class="product-image-placeholder">
+          PRODUCT IMAGE
         </div>
+        `
+      }
+
+    </div>
+
+    <div
+      class="product-info"
+      data-product="${product.id}"
+    >
+
+      <div class="product-name">
+        ${product.name}
+      </div>
+
+      <div class="product-meta">
+
+        <span>
+          ${product.color}
+        </span>
+
+        <span class="product-price">
+          ₹${product.price.toLocaleString("en-IN")}
+        </span>
 
       </div>
 
@@ -1762,39 +1542,100 @@ function createTshirt(className){
 
   `;
 
+  return card;
 }
 
 
-function openProduct(index){
+/* =========================================================
+   RENDER PRODUCTS
+========================================================= */
 
-  selectedProduct = index;
+function renderProducts() {
+
+  productGrid.innerHTML = "";
+
+  teeGrid.innerHTML = "";
+
+  products.forEach(product => {
+
+    productGrid.appendChild(
+      productCard(product)
+    );
+
+    teeGrid.appendChild(
+      productCard(product)
+    );
+
+  });
+
+}
+
+renderProducts();
+
+
+/* =========================================================
+   PRODUCT CLICK
+========================================================= */
+
+document.addEventListener("click", event => {
+
+  const productTarget =
+    event.target.closest("[data-product]");
+
+  if (
+    productTarget &&
+    !event.target.closest("[data-wishlist]")
+  ) {
+
+    const id =
+      Number(productTarget.dataset.product);
+
+    openProduct(id);
+
+  }
+
+});
+
+
+/* =========================================================
+   OPEN PRODUCT
+========================================================= */
+
+function openProduct(id) {
+
+  const product =
+    products.find(p => p.id === id);
+
+  if (!product) return;
+
+  currentProduct = product;
+
+  currentSize = "M";
+
+  currentColor = product.color;
 
   quantity = 1;
 
-  const product =
-    products[index];
+  document.getElementById("detailName").textContent =
+    product.name;
 
-  document
-    .getElementById("detailName")
-    .textContent = product.name;
+  document.getElementById("detailPrice").textContent =
+    "₹" + product.price.toLocaleString("en-IN");
 
-  document
-    .getElementById("detailPrice")
-    .textContent =
-      "₹" +
-      product.price.toLocaleString("en-IN");
+  document.getElementById("detailDescription").textContent =
+    product.description;
 
-  document
-    .getElementById("quantity")
-    .textContent = quantity;
 
-  document
-    .getElementById("detailImage")
-    .innerHTML =
-      createTshirt(product.className);
+  renderGallery(product);
 
-  document
-    .getElementById("productModal")
+  renderColors(product);
+
+  renderSizes();
+
+  document.getElementById("quantity").textContent =
+    quantity;
+
+  document.getElementById("productView")
     .classList.add("active");
 
   document.body.style.overflow = "hidden";
@@ -1802,183 +1643,279 @@ function openProduct(index){
 }
 
 
-function closeProduct(){
+/* =========================================================
+   PRODUCT GALLERY
+========================================================= */
 
-  document
-    .getElementById("productModal")
-    .classList.remove("active");
+function renderGallery(product) {
 
-  document.body.style.overflow = "";
+  const gallery =
+    document.getElementById("productGallery");
 
-}
+  gallery.innerHTML = "";
 
+  if (!product.images.length) {
 
-/* =========================
-   OPTIONS
-========================= */
+    for (let i = 0; i < 3; i++) {
 
-document.addEventListener(
-  "click",
-  function(e){
+      const image =
+        document.createElement("div");
 
-    if(
-      e.target.classList.contains("option")
-    ){
+      image.className = "gallery-image";
 
-      const parent =
-        e.target.parentElement;
+      image.innerHTML = `
+        <div class="gallery-placeholder">
+          PRODUCT IMAGE ${i + 1}
+        </div>
+      `;
 
-      parent
-        .querySelectorAll(".option")
-        .forEach(btn =>
-          btn.classList.remove("selected")
-        );
-
-      e.target.classList.add("selected");
-
-      if(
-        ["XS","S","M","L","XL","XXL"]
-        .includes(e.target.textContent.trim())
-      ){
-
-        selectedSize =
-          e.target.textContent.trim();
-
-      }
+      gallery.appendChild(image);
 
     }
 
+    return;
+
   }
-);
 
 
-/* =========================
+  product.images.forEach(src => {
+
+    const image =
+      document.createElement("div");
+
+    image.className = "gallery-image";
+
+    image.innerHTML = `
+      <img
+        src="${src}"
+        alt="${product.name}"
+      >
+    `;
+
+    gallery.appendChild(image);
+
+  });
+
+}
+
+
+/* =========================================================
+   COLORS
+========================================================= */
+
+function renderColors(product) {
+
+  const container =
+    document.getElementById("colorOptions");
+
+  container.innerHTML = "";
+
+  const colors = [
+    product.color
+  ];
+
+  colors.forEach(color => {
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "option active";
+
+    button.textContent =
+      color;
+
+    button.onclick = () => {
+
+      currentColor = color;
+
+      document
+        .querySelectorAll("#colorOptions .option")
+        .forEach(btn =>
+          btn.classList.remove("active")
+        );
+
+      button.classList.add("active");
+
+    };
+
+    container.appendChild(button);
+
+  });
+
+}
+
+
+/* =========================================================
+   SIZES
+========================================================= */
+
+function renderSizes() {
+
+  const container =
+    document.getElementById("sizeOptions");
+
+  container.innerHTML = "";
+
+  ["S", "M", "L", "XL", "XXL"].forEach(size => {
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "option" +
+      (size === currentSize ? " active" : "");
+
+    button.textContent = size;
+
+    button.onclick = () => {
+
+      currentSize = size;
+
+      document
+        .querySelectorAll("#sizeOptions .option")
+        .forEach(btn =>
+          btn.classList.remove("active")
+        );
+
+      button.classList.add("active");
+
+    };
+
+    container.appendChild(button);
+
+  });
+
+}
+
+
+/* =========================================================
+   CLOSE PRODUCT
+========================================================= */
+
+document
+  .getElementById("closeProduct")
+  .onclick = () => {
+
+    document
+      .getElementById("productView")
+      .classList.remove("active");
+
+    document.body.style.overflow = "";
+
+  };
+
+
+/* =========================================================
    QUANTITY
-========================= */
+========================================================= */
 
-function changeQuantity(amount){
+document
+  .getElementById("minusQty")
+  .onclick = () => {
 
-  quantity += amount;
+    if (quantity > 1) {
 
-  if(quantity < 1){
-    quantity = 1;
-  }
+      quantity--;
 
-  if(quantity > 10){
-    quantity = 10;
-  }
+      document.getElementById("quantity")
+        .textContent = quantity;
 
-  document
-    .getElementById("quantity")
-    .textContent = quantity;
+    }
 
-}
+  };
 
 
-/* =========================
+document
+  .getElementById("plusQty")
+  .onclick = () => {
+
+    if (quantity < 10) {
+
+      quantity++;
+
+      document.getElementById("quantity")
+        .textContent = quantity;
+
+    }
+
+  };
+
+
+/* =========================================================
    ADD TO BAG
-========================= */
+========================================================= */
 
-function addToBag(){
+document
+  .getElementById("addToBag")
+  .onclick = () => {
 
-  const product =
-    products[selectedProduct];
+    if (!currentProduct) return;
 
-  const existing =
-    bag.find(
-      item =>
-        item.name === product.name &&
-        item.size === selectedSize
-    );
+    const existing =
+      bag.find(item =>
+        item.id === currentProduct.id &&
+        item.size === currentSize
+      );
 
-  if(existing){
+    if (existing) {
 
-    existing.quantity += quantity;
+      existing.quantity += quantity;
 
-  }else{
+    } else {
 
-    bag.push({
+      bag.push({
 
-      name:product.name,
-      price:product.price,
-      color:product.color,
-      className:product.className,
-      size:selectedSize,
-      quantity:quantity
+        id: currentProduct.id,
 
-    });
+        name: currentProduct.name,
 
-  }
+        price: currentProduct.price,
 
-  updateBagCount();
+        color: currentColor,
 
-  closeProduct();
+        size: currentSize,
 
-  openBag();
+        quantity: quantity
 
-}
+      });
+
+    }
+
+    updateBag();
+
+    showToast("ADDED TO BAG");
+
+  };
 
 
-/* =========================
+/* =========================================================
    BAG
-========================= */
+========================================================= */
 
-function updateBagCount(){
+function updateBag() {
 
-  const total =
+  const count =
     bag.reduce(
-      (sum,item) =>
-        sum + item.quantity,
+      (total, item) =>
+        total + item.quantity,
       0
     );
 
-  document
-    .getElementById("bagCount")
-    .textContent = total;
-
-}
+  bagCount.textContent = count;
 
 
-function openBag(){
+  bagItems.innerHTML = "";
 
-  renderBag();
+  if (!bag.length) {
 
-  document
-    .getElementById("bagDrawer")
-    .classList.add("active");
-
-  document.body.style.overflow = "hidden";
-
-}
-
-
-function closeBag(){
-
-  document
-    .getElementById("bagDrawer")
-    .classList.remove("active");
-
-  document.body.style.overflow = "";
-
-}
-
-
-function renderBag(){
-
-  const container =
-    document.getElementById("bagItems");
-
-  if(bag.length === 0){
-
-    container.innerHTML = `
-
+    bagItems.innerHTML = `
       <div class="empty-bag">
-
-        YOUR BAG IS EMPTY.
-
+        YOUR BAG IS EMPTY
       </div>
-
     `;
+
+    bagTotal.textContent = "₹0";
 
     return;
 
@@ -1988,217 +1925,416 @@ function renderBag(){
   let total = 0;
 
 
-  let html = "";
-
-
-  bag.forEach((item,index)=>{
+  bag.forEach((item, index) => {
 
     total +=
-      item.price *
-      item.quantity;
+      item.price * item.quantity;
 
+    const row =
+      document.createElement("div");
 
-    html += `
+    row.className = "bag-item";
 
-      <div class="bag-item">
+    row.innerHTML = `
 
-        <div class="bag-item-image">
+      <div class="bag-item-image">
+        PRODUCT
+      </div>
 
-          ${createTshirt(item.className)}
+      <div>
 
+        <div class="bag-item-name">
+          ${item.name}
         </div>
 
-        <div class="bag-item-info">
-
-          <strong>
-            ${item.name}
-          </strong>
-
-          <p>
-            ${item.color}
-          </p>
-
-          <p>
-            SIZE: ${item.size}
-          </p>
-
-          <p>
-            QTY: ${item.quantity}
-          </p>
-
-          <p>
-            ₹${(
-              item.price *
-              item.quantity
-            ).toLocaleString("en-IN")}
-          </p>
-
-          <button
-            onclick="removeBagItem(${index})"
-            style="
-              border:0;
-              background:none;
-              padding:10px 0;
-              font-size:10px;
-              text-decoration:underline;
-              margin-top:5px;
-            "
-          >
-            REMOVE
-          </button>
-
+        <div class="bag-item-meta">
+          COLOR: ${item.color}<br>
+          SIZE: ${item.size}<br>
+          QTY: ${item.quantity}
         </div>
 
+        <button
+          class="remove-item"
+          data-remove="${index}"
+        >
+          REMOVE
+        </button>
+
+      </div>
+
+      <div class="bag-item-price">
+        ₹${(
+          item.price *
+          item.quantity
+        ).toLocaleString("en-IN")}
       </div>
 
     `;
 
+    bagItems.appendChild(row);
+
   });
 
 
-  html += `
-
-    <div class="bag-total">
-
-      <strong>
-        TOTAL
-      </strong>
-
-      <strong>
-        ₹${total.toLocaleString("en-IN")}
-      </strong>
-
-    </div>
-
-    <button
-      class="checkout"
-      onclick="checkout()"
-    >
-      CHECKOUT
-    </button>
-
-  `;
-
-
-  container.innerHTML = html;
+  bagTotal.textContent =
+    "₹" + total.toLocaleString("en-IN");
 
 }
 
 
-function removeBagItem(index){
+document.addEventListener("click", event => {
 
-  bag.splice(index,1);
+  const remove =
+    event.target.closest("[data-remove]");
 
-  updateBagCount();
+  if (!remove) return;
 
-  renderBag();
+  const index =
+    Number(remove.dataset.remove);
 
-}
+  bag.splice(index, 1);
 
+  updateBag();
 
-/* =========================
-   CHECKOUT
-========================= */
-
-function checkout(){
-
-  alert(
-    "Checkout will be connected to your payment system before WEIREN launches."
-  );
-
-}
+});
 
 
-/* =========================
-   WISHLIST
-========================= */
+/* =========================================================
+   OPEN BAG
+========================================================= */
 
-function showWishlist(){
+function openBag() {
 
-  alert(
-    "Wishlist is ready to be connected to customer accounts."
-  );
+  updateBag();
+
+  bagDrawer.classList.add("active");
+
+  bagOverlay.classList.add("active");
 
 }
-
-
-/* =========================
-   ACCORDIONS
-========================= */
-
-function toggleAccordion(button){
-
-  const item =
-    button.parentElement;
-
-  item.classList.toggle("open");
-
-  const symbol =
-    button.querySelector("span");
-
-  symbol.textContent =
-    item.classList.contains("open")
-    ? "−"
-    : "+";
-
-}
-
-
-/* =========================
-   SCROLL ANIMATION
-========================= */
-
-const observer =
-  new IntersectionObserver(
-    entries => {
-
-      entries.forEach(entry => {
-
-        if(entry.isIntersecting){
-
-          entry.target
-            .classList
-            .add("visible");
-
-        }
-
-      });
-
-    },
-    {
-      threshold:.1
-    }
-  );
 
 
 document
-  .querySelectorAll(".product-card")
-  .forEach(card =>
-    observer.observe(card)
-  );
+  .getElementById("bagBtn")
+  .onclick = openBag;
 
 
-/* =========================
-   ESCAPE KEY
-========================= */
+document
+  .getElementById("productBagBtn")
+  .onclick = openBag;
 
-document.addEventListener(
-  "keydown",
-  function(e){
 
-    if(e.key === "Escape"){
+document
+  .getElementById("closeBag")
+  .onclick = closeBag;
 
-      closeProduct();
-      closeBag();
 
-      document
-        .getElementById("searchPanel")
-        .classList.remove("active");
+bagOverlay.onclick = closeBag;
+
+
+function closeBag() {
+
+  bagDrawer.classList.remove("active");
+
+  bagOverlay.classList.remove("active");
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+const searchPanel =
+  document.getElementById("searchPanel");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const searchResults =
+  document.getElementById("searchResults");
+
+
+function openSearch() {
+
+  searchPanel.classList.add("active");
+
+  document.body.style.overflow = "hidden";
+
+  setTimeout(() => {
+    searchInput.focus();
+  }, 100);
+
+}
+
+
+function closeSearch() {
+
+  searchPanel.classList.remove("active");
+
+  document.body.style.overflow = "";
+
+  searchInput.value = "";
+
+  searchResults.innerHTML = "";
+
+}
+
+
+document
+  .getElementById("searchBtn")
+  .onclick = openSearch;
+
+
+document
+  .getElementById("mobileSearch")
+  .onclick = event => {
+
+    event.preventDefault();
+
+    document
+      .getElementById("mobileMenu")
+      .classList.remove("active");
+
+    openSearch();
+
+  };
+
+
+document
+  .getElementById("closeSearch")
+  .onclick = closeSearch;
+
+
+searchInput.addEventListener(
+  "input",
+  () => {
+
+    const query =
+      searchInput.value
+        .toLowerCase()
+        .trim();
+
+    searchResults.innerHTML = "";
+
+    if (!query) return;
+
+    const matches =
+      products.filter(product =>
+        product.name
+          .toLowerCase()
+          .includes(query)
+      );
+
+
+    if (!matches.length) {
+
+      searchResults.innerHTML = `
+        <div class="search-result">
+          NO PRODUCTS FOUND
+        </div>
+      `;
+
+      return;
 
     }
 
+
+    matches.forEach(product => {
+
+      const result =
+        document.createElement("button");
+
+      result.className =
+        "search-result";
+
+      result.textContent =
+        product.name;
+
+      result.onclick = () => {
+
+        closeSearch();
+
+        openProduct(product.id);
+
+      };
+
+      searchResults.appendChild(result);
+
+    });
+
   }
 );
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+document
+  .getElementById("menuBtn")
+  .onclick = () => {
+
+    document
+      .getElementById("mobileMenu")
+      .classList.toggle("active");
+
+  };
+
+
+document
+  .querySelectorAll(".menu-link")
+  .forEach(link => {
+
+    link.onclick = () => {
+
+      document
+        .getElementById("mobileMenu")
+        .classList.remove("active");
+
+    };
+
+  });
+
+
+/* =========================================================
+   WISHLIST
+========================================================= */
+
+document.addEventListener("click", event => {
+
+  const wishlist =
+    event.target.closest("[data-wishlist]");
+
+  if (!wishlist) return;
+
+  event.stopPropagation();
+
+  wishlist.textContent =
+    wishlist.textContent === "♡"
+    ? "♥"
+    : "♡";
+
+});
+
+
+document
+  .getElementById("wishlistBtn")
+  .onclick = () => {
+
+    showToast("WISHLIST");
+
+  };
+
+
+/* =========================================================
+   ACCORDIONS
+========================================================= */
+
+document
+  .querySelectorAll(".accordion-button")
+  .forEach(button => {
+
+    button.onclick = () => {
+
+      const accordion =
+        button.parentElement;
+
+      accordion.classList.toggle("open");
+
+      const icon =
+        button.querySelector("span");
+
+      icon.textContent =
+        accordion.classList.contains("open")
+        ? "−"
+        : "+";
+
+    };
+
+  });
+
+
+/* =========================================================
+   CHECKOUT
+========================================================= */
+
+document
+  .getElementById("checkout")
+  .onclick = () => {
+
+    if (!bag.length) {
+
+      showToast("YOUR BAG IS EMPTY");
+
+      return;
+
+    }
+
+    showToast(
+      "CHECKOUT WILL BE CONNECTED NEXT"
+    );
+
+  };
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+function showToast(message) {
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer =
+    setTimeout(() => {
+
+      toast.classList.remove("show");
+
+    }, 2200);
+
+}
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (event.key !== "Escape") return;
+
+    closeSearch();
+
+    closeBag();
+
+    document
+      .getElementById("productView")
+      .classList.remove("active");
+
+    document
+      .getElementById("mobileMenu")
+      .classList.remove("active");
+
+    document.body.style.overflow = "";
+
+  }
+);
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+updateBag();
 
 </script>
 
