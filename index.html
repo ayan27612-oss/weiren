@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>WEIREN | Oversized Acid-Washed T-Shirts</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fff;
+      color: #111;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      padding: 0 35px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 22px;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    /* HERO */
+
+    .hero {
+      height: 100vh;
+      margin-top: 70px;
+      position: relative;
+      overflow: hidden;
+
+      background:
+        linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.18)),
+        url("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+    }
+
+    .hero-content {
+      position: absolute;
+      bottom: 60px;
+      left: 45px;
+      color: white;
+      animation: fadeUp 1.2s ease forwards;
+    }
+
+    .hero-content p {
+      font-size: 12px;
+      letter-spacing: 3px;
+      margin-bottom: 15px;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(50px, 9vw, 110px);
+      font-weight: 500;
+      letter-spacing: -4px;
+      line-height: 0.9;
+    }
+
+    .hero-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 28px;
+      background: white;
+      color: #111;
+      font-size: 11px;
+      letter-spacing: 2px;
+      transition: 0.3s;
+    }
+
+    .hero-button:hover {
+      background: #111;
+      color: white;
+    }
+
+    /* SECTION */
+
+    .section {
+      padding: 100px 35px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 45px;
+    }
+
+    .section-header h2 {
+      font-size: 25px;
+      font-weight: 500;
+      letter-spacing: -1px;
+    }
+
+    .section-header a {
+      font-size: 11px;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #111;
+      padding-bottom: 4px;
+    }
+
+    /* PRODUCTS */
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .product {
+      cursor: pointer;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .product-image {
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: #eee;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+
+    .product:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+
+    .product-info span:last-child {
+      color: #555;
+    }
+
+    /* BRAND SECTION */
+
+    .brand-section {
+      min-height: 70vh;
+      background: #f4f4f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 25px;
+    }
+
+    .brand-section h2 {
+      font-size: clamp(45px, 8vw, 100px);
+      font-weight: 400;
+      letter-spacing: -5px;
+      line-height: 0.9;
+    }
+
+    .brand-section p {
+      max-width: 450px;
+      margin: 30px auto 0;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #111;
+      color: white;
+      padding: 70px 35px 35px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 100px;
+    }
+
+    .footer-logo {
+      font-size: 30px;
+      letter-spacing: 5px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 60px;
+    }
+
+    .footer-links div {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #333;
+      padding-top: 20px;
+      font-size: 10px;
+      color: #888;
+    }
+
+    /* ANIMATION */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      nav {
+        padding: 0 18px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-icons {
+        gap: 14px;
+      }
+
+      .hero {
+        height: 85vh;
+      }
+
+      .hero-content {
+        left: 22px;
+        bottom: 35px;
+      }
+
+      .section {
+        padding: 70px 18px;
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .product-info {
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .brand-section {
+        min-height: 55vh;
+      }
+
+      .footer-top {
+        flex-direction: column;
+        gap: 50px;
+      }
+
+      .footer-links {
+        gap: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+
+    <a href="#" class="logo">WEIREN</a>
+
+    <div class="nav-links">
+      <a href="#new">NEW IN</a>
+      <a href="#tees">T-SHIRTS</a>
+      <a href="#about">ABOUT</a>
+    </div>
+
+    <div class="nav-icons">
+      <a href="#">SEARCH</a>
+      <a href="#">♡</a>
+      <a href="#">BAG (0)</a>
+    </div>
+
+  </nav>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <p>DROP 01 · 2026</p>
+
+      <h1>
+        WEIREN
+      </h1>
+
+      <a href="#tees" class="hero-button">
+        SHOP T-SHIRTS
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- NEW IN -->
+
+  <section class="section" id="new">
+
+    <div class="section-header">
+
+      <h2>NEW IN</h2>
+
+      <a href="#tees">
+        VIEW ALL
+      </a>
+
+    </div>
+
+
+    <div class="products" id="tees">
+
+      <!-- PRODUCT 1 -->
+
+      <div class="product">
+
+        <div class="product-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=900&q=85"
+            alt="WEIREN oversized T-shirt"
+          >
+
+        </div>
+
+        <div class="product-info">
+
+          <span>WEIREN 001</span>
+
+          <span>₹1,299</span>
+
+        </div>
+
+      </div>
+
+
+      <!-- PRODUCT 2 -->
+
+      <div class="product">
+
+        <div class="product-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85"
+            alt="WEIREN oversized T-shirt"
+          >
+
+        </div>
+
+        <div class="product-info">
+
+          <span>WEIREN 002</span>
+
+          <span>₹1,299</span>
+
+        </div>
+
+      </div>
+
+
+      <!-- PRODUCT 3 -->
+
+      <div class="product">
+
+        <div class="product-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85"
+            alt="WEIREN oversized T-shirt"
+          >
+
+        </div>
+
+        <div class="product-info">
+
+          <span>WEIREN 003</span>
+
+          <span>₹1,399</span>
+
+        </div>
+
+      </div>
+
+
+      <!-- PRODUCT 4 -->
+
+      <div class="product">
+
+        <div class="product-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=900&q=85"
+            alt="WEIREN oversized T-shirt"
+          >
+
+        </div>
+
+        <div class="product-info">
+
+          <span>WEIREN 004</span>
+
+          <span>₹1,399</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BRAND -->
+
+  <section class="brand-section" id="about">
+
+    <div>
+
+      <h2>
+        LESS.<br>
+        BETTER.
+      </h2>
+
+      <p>
+        WEIREN creates oversized acid-washed T-shirts
+        designed around relaxed silhouettes, heavyweight
+        fabrics and understated streetwear.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-top">
+
+      <div class="footer-logo">
+        WEIREN
+      </div>
+
+      <div class="footer-links">
+
+        <div>
+          <strong>SHOP</strong>
+          <a href="#new">New In</a>
+          <a href="#tees">T-Shirts</a>
+        </div>
+
+        <div>
+          <strong>INFO</strong>
+          <a href="#about">About</a>
+          <a href="#">Contact</a>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      © 2026 WEIREN. ALL RIGHTS RESERVED.
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
