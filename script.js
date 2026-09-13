@@ -1,59 +1,36 @@
 const products = [
-  {id:'black', name:'Acid Washed Relaxed T-Shirt', color:'Black', price:499, image:'1000004143.png', stock:{M:10,L:10,XL:10}},
-  {id:'grey', name:'Acid Washed Relaxed T-Shirt', color:'Grey', price:499, image:'1000004156.png', stock:{M:10,L:10,XL:10}},
-  {id:'maroon', name:'Acid Washed Relaxed T-Shirt', color:'Maroon', price:499, image:'1000004157.png', stock:{M:10,L:10,XL:10}},
-  {id:'navy', name:'Acid Washed Relaxed T-Shirt', color:'Navy', price:499, image:'1000004158.png', stock:{M:10,L:10,XL:10}},
-  {id:'brown', name:'Acid Washed Relaxed T-Shirt', color:'Brown', price:499, image:'1000004159.png', stock:{M:10,L:10,XL:10}}
+  {id:'black',name:'Acid Washed Relaxed T-Shirt',color:'Black',price:499,front:'1000004143.png',back:'ChatGPT Image Sep 13, 2026, 05_43_17 PM.png',stock:{M:10,L:10,XL:10}},
+  {id:'grey',name:'Acid Washed Relaxed T-Shirt',color:'Grey',price:499,front:'1000004159.png',back:'ChatGPT Image Sep 13, 2026, 05_54_13 PM.png',stock:{M:10,L:10,XL:10}},
+  {id:'maroon',name:'Acid Washed Relaxed T-Shirt',color:'Maroon',price:499,front:'1000004156.png',back:'ChatGPT Image Sep 13, 2026, 06_07_39 PM.png',stock:{M:10,L:10,XL:10}},
+  {id:'navy',name:'Acid Washed Relaxed T-Shirt',color:'Navy',price:499,front:'1000004157.png',back:'ChatGPT Image Sep 13, 2026, 06_06_23 PM.png',stock:{M:10,L:10,XL:10}},
+  {id:'brown',name:'Acid Washed Relaxed T-Shirt',color:'Brown',price:499,front:'1000004158.png',back:'ChatGPT Image Sep 13, 2026, 05_52_50 PM.png',stock:{M:10,L:10,XL:10}}
 ];
-let bag = JSON.parse(localStorage.getItem('weiren-bag') || '[]');
-const $ = s => document.querySelector(s);
-const productGrid = $('#productGrid');
-const toast = $('#toast');
-
-function save(){ localStorage.setItem('weiren-bag', JSON.stringify(bag)); renderBag(); }
-function showToast(msg){ toast.textContent=msg; toast.classList.add('show'); clearTimeout(showToast.t); showToast.t=setTimeout(()=>toast.classList.remove('show'),2200); }
+let bag=JSON.parse(localStorage.getItem('weiren-bag')||'[]');
+const $=s=>document.querySelector(s), productGrid=$('#productGrid'), toast=$('#toast'), productView=$('#productView');
+function save(){localStorage.setItem('weiren-bag',JSON.stringify(bag));renderBag()}
+function showToast(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(showToast.t);showToast.t=setTimeout(()=>toast.classList.remove('show'),2200)}
 function renderProducts(){
-  productGrid.innerHTML = products.map(p => `
-    <article class="product-card" data-product="${p.id}" tabindex="0" aria-label="View ${p.color} ${p.name}">
-      <div class="product-image"><img src="${p.image}" alt="${p.color} ${p.name}"></div>
-      <div class="product-info"><div><div class="product-name">${p.name}</div><div class="product-color">${p.color}</div></div><div class="product-price">₹${p.price}</div></div>
-      <div class="product-actions"><button class="mini-btn" data-add="${p.id}">ADD TO BAG</button><button class="mini-btn" data-buy="${p.id}">BUY NOW</button></div>
-    </article>`).join('');
-  productGrid.querySelectorAll('.product-card').forEach(card=>{
-    const open=()=>openProduct(card.dataset.product,false);
-    card.onclick=e=>{if(!e.target.closest('button'))open()};
-    card.onkeydown=e=>{if((e.key==='Enter'||e.key===' ')&&!e.target.closest('button')){e.preventDefault();open()}};
-  });
-  productGrid.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>openProduct(b.dataset.add,false));
-  productGrid.querySelectorAll('[data-buy]').forEach(b=>b.onclick=()=>openProduct(b.dataset.buy,true));
+  productGrid.innerHTML=products.map(p=>`<article class="product-card" data-product="${p.id}" tabindex="0" aria-label="View ${p.color} ${p.name}"><div class="product-image"><img src="${p.front}" alt="${p.color} ${p.name}"></div><div class="product-info"><div><div class="product-name">${p.name}</div><div class="product-color">${p.color}</div></div><div class="product-price">₹${p.price}</div></div><div class="product-actions"><button class="mini-btn" data-add="${p.id}">ADD TO BAG</button><button class="mini-btn" data-buy="${p.id}">BUY NOW</button></div></article>`).join('');
+  productGrid.querySelectorAll('.product-card').forEach(card=>{const open=()=>openProduct(card.dataset.product);card.onclick=e=>{if(!e.target.closest('button'))open()};card.onkeydown=e=>{if((e.key==='Enter'||e.key===' ')&&!e.target.closest('button')){e.preventDefault();open()}}});
+  productGrid.querySelectorAll('[data-add]').forEach(b=>b.onclick=e=>{e.stopPropagation();openProduct(b.dataset.add)});
+  productGrid.querySelectorAll('[data-buy]').forEach(b=>b.onclick=e=>{e.stopPropagation();openProduct(b.dataset.buy,true)});
 }
-function openProduct(id,buy){
-  const p=products.find(x=>x.id===id); let size='M';
-  const ok=()=>{ if(!p.stock[size]){showToast('That size is currently sold out.');return;} const existing=bag.find(x=>x.id===id&&x.size===size); if(existing) existing.qty++; else bag.push({id,size,qty:1}); save(); if(buy) openBag(); else showToast(`${p.color} / ${size} added to bag.`); };
-  const sizes=Object.keys(p.stock).map(s=>`<button class="mini-btn size-pick ${s==='M'?'selected':''}" data-size="${s}">${s}${p.stock[s]===0?' · SOLD OUT':''}</button>`).join('');
-  const modal=document.createElement('div'); modal.className='modal open'; modal.innerHTML=`<div class="modal-card product-modal-card"><button class="modal-close" aria-label="Close">×</button><div class="product-modal-image"><img src="${p.image}" alt="${p.color} ${p.name}"></div><p class="eyebrow">${p.color.toUpperCase()} / WEIREN 001</p><h2>${p.name}</h2><p class="modal-price">₹${p.price}</p><div class="modal-size"><p class="eyebrow">SELECT SIZE</p><div class="size-list">${sizes}</div></div><button class="btn btn-dark full" id="confirmAdd">${buy?'BUY NOW':'ADD TO BAG'}</button></div>`;
-  document.body.appendChild(modal); modal.querySelector('.modal-close').onclick=()=>modal.remove(); modal.onclick=e=>{if(e.target===modal)modal.remove()}; modal.querySelectorAll('.size-pick').forEach(b=>b.onclick=()=>{size=b.dataset.size;modal.querySelectorAll('.size-pick').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')}); modal.querySelector('#confirmAdd').onclick=()=>{ok();modal.remove()};
+function addToBag(id,size,buy=false){const p=products.find(x=>x.id===id);if(!p.stock[size]){showToast('That size is currently sold out.');return}const existing=bag.find(x=>x.id===id&&x.size===size);if(existing)existing.qty++;else bag.push({id,size,qty:1});save();if(buy)openBag();else showToast(`${p.color} / ${size} added to bag.`)}
+function openProduct(id,buy=false){
+  const p=products.find(x=>x.id===id);if(!p)return;let size='M';
+  const sizes=Object.keys(p.stock).map(s=>`<button class="mini-btn size-pick ${s==='M'?'selected':''}" data-size="${s}">${s}</button>`).join('');
+  productView.innerHTML=`<div class="product-page"><div class="product-page-top"><button class="back-product" id="backProduct">← BACK TO SHOP</button><span>${p.color.toUpperCase()} / WEIREN 001</span></div><div class="product-gallery"><figure><img src="${p.front}" alt="${p.color} ${p.name} front"><figcaption>FRONT</figcaption></figure><figure><img src="${p.back}" alt="${p.color} ${p.name} back"><figcaption>BACK</figcaption></figure></div><div class="product-page-info"><p class="eyebrow">${p.color.toUpperCase()}</p><h1>${p.name}</h1><p class="detail-price">₹${p.price}</p><div class="detail-size"><p class="eyebrow">SELECT SIZE</p><div class="size-list">${sizes}</div></div><button class="btn btn-dark full" id="confirmAdd">${buy?'BUY NOW':'ADD TO BAG'}</button><div class="product-details"><div><strong>240 GSM</strong><span>French terry</span></div><div><strong>DROP SHOULDER</strong><span>Relaxed fit</span></div><div><strong>ACID WASH</strong><span>Unique finish</span></div></div></div></div>`;
+  productView.classList.add('open');document.body.classList.add('product-open');window.scrollTo(0,0);history.pushState({product:id},'',`#product-${id}`);
+  productView.querySelector('#backProduct').onclick=()=>closeProduct(true);
+  productView.querySelectorAll('.size-pick').forEach(b=>b.onclick=()=>{size=b.dataset.size;productView.querySelectorAll('.size-pick').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')});
+  productView.querySelector('#confirmAdd').onclick=()=>addToBag(id,size,buy);
 }
-function renderBag(){
-  const count=bag.reduce((n,x)=>n+x.qty,0); $('#bagCount').textContent=count;
-  const items=$('#bagItems');
-  if(!bag.length){items.innerHTML='<div class="empty-bag">YOUR BAG IS EMPTY.</div>'; $('#bagTotal').textContent='₹0';return;}
-  let total=0; items.innerHTML=bag.map((x,i)=>{const p=products.find(y=>y.id===x.id);total+=p.price*x.qty;return `<div class="bag-row"><img src="${p.image}" alt="${p.color}"><div><h3>${p.name}</h3><p>${p.color} / ${x.size}</p><p>₹${p.price} × ${x.qty}</p><button data-remove="${i}">REMOVE</button></div><strong>₹${p.price*x.qty}</strong></div>`}).join('');
-  $('#bagTotal').textContent=`₹${total}`; items.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{bag.splice(+b.dataset.remove,1);save()});
-}
-function openBag(){ $('#bagDrawer').classList.add('open');$('#drawerBackdrop').classList.add('open');$('#bagDrawer').setAttribute('aria-hidden','false'); }
-function closeBag(){ $('#bagDrawer').classList.remove('open');$('#drawerBackdrop').classList.remove('open');$('#bagDrawer').setAttribute('aria-hidden','true'); }
-function openAccount(){ $('#accountModal').classList.add('open');$('#accountModal').setAttribute('aria-hidden','false'); }
-function closeAccount(){ $('#accountModal').classList.remove('open');$('#accountModal').setAttribute('aria-hidden','true'); }
-
-document.addEventListener('click',e=>{
-  const a=e.target.closest('[data-action]'); if(!a)return; const action=a.dataset.action;
-  if(action==='bag')openBag(); if(action==='close-drawer')closeBag(); if(action==='account')openAccount(); if(action==='close-account')closeAccount();
-  if(action==='checkout'){ if(!bag.length)showToast('Your bag is empty.'); else showToast('Checkout will be connected to payments next.'); }
-  if(action==='google'||action==='forgot'||action==='register')showToast('This account feature will be connected in the next setup step.');
-  if(action==='menu')document.querySelector('#shop').scrollIntoView({behavior:'smooth'});
-});
-$('#drawerBackdrop').onclick=closeBag;
-$('#accountModal').onclick=e=>{if(e.target.id==='accountModal')closeAccount()};
-$('#loginForm').onsubmit=e=>{e.preventDefault();showToast('Sign-in will be connected to the authentication backend next.');};
-renderProducts();renderBag();
+function closeProduct(fromButton=false){if(!productView.classList.contains('open'))return;productView.classList.remove('open');document.body.classList.remove('product-open');if(fromButton&&location.hash)history.back()}
+window.addEventListener('popstate',()=>{productView.classList.remove('open');document.body.classList.remove('product-open')});
+function renderBag(){const count=bag.reduce((n,x)=>n+x.qty,0);$('#bagCount').textContent=count;const items=$('#bagItems');if(!bag.length){items.innerHTML='<div class="empty-bag">YOUR BAG IS EMPTY.</div>';$('#bagTotal').textContent='₹0';return}let total=0;items.innerHTML=bag.map((x,i)=>{const p=products.find(y=>y.id===x.id);total+=p.price*x.qty;return `<div class="bag-row"><img src="${p.front}" alt="${p.color}"><div><h3>${p.name}</h3><p>${p.color} / ${x.size}</p><p>₹${p.price} × ${x.qty}</p><button data-remove="${i}">REMOVE</button></div><strong>₹${p.price*x.qty}</strong></div>`}).join('');$('#bagTotal').textContent=`₹${total}`;items.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{bag.splice(+b.dataset.remove,1);save()})}
+function openBag(){$('#bagDrawer').classList.add('open');$('#drawerBackdrop').classList.add('open');$('#bagDrawer').setAttribute('aria-hidden','false')}
+function closeBag(){$('#bagDrawer').classList.remove('open');$('#drawerBackdrop').classList.remove('open');$('#bagDrawer').setAttribute('aria-hidden','true')}
+function openAccount(){$('#accountModal').classList.add('open');$('#accountModal').setAttribute('aria-hidden','false')}
+function closeAccount(){$('#accountModal').classList.remove('open');$('#accountModal').setAttribute('aria-hidden','true')}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-action]');if(!a)return;const action=a.dataset.action;if(action==='bag')openBag();if(action==='close-drawer')closeBag();if(action==='account')openAccount();if(action==='close-account')closeAccount();if(action==='checkout'){if(!bag.length)showToast('Your bag is empty.');else showToast('Checkout will be connected to payments next.')}if(action==='google'||action==='forgot'||action==='register')showToast('This account feature will be connected in the next setup step.');if(action==='menu')document.querySelector('#shop').scrollIntoView({behavior:'smooth'})});
+$('#drawerBackdrop').onclick=closeBag;$('#accountModal').onclick=e=>{if(e.target.id==='accountModal')closeAccount()};$('#loginForm').onsubmit=e=>{e.preventDefault();showToast('Sign-in will be connected to the authentication backend next.')};renderProducts();renderBag();
