@@ -1,6 +1,6 @@
 const products = [
   {id:'black',name:'Acid Washed Relaxed T-Shirt',color:'Black',price:499,front:'1000004143.png',back:'ChatGPT Image Sep 13, 2026, 05_43_17 PM.png',stock:{M:10,L:10,XL:10}},
-  {id:'grey',name:'Acid Washed Relaxed T-Shirt',color:'Grey',price:499,front:'1000004159.png',back:'ChatGPT Image Sep 13, 2026, 05_54_50 PM.png',stock:{M:10,L:10,XL:10}},
+  {id:'grey',name:'Acid Washed Relaxed T-Shirt',color:'Grey',price:499,front:'1000004159.png',back:'ChatGPT Image Sep 13, 2026, 05_54_13 PM.png',stock:{M:10,L:10,XL:10}},
   {id:'maroon',name:'Acid Washed Relaxed T-Shirt',color:'Maroon',price:499,front:'1000004156.png',back:'ChatGPT Image Sep 13, 2026, 06_07_39 PM.png',stock:{M:10,L:10,XL:10}},
   {id:'navy',name:'Acid Washed Relaxed T-Shirt',color:'Navy',price:499,front:'1000004157.png',back:'ChatGPT Image Sep 13, 2026, 06_06_23 PM.png',stock:{M:10,L:10,XL:10}},
   {id:'brown',name:'Acid Washed Relaxed T-Shirt',color:'Brown',price:499,front:'1000004158.png',back:'ChatGPT Image Sep 13, 2026, 05_52_50 PM.png',stock:{M:10,L:10,XL:10}}
@@ -28,26 +28,9 @@ function openProduct(id,buy=false){
   const setDot=()=>{const width=gallery.clientWidth||1;const current=Math.max(0,Math.min(1,Math.round(gallery.scrollLeft/width)));dots.forEach((d,i)=>d.classList.toggle('active',i===current))};
   dots.forEach(d=>d.onclick=()=>gallery.scrollTo({left:+d.dataset.slide*gallery.clientWidth,behavior:'smooth'}));
   gallery.addEventListener('scroll',setDot,{passive:true});
-
-  const lightbox=document.createElement('div');
-  lightbox.className='image-lightbox';
-  lightbox.innerHTML='<button class="lightbox-close" type="button" aria-label="Close image">×</button><div class="lightbox-hint">PINCH OR DOUBLE-TAP TO ZOOM</div><img class="lightbox-image" alt="">';
-  productView.appendChild(lightbox);
-  const lightboxImg=lightbox.querySelector('.lightbox-image');
-  let scale=1,startDistance=0,startScale=1;
-  const applyZoom=()=>{scale=Math.max(1,Math.min(4,scale));lightboxImg.style.transform=`scale(${scale})`};
-  const resetZoom=()=>{scale=1;lightboxImg.style.transform='scale(1)'};
-  const distance=(a,b)=>Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
-  const openZoom=img=>{lightboxImg.src=img.currentSrc||img.src;lightboxImg.alt=img.alt;resetZoom();lightbox.classList.add('open');document.body.classList.add('lightbox-open')};
-  const closeZoom=()=>{lightbox.classList.remove('open');document.body.classList.remove('lightbox-open');resetZoom()};
-  productView.querySelectorAll('.product-slide img').forEach(img=>img.addEventListener('click',()=>openZoom(img)));
-  lightbox.querySelector('.lightbox-close').onclick=closeZoom;
-  lightbox.onclick=e=>{if(e.target===lightbox)closeZoom()};
-  lightboxImg.addEventListener('dblclick',e=>{e.preventDefault();scale=scale>1?1:2.5;applyZoom()});
-  lightboxImg.addEventListener('touchstart',e=>{if(e.touches.length===2){startDistance=distance(e.touches[0],e.touches[1]);startScale=scale}},{passive:true});
-  lightboxImg.addEventListener('touchmove',e=>{if(e.touches.length===2&&startDistance){e.preventDefault();scale=startScale*(distance(e.touches[0],e.touches[1])/startDistance);applyZoom()}},{passive:false});
-  lightboxImg.addEventListener('touchend',e=>{if(e.touches.length<2)startDistance=0},{passive:true});
-  lightboxImg.addEventListener('wheel',e=>{e.preventDefault();scale+=e.deltaY<0?.2:-.2;applyZoom()},{passive:false});
+  const lightbox=document.createElement('div');lightbox.className='image-lightbox';lightbox.innerHTML='<button class="lightbox-close" type="button" aria-label="Close image">×</button><div class="lightbox-hint">PINCH OR DOUBLE-TAP TO ZOOM</div><img class="lightbox-image" alt="">';productView.appendChild(lightbox);
+  const lightboxImg=lightbox.querySelector('.lightbox-image');let scale=1,startDistance=0,startScale=1;const applyZoom=()=>{scale=Math.max(1,Math.min(4,scale));lightboxImg.style.transform=`scale(${scale})`};const resetZoom=()=>{scale=1;lightboxImg.style.transform='scale(1)'};const distance=(a,b)=>Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);const openZoom=img=>{lightboxImg.src=img.currentSrc||img.src;lightboxImg.alt=img.alt;resetZoom();lightbox.classList.add('open');document.body.classList.add('lightbox-open')};const closeZoom=()=>{lightbox.classList.remove('open');document.body.classList.remove('lightbox-open');resetZoom()};
+  productView.querySelectorAll('.product-slide img').forEach(img=>img.addEventListener('click',()=>openZoom(img)));lightbox.querySelector('.lightbox-close').onclick=closeZoom;lightbox.onclick=e=>{if(e.target===lightbox)closeZoom()};lightboxImg.addEventListener('dblclick',e=>{e.preventDefault();scale=scale>1?1:2.5;applyZoom()});lightboxImg.addEventListener('touchstart',e=>{if(e.touches.length===2){startDistance=distance(e.touches[0],e.touches[1]);startScale=scale}},{passive:true});lightboxImg.addEventListener('touchmove',e=>{if(e.touches.length===2&&startDistance){e.preventDefault();scale=startScale*(distance(e.touches[0],e.touches[1])/startDistance);applyZoom()}},{passive:false});lightboxImg.addEventListener('touchend',e=>{if(e.touches.length<2)startDistance=0},{passive:true});lightboxImg.addEventListener('wheel',e=>{e.preventDefault();scale+=e.deltaY<0?.2:-.2;applyZoom()},{passive:false});
 }
 function closeProduct(fromButton=false){if(!productView.classList.contains('open'))return;const lightbox=productView.querySelector('.image-lightbox');if(lightbox?.classList.contains('open')){lightbox.classList.remove('open');document.body.classList.remove('lightbox-open')}productView.classList.remove('open');document.body.classList.remove('product-open');if(fromButton&&location.hash)history.back()}
 window.addEventListener('popstate',()=>{productView.classList.remove('open');document.body.classList.remove('product-open','lightbox-open')});
@@ -59,5 +42,4 @@ function closeAccount(){$('#accountModal').classList.remove('open');$('#accountM
 function updateIndiaLive(){const now=new Date();const parts=new Intl.DateTimeFormat('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).formatToParts(now);const get=t=>parts.find(p=>p.type===t)?.value||'00';const clock=$('#indiaClock');const date=$('#indiaDate');if(clock)clock.textContent=`${get('hour')}:${get('minute')}:${get('second')}`;if(date)date.textContent=new Intl.DateTimeFormat('en-IN',{timeZone:'Asia/Kolkata',weekday:'short',day:'2-digit',month:'short',year:'numeric'}).format(now).toUpperCase()}
 const liveTicker=['WEIREN / ONLINE FROM INDIA','NEW DROP / ₹499','MADE FOR EVERYDAY','INDIA · IST / LIVE NOW'];let liveTickerIndex=0;function rotateLiveTicker(){const el=$('#liveTickerText');if(!el)return;el.classList.remove('ticker-in');void el.offsetWidth;liveTickerIndex=(liveTickerIndex+1)%liveTicker.length;el.textContent=liveTicker[liveTickerIndex];el.classList.add('ticker-in')}
 document.addEventListener('click',e=>{const a=e.target.closest('[data-action]');if(!a)return;const action=a.dataset.action;if(action==='bag')openBag();if(action==='close-drawer')closeBag();if(action==='account')openAccount();if(action==='close-account')closeAccount();if(action==='checkout'){if(!bag.length)showToast('Your bag is empty.');else showToast('Checkout will be connected to payments next.')}if(action==='google'||action==='forgot'||action==='register')showToast('This account feature will be connected in the next setup step.');if(action==='menu')document.querySelector('#shop').scrollIntoView({behavior:'smooth'})});
-$('#drawerBackdrop').onclick=closeBag;$('#accountModal').onclick=e=>{if(e.target.id==='accountModal')closeAccount()};$('#loginForm').onsubmit=e=>{e.preventDefault();showToast('Sign-in will be connected to the authentication backend next.')};
-updateIndiaLive();setInterval(updateIndiaLive,1000);setInterval(rotateLiveTicker,3200);renderProducts();renderBag();
+$('#drawerBackdrop').onclick=closeBag;$('#accountModal').onclick=e=>{if(e.target.id==='accountModal')closeAccount()};$('#loginForm').onsubmit=e=>{e.preventDefault();showToast('Sign-in will be connected to the authentication backend next.')};updateIndiaLive();setInterval(updateIndiaLive,1000);setInterval(rotateLiveTicker,3200);renderProducts();renderBag();
