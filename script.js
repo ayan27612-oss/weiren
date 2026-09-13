@@ -28,9 +28,32 @@ function openProduct(id,buy=false){
   const setDot=()=>{const width=gallery.clientWidth||1;const current=Math.max(0,Math.min(1,Math.round(gallery.scrollLeft/width)));dots.forEach((d,i)=>d.classList.toggle('active',i===current))};
   dots.forEach(d=>d.onclick=()=>gallery.scrollTo({left:+d.dataset.slide*gallery.clientWidth,behavior:'smooth'}));
   gallery.addEventListener('scroll',setDot,{passive:true});
+
+  const lightbox=document.createElement('div');
+  lightbox.className='image-lightbox';
+  lightbox.innerHTML='<button class="lightbox-close" type="button" aria-label="Close image">×</button><div class="lightbox-hint">PINCH OR DOUBLE-TAP TO ZOOM</div><img class="lightbox-image" alt="">';
+  productView.appendChild(lightbox);
+  const lightboxImg=lightbox.querySelector('.lightbox-image');
+  let scale=1,lastTap=0,startDistance=0,startScale=1;
+  const applyZoom=()=>{scale=Math.max(1,Math.min(4,scale));lightboxImg.style.transform=`scale(${scale})`};
+  const resetZoom=()=>{scale=1;lightboxImg.style.transform='scale(1)'};
+  const distance=(a,b)=>Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
+  const openZoom=img=>{lightboxImg.src=img.currentSrc||img.src;lightboxImg.alt=img.alt;resetZoom();lightbox.classList.add('open');document.body.classList.add('lightbox-open')};
+  const closeZoom=()=>{lightbox.classList.remove('open');document.body.classList.remove('lightbox-open');resetZoom()};
+  productView.querySelectorAll('.product-slide img').forEach(img=>{
+    img.addEventListener('click',()=>openZoom(img));
+  });
+  lightbox.querySelector('.lightbox-close').onclick=closeZoom;
+  lightbox.onclick=e=>{if(e.target===lightbox)closeZoom()};
+  lightboxImg.addEventListener('dblclick',e=>{e.preventDefault();scale=scale>1?1:2.5;applyZoom()});
+  lightboxImg.addEventListener('touchstart',e=>{if(e.touches.length===2){startDistance=distance(e.touches[0],e.touches[1]);startScale=scale}}, {passive:true});
+  lightboxImg.addEventListener('touchmove',e=>{if(e.touches.length===2&&startDistance){e.preventDefault();scale=startScale*(distance(e.touches[0],e.touches[1])/startDistance);applyZoom()}},{passive:false});
+  lightboxImg.addEventListener('touchend',e=>{if(e.touches.length<2)startDistance=0},{passive:true});
+  lightboxImg.addEventListener('wheel',e=>{e.preventDefault();scale+=e.deltaY<0?.2:-.2;applyZoom()},{passive:false});
+  lightbox.addEventListener('touchmove',e=>{if(lightbox.classList.contains('open'))e.stopPropagation()},{passive:true});
 }
-function closeProduct(fromButton=false){if(!productView.classList.contains('open'))return;productView.classList.remove('open');document.body.classList.remove('product-open');if(fromButton&&location.hash)history.back()}
-window.addEventListener('popstate',()=>{productView.classList.remove('open');document.body.classList.remove('product-open')});
+function closeProduct(fromButton=false){if(!productView.classList.contains('open'))return;const lightbox=productView.querySelector('.image-lightbox');if(lightbox?.classList.contains('open')){lightbox.classList.remove('open');document.body.classList.remove('lightbox-open')}productView.classList.remove('open');document.body.classList.remove('product-open');if(fromButton&&location.hash)history.back()}
+window.addEventListener('popstate',()=>{productView.classList.remove('open');document.body.classList.remove('product-open','lightbox-open')});
 function renderBag(){const count=bag.reduce((n,x)=>n+x.qty,0);$('#bagCount').textContent=count;const items=$('#bagItems');if(!bag.length){items.innerHTML='<div class="empty-bag">YOUR BAG IS EMPTY.</div>';$('#bagTotal').textContent='₹0';return}let total=0;items.innerHTML=bag.map((x,i)=>{const p=products.find(y=>y.id===x.id);total+=p.price*x.qty;return `<div class="bag-row"><img src="${p.front}" alt="${p.color}"><div><h3>${p.name}</h3><p>${p.color} / ${x.size}</p><p>₹${p.price} × ${x.qty}</p><button data-remove="${i}">REMOVE</button></div><strong>₹${p.price*x.qty}</strong></div>`}).join('');$('#bagTotal').textContent=`₹${total}`;items.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{bag.splice(+b.dataset.remove,1);save()})}
 function openBag(){$('#bagDrawer').classList.add('open');$('#drawerBackdrop').classList.add('open');$('#bagDrawer').setAttribute('aria-hidden','false')}
 function closeBag(){$('#bagDrawer').classList.remove('open');$('#drawerBackdrop').classList.remove('open');$('#bagDrawer').setAttribute('aria-hidden','true')}
