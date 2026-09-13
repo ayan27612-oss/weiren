@@ -1,9 +1,9 @@
 const products = [
-  {id:'black', name:'Acid Washed Relaxed T-Shirt', color:'Black', price:499, image:'images/black-front.png', stock:{M:10,L:10,XL:10}},
-  {id:'grey', name:'Acid Washed Relaxed T-Shirt', color:'Grey', price:499, image:'images/grey-front.png', stock:{M:10,L:10,XL:10}},
-  {id:'maroon', name:'Acid Washed Relaxed T-Shirt', color:'Maroon', price:499, image:'images/maroon-front.png', stock:{M:10,L:10,XL:10}},
-  {id:'navy', name:'Acid Washed Relaxed T-Shirt', color:'Navy', price:499, image:'images/navy-front.png', stock:{M:10,L:10,XL:10}},
-  {id:'brown', name:'Acid Washed Relaxed T-Shirt', color:'Brown', price:499, image:'images/brown-front.png', stock:{M:10,L:10,XL:10}}
+  {id:'black', name:'Acid Washed Relaxed T-Shirt', color:'Black', price:499, image:'1000004143.png', stock:{M:10,L:10,XL:10}},
+  {id:'grey', name:'Acid Washed Relaxed T-Shirt', color:'Grey', price:499, image:'1000004156.png', stock:{M:10,L:10,XL:10}},
+  {id:'maroon', name:'Acid Washed Relaxed T-Shirt', color:'Maroon', price:499, image:'1000004157.png', stock:{M:10,L:10,XL:10}},
+  {id:'navy', name:'Acid Washed Relaxed T-Shirt', color:'Navy', price:499, image:'1000004158.png', stock:{M:10,L:10,XL:10}},
+  {id:'brown', name:'Acid Washed Relaxed T-Shirt', color:'Brown', price:499, image:'1000004159.png', stock:{M:10,L:10,XL:10}}
 ];
 let bag = JSON.parse(localStorage.getItem('weiren-bag') || '[]');
 const $ = s => document.querySelector(s);
