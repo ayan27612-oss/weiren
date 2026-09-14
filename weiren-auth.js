@@ -2,6 +2,7 @@
 (() => {
   const supabase = window.supabase.createClient(window.WEIREN_SUPABASE_URL, window.WEIREN_SUPABASE_KEY);
   window.weirenSupabase = supabase;
+  window.supabaseClient = supabase;
   const modal = document.querySelector('#accountModal');
   const toast = document.querySelector('#toast');
   const show = msg => { if (typeof window.showToast === 'function') window.showToast(msg); else if (toast) { toast.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2600); } };
