@@ -13,7 +13,6 @@ body.product-open #top,body.product-open footer{display:none}body.product-open .
 @keyframes indiaFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}@keyframes tricolorText{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 @media(max-width:800px){.live-india{min-height:112px;padding:12px 14px 32px;display:flex}.live-data strong{font-size:20px}.live-ticker{height:18px;font-size:6px}.wordmark{font-size:21px;letter-spacing:.19em}.site-header{grid-template-columns:1fr auto;height:62px}.mobile-menu{display:none!important}.header-actions{gap:15px}.collection:before,.collection:after{width:170px;height:170px;filter:blur(55px);opacity:.08}.section-heading h1{background:linear-gradient(100deg,#111 0%,#111 62%,#8b5cf6 82%,#ff7a18 100%);-webkit-background-clip:text;background-clip:text}.feature-band:after{width:220px;height:220px;right:-120px;top:-110px}}
 @media(prefers-reduced-motion:reduce){.live-india,.live-data strong{animation:none!important}}
-/* stable Apple-inspired watch: clean, precise, no floating motion */
 #indiaClock{animation:none!important;transform:none!important;width:112px;height:112px;border:1px solid rgba(17,17,17,.18);border-radius:50%;background:#fff;box-shadow:0 8px 24px rgba(17,17,17,.06),inset 0 0 0 1px rgba(17,17,17,.045);overflow:visible!important;isolation:isolate;position:relative}
 #indiaClock:before,#indiaClock:after{display:none!important}
 #indiaClock .watch-number{font-family:Inter,Arial,sans-serif;font-weight:500;font-size:9px;line-height:18px;color:#111;letter-spacing:-.01em}
@@ -35,6 +34,10 @@ body.product-open #top,body.product-open footer{display:none}body.product-open .
 <footer id="contact"><div class="footer-top"><div class="footer-brand"><span class="wordmark">WEIREN</span><p>Everyday, redefined.</p></div><div class="footer-links"><a href="#shop">Shop</a><a href="#about">About</a><a href="mailto:ayan.careers.123@gmail.com">Contact</a><button data-action="account">Account</button></div><div class="footer-contact"><span>SUPPORT</span><a href="mailto:ayan.careers.123@gmail.com">ayan.careers.123@gmail.com</a><span>INSTAGRAM — COMING SOON</span></div></div><div class="footer-bottom"><span>© 2026 WEIREN</span><span>INDIA</span></div></footer>
 <div class="drawer-backdrop" id="drawerBackdrop"></div><aside class="drawer" id="bagDrawer" aria-hidden="true"><div class="drawer-head"><h2>YOUR BAG</h2><button data-action="close-drawer">CLOSE</button></div><div id="bagItems" class="bag-items"></div><div class="bag-summary"><div><span>SUBTOTAL</span><strong id="bagTotal">₹0</strong></div><p>Shipping is free across India.</p><button class="btn btn-dark full" data-action="checkout">CHECKOUT</button></div></aside>
 <div class="modal" id="accountModal" aria-hidden="true"><div class="modal-card"><button class="modal-close" data-action="close-account" aria-label="Close">×</button><p class="eyebrow">WEIREN ACCOUNT</p><h2>WELCOME BACK.</h2><form id="loginForm"><label>Email<input type="email" id="loginEmail" placeholder="you@example.com" required></label><label>Password<input type="password" id="loginPassword" placeholder="••••••••" required></label><button class="btn btn-dark full" type="submit">SIGN IN</button></form><div class="login-divider"><span>OR</span></div><button class="btn btn-light full" data-action="google">CONTINUE WITH GOOGLE</button><div class="account-links"><button data-action="forgot">Forgot password?</button><button data-action="register">Create an account</button></div><p class="demo-note">Account authentication will be connected to the production backend later.</p></div></div>
-<div class="toast" id="toast" role="status"></div><script src="script.js"></script>
+<div class="toast" id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="script.js"></script>
+<script src="weiren-auth.js"></script>
 </body>
 </html>
