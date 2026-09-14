@@ -36,3 +36,5 @@ Acid Washed Relaxed T-Shirt — ₹499
 The current UI includes a local browser bag and login interface for the frontend experience. Authentication, real payment processing, server-side inventory, orders, refunds and shipping integrations still need to be connected before accepting real customer orders.
 
 Do not put payment secret keys in frontend files.
+
+<!-- stable restore -->
