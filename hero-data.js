@@ -1,0 +1,1 @@
+window.WEIREN_HERO='data:image/webp;base64,UklGRijtAABXRUJQVlA4IC4tAABwAQCdASoIAAgAAkA4JaQAA3AA/vuUAAA==';
