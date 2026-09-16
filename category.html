@@ -28,9 +28,13 @@
 .size-option.selected,.color-option.selected{border-color:#111;background:#111;color:#fff}
 .color-option{min-width:74px}
 .product-add{border:1px solid #111;background:#111;color:#fff;width:100%;padding:17px;font-size:10px;letter-spacing:.22em;cursor:pointer;margin-top:4px}
+.tshirt-intro{text-align:center;max-width:850px;margin:0 auto;padding:70px 0 55px}
+.tshirt-intro .category-label{display:block;margin-bottom:18px}
+.tshirt-intro h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(72px,11vw,150px);font-weight:400;line-height:.8;letter-spacing:-.07em;margin:0 0 28px}
+.tshirt-intro p{max-width:620px;margin:0 auto;font-size:11px;letter-spacing:.13em;line-height:1.9}
 .tshirt-collection{max-width:1200px;margin:0 auto}
 .tshirt-section{padding:70px 0 84px;border-top:1px solid #d8d8d5}
-.tshirt-section:first-child{border-top:0;padding-top:10px}
+.tshirt-section:first-child{padding-top:20px}
 .tshirt-heading{text-align:center;margin-bottom:30px}
 .tshirt-colour{font-size:10px;letter-spacing:.28em;margin:0 0 10px}
 .tshirt-section-title{font-family:Georgia,"Times New Roman",serif;font-size:44px;font-weight:400;letter-spacing:-.04em;margin:0}
@@ -57,7 +61,7 @@
   .category-actions .icon-button svg{width:18px;height:18px}
   .category-actions .bag-button svg{width:19px;height:22px}
   .category-back{font-size:7px;letter-spacing:.12em;overflow:hidden;text-overflow:ellipsis;max-width:108px}
-  .category-top{padding:48px 2px 30px;justify-content:center;gap:22px}
+  .category-top{padding:48px 2px 20px;justify-content:center;gap:22px}
   .category-label{font-size:8px;letter-spacing:.16em}
   .product-intro{grid-template-columns:1fr;gap:28px;margin-bottom:45px;padding:0 2px;text-align:center}
   .product-title{font-size:70px}
@@ -67,12 +71,15 @@
   .product-meta{gap:18px;text-align:center}
   .size-options,.color-options{justify-content:center}
   .product-add{margin-top:4px}
-  .tshirt-section{padding:55px 0 65px}
+  .tshirt-intro{padding:45px 4px 38px}
+  .tshirt-intro h1{font-size:70px;margin-bottom:22px}
+  .tshirt-intro p{font-size:9px;line-height:1.75}
+  .tshirt-section{padding:50px 0 62px}
   .tshirt-section:first-child{padding-top:5px}
-  .tshirt-heading{margin-bottom:22px}
+  .tshirt-heading{margin-bottom:20px}
   .tshirt-colour{font-size:8px;letter-spacing:.24em}
-  .tshirt-section-title{font-size:36px}
-  .tshirt-frame{gap:5px;padding:5px;margin-bottom:22px}
+  .tshirt-section-title{font-size:34px}
+  .tshirt-frame{gap:5px;padding:5px;margin-bottom:20px}
   .tshirt-photo-label{padding:8px 7px;font-size:6px;letter-spacing:.12em}
   .tshirt-details{grid-template-columns:1fr;gap:16px;text-align:center;padding-top:18px}
   .tshirt-price{font-size:25px}
@@ -100,7 +107,7 @@
 <script>
 const tshirtSections=[
  {colour:'BLACK',front:'1000004143.png',back:'ChatGPT Image Sep 13, 2026, 05_43_17 PM.png',labels:['01','06']},
- {colour:'MAROON',front:'ChatGPT Image Sep 13, 2026, 06_07_39 PM.png',back:'ChatGPT Image Sep 13, 2026, 06_07_39 PM.png',labels:['02','10']},
+ {colour:'MAROON',front:'1000004156.png',back:'ChatGPT Image Sep 13, 2026, 06_07_39 PM.png',labels:['02','10']},
  {colour:'NAVY',front:'1000004157.png',back:'ChatGPT Image Sep 13, 2026, 06_06_23 PM.png',labels:['03','09']},
  {colour:'BROWN',front:'1000004158.png',back:'ChatGPT Image Sep 13, 2026, 05_52_50 PM.png',labels:['04','07']},
  {colour:'GREY',front:'1000004159.png',back:'ChatGPT Image Sep 13, 2026, 05_54_13 PM.png',labels:['05','08']}
@@ -116,9 +123,7 @@ document.title='WEIREN | '+item.title;
 document.getElementById('category-count').textContent=item.count;
 const area=document.getElementById('product-area');
 
-function sizeButtons(prefix){return `<div class="tshirt-sizes"><button class="tshirt-size selected" type="button" data-size="M">M</button><button class="tshirt-size" type="button" data-size="L">L</button><button class="tshirt-size" type="button" data-size="XL">XL</button></div>`}
-
-function tshirtSection(section,index){
+function tshirtSection(section){
  return `<article class="tshirt-section" data-colour="${section.colour}">
   <div class="tshirt-heading"><p class="tshirt-colour">${section.colour}</p><h2 class="tshirt-section-title">T SHIRT</h2></div>
   <div class="tshirt-frame">
@@ -127,7 +132,7 @@ function tshirtSection(section,index){
   </div>
   <div class="tshirt-details">
    <div class="tshirt-price">499₹</div>
-   ${sizeButtons('size-'+index)}
+   <div class="tshirt-sizes"><button class="tshirt-size selected" type="button" data-size="M">M</button><button class="tshirt-size" type="button" data-size="L">L</button><button class="tshirt-size" type="button" data-size="XL">XL</button></div>
    <button class="tshirt-add" type="button" data-colour="${section.colour}">ADD TO BAG →</button>
   </div>
  </article>`;
@@ -138,7 +143,7 @@ function productIntro(){
 }
 
 if(type==='t-shirt'){
- area.innerHTML=productIntro()+`<div class="tshirt-collection">${tshirtSections.map(tshirtSection).join('')}</div>`;
+ area.innerHTML=`<section class="tshirt-intro"><span class="category-label">EVERYDAY ESSENTIAL</span><h1>T SHIRT</h1><p>${item.description}</p></section><div class="tshirt-collection">${tshirtSections.map(tshirtSection).join('')}</div>`;
  document.querySelectorAll('.tshirt-section').forEach(section=>{
    section.querySelectorAll('.tshirt-size').forEach(button=>button.addEventListener('click',()=>{
      section.querySelectorAll('.tshirt-size').forEach(b=>b.classList.remove('selected'));
