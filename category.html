@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WEIREN | Collection</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.category-page{min-height:100vh;background:#f7f7f5;color:#111;padding:110px 6vw 60px}
+.category-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:45px}
+.category-back{color:inherit;text-decoration:none;font-size:11px;letter-spacing:.16em}
+.category-label{font-size:11px;letter-spacing:.2em}
+.category-content{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:7vw;align-items:center;max-width:1200px;margin:auto}
+.category-image{width:100%;max-height:72vh;object-fit:cover;display:block}
+.category-info h1{font-family:Georgia,serif;font-size:clamp(52px,8vw,120px);font-weight:400;line-height:.85;margin:0 0 20px;letter-spacing:-.06em}
+.category-info p{font-size:12px;letter-spacing:.15em;line-height:1.8;margin:0 0 30px}
+.category-rule{display:block;width:100%;height:1px;background:#111;margin-bottom:22px}
+.category-shop{display:inline-flex;gap:18px;align-items:center;color:inherit;text-decoration:none;font-size:11px;letter-spacing:.16em}
+@media(max-width:700px){.category-page{padding:90px 20px 40px}.category-content{grid-template-columns:1fr;gap:35px}.category-image{max-height:none}.category-info h1{font-size:64px}}
+</style>
+</head>
+<body>
+<header class="site-header">
+<a class="wordmark" href="index.html" aria-label="Weiren home">WEIREN</a>
+<a class="category-back" href="index.html#collection">BACK TO COLLECTION</a>
+</header>
+<main class="category-page">
+<div class="category-top"><span class="category-label">MEN'S COLLECTION</span><span class="category-label" id="category-count">01 / 03</span></div>
+<section class="category-content" aria-live="polite">
+<img class="category-image" id="category-image" src="file_000000001f708211a25a58398aa20b24.png" alt="Weiren T shirt">
+<div class="category-info">
+<p class="category-label" id="category-kicker">EVERYDAY ESSENTIAL</p>
+<h1 id="category-title">T SHIRT</h1>
+<p id="category-description">A clean everyday essential with a relaxed silhouette, made for effortless daily wear.</p>
+<span class="category-rule"></span>
+<a class="category-shop" href="#" id="category-shop">SHOP NOW <span>→</span></a>
+</div>
+</section>
+</main>
+<script>
+const categories={
+ 't-shirt':{title:'T SHIRT',kicker:'EVERYDAY ESSENTIAL',description:'A clean everyday essential with a relaxed silhouette, made for effortless daily wear.',image:'file_000000001f708211a25a58398aa20b24.png',count:'01 / 03'},
+ 'jacket':{title:'JACKET',kicker:'BUILT FOR MORE',description:'A structured outer layer designed to bring a refined finish to the modern wardrobe.',image:'file_00000000849881fa85662703429f1d46.png',count:'02 / 03'},
+ 'jeans':{title:'JEANS',kicker:'MADE TO MOVE',description:'A versatile denim essential built around a clean, timeless silhouette.',image:'file_00000000891c81faa012a266720b48fb.png',count:'03 / 03'}
+};
+const type=new URLSearchParams(location.search).get('type')||'t-shirt';
+const item=categories[type]||categories['t-shirt'];
+document.title='WEIREN | '+item.title;
+document.getElementById('category-title').textContent=item.title;
+document.getElementById('category-kicker').textContent=item.kicker;
+document.getElementById('category-description').textContent=item.description;
+document.getElementById('category-count').textContent=item.count;
+document.getElementById('category-image').src=item.image;
+document.getElementById('category-image').alt='Weiren '+item.title.toLowerCase();
+document.getElementById('category-shop').href='index.html#collection';
+</script>
+</body>
+</html>
