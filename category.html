@@ -6,29 +6,118 @@
 <title>WEIREN | Collection</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-.category-page{min-height:100vh;background:#f7f7f5;color:#111;padding:110px 6vw 60px}.category-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:45px}.category-back{color:inherit;text-decoration:none;font-size:11px;letter-spacing:.16em}.category-label{font-size:11px;letter-spacing:.2em}.category-content{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:7vw;align-items:center;max-width:1200px;margin:auto}.category-image{width:100%;max-height:72vh;object-fit:cover;display:block}.category-info h1{font-family:Georgia,serif;font-size:clamp(52px,8vw,120px);font-weight:400;line-height:.85;margin:0 0 20px;letter-spacing:-.06em}.category-info p{font-size:12px;letter-spacing:.15em;line-height:1.8;margin:0 0 30px}.category-rule{display:block;width:100%;height:1px;background:#111;margin-bottom:22px}.category-shop{display:inline-flex;gap:18px;align-items:center;color:inherit;text-decoration:none;font-size:11px;letter-spacing:.16em;cursor:pointer}.category-actions{justify-self:end;display:flex;align-items:center;gap:12px}.category-actions .icon-button{display:grid}.category-actions .bag-button{position:relative}@media(max-width:700px){.category-page{padding:90px 20px 40px}.category-content{grid-template-columns:1fr;gap:35px}.category-image{max-height:none}.category-info h1{font-size:64px}.category-actions{gap:0}.category-actions .icon-button{width:28px;height:31px}.category-actions .icon-button svg{width:19px;height:19px}}
+.category-page{min-height:100vh;background:#f7f7f5;color:#111;padding:28px 5vw 80px}
+.category-header{position:sticky;top:0;z-index:20;min-height:70px;background:#f7f7f5;border-bottom:1px solid #ddd;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:28px}
+.category-header .wordmark{font-size:48px;line-height:.8}
+.category-actions{justify-self:end;display:flex;align-items:center;gap:14px}
+.category-actions .icon-button{display:grid}
+.category-actions .bag-button{position:relative}
+.category-back{color:inherit;text-decoration:none;font-size:10px;letter-spacing:.16em;white-space:nowrap}
+.category-top{display:flex;justify-content:space-between;align-items:center;padding:90px 0 42px;max-width:1400px;margin:auto}
+.category-label{font-size:11px;letter-spacing:.2em}
+.product-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.65fr);gap:7vw;align-items:end;max-width:1400px;margin:0 auto 70px}
+.product-title{font-family:Georgia,"Times New Roman",serif;font-size:clamp(70px,11vw,170px);font-weight:400;line-height:.78;margin:0;letter-spacing:-.07em}
+.product-copy{max-width:430px}
+.product-copy p{font-size:11px;letter-spacing:.13em;line-height:1.9;margin:0 0 24px}
+.product-price{font-family:Georgia,"Times New Roman",serif;font-size:28px;letter-spacing:-.02em;margin-bottom:28px}
+.product-meta{display:grid;gap:20px;border-top:1px solid #111;padding-top:22px}
+.meta-block{display:grid;gap:10px}
+.meta-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase}
+.size-options,.color-options{display:flex;flex-wrap:wrap;gap:8px}
+.size-option,.color-option{border:1px solid #bbb;background:transparent;min-width:46px;height:38px;padding:0 14px;font-size:9px;letter-spacing:.12em;cursor:pointer}
+.size-option.selected,.color-option.selected{border-color:#111;background:#111;color:#fff}
+.color-option{min-width:74px}
+.product-add{border:1px solid #111;background:#111;color:#fff;width:100%;padding:17px;font-size:10px;letter-spacing:.22em;cursor:pointer;margin-top:4px}
+.gallery{max-width:1400px;margin:0 auto;display:grid;gap:26px}
+.gallery-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gallery-card{margin:0;background:#ececea;overflow:hidden}
+.gallery-card img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+.gallery-caption{display:flex;justify-content:space-between;padding:12px 14px;font-size:8px;letter-spacing:.16em;text-transform:uppercase}
+.single-product{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.7fr);gap:7vw;align-items:start}
+.single-product img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover;background:#eee}
+.single-product .product-copy{padding-top:12px}
+.product-note{font-size:9px;letter-spacing:.14em;line-height:1.8;color:#555}
+@media(max-width:700px){
+  .category-page{padding:0 14px 55px}
+  .category-header{position:sticky;top:0;min-height:58px;grid-template-columns:auto 1fr auto;gap:10px;padding:0 2px}
+  .category-header .wordmark{font-size:31px;letter-spacing:-3.2px;white-space:nowrap}
+  .category-actions{gap:0}
+  .category-actions .icon-button{width:29px;height:32px}
+  .category-actions .icon-button svg{width:18px;height:18px}
+  .category-actions .bag-button svg{width:19px;height:22px}
+  .category-back{font-size:7px;letter-spacing:.12em;overflow:hidden;text-overflow:ellipsis;max-width:110px}
+  .category-top{padding:55px 2px 28px}
+  .category-label{font-size:8px;letter-spacing:.16em}
+  .product-intro{grid-template-columns:1fr;gap:28px;margin-bottom:45px;padding:0 2px}
+  .product-title{font-size:70px}
+  .product-copy p{font-size:9px;line-height:1.75}
+  .product-price{font-size:25px;margin-bottom:22px}
+  .product-meta{gap:18px}
+  .size-option,.color-option{height:36px}
+  .gallery{gap:18px}
+  .gallery-pair{grid-template-columns:1fr 1fr;gap:6px}
+  .gallery-caption{padding:9px 8px;font-size:6px}
+  .single-product{grid-template-columns:1fr;gap:28px}
+  .single-product .product-copy{padding-top:0}
+}
 </style>
 </head>
 <body>
-<header class="site-header">
+<header class="category-header">
 <a class="wordmark" href="index.html" aria-label="Weiren home">WEIREN</a>
+<a class="category-back" href="index.html#collection">BACK TO COLLECTION</a>
 <div class="category-actions" aria-label="Quick actions">
 <button class="icon-button" aria-label="Account"><svg viewBox="0 0 32 32"><circle cx="16" cy="9" r="5.5"/><path d="M5.5 27c1.8-6 5.3-9 10.5-9s8.7 3 10.5 9"/></svg></button>
 <button class="icon-button" aria-label="Search"><svg viewBox="0 0 32 32"><circle cx="13.5" cy="13.5" r="8"/><path d="m19.5 19.5 7 7"/></svg></button>
 <button class="icon-button bag-button" aria-label="Shopping bag"><svg viewBox="0 0 32 36"><path d="M7 11h18l1.5 21H5.5L7 11Z"/><path d="M11 11V8a5 5 0 0 1 10 0v3"/></svg><span class="bag-count">0</span></button>
-<a class="category-back" href="index.html#collection">BACK TO COLLECTION</a>
 </div>
 </header>
 <main class="category-page">
 <div class="category-top"><span class="category-label">MEN'S COLLECTION</span><span class="category-label" id="category-count">01 / 03</span></div>
-<section class="category-content" aria-live="polite">
-<img class="category-image" id="category-image" src="file_000000001f708211a25a58398aa20b24.png" alt="Weiren T shirt">
-<div class="category-info"><p class="category-label" id="category-kicker">EVERYDAY ESSENTIAL</p><h1 id="category-title">T SHIRT</h1><p id="category-description">A clean everyday essential with a relaxed silhouette, made for effortless daily wear.</p><span class="category-rule"></span><a class="category-shop" href="#" id="category-shop">ADD TO BAG <span>→</span></a></div>
-</section>
+<section id="product-area" aria-live="polite"></section>
 </main>
 <script>
-const categories={'t-shirt':{title:'T SHIRT',kicker:'EVERYDAY ESSENTIAL',description:'A clean everyday essential with a relaxed silhouette, made for effortless daily wear.',image:'file_000000001f708211a25a58398aa20b24.png',count:'01 / 03',price:499},'jacket':{title:'JACKET',kicker:'BUILT FOR MORE',description:'A structured outer layer designed to bring a refined finish to the modern wardrobe.',image:'file_00000000849881fa85662703429f1d46.png',count:'02 / 03',price:1499},'jeans':{title:'JEANS',kicker:'MADE TO MOVE',description:'A versatile denim essential built around a clean, timeless silhouette.',image:'file_00000000891c81faa012a266720b48fb.png',count:'03 / 03',price:999}};
-const type=new URLSearchParams(location.search).get('type')||'t-shirt';const item=categories[type]||categories['t-shirt'];document.title='WEIREN | '+item.title;document.getElementById('category-title').textContent=item.title;document.getElementById('category-kicker').textContent=item.kicker;document.getElementById('category-description').textContent=item.description;document.getElementById('category-count').textContent=item.count;document.getElementById('category-image').src=item.image;document.getElementById('category-image').alt='Weiren '+item.title.toLowerCase();document.getElementById('category-shop').onclick=e=>{e.preventDefault();if(window.WeirenStore)window.WeirenStore.addToCart({name:item.title,price:item.price});};
+const tshirtImages=[
+  '1000004143.png',
+  '1000004156.png',
+  '1000004157.png',
+  '1000004158.png',
+  '1000004159.png',
+  'ChatGPT Image Sep 13, 2026, 05_43_17 PM.png',
+  'ChatGPT Image Sep 13, 2026, 05_52_50 PM.png',
+  'ChatGPT Image Sep 13, 2026, 05_54_13 PM.png',
+  'ChatGPT Image Sep 13, 2026, 06_06_23 PM.png',
+  'ChatGPT Image Sep 13, 2026, 06_07_39 PM.png'
+];
+const categories={
+ 't-shirt':{title:'T SHIRT',kicker:'EVERYDAY ESSENTIAL',description:'Acid washed relaxed-fit T-shirt designed as an everyday essential. French Terry, 240 GSM, with a drop shoulder silhouette.',count:'01 / 03',price:499,colors:['Black','Grey','Maroon','Navy','Brown'],images:tshirtImages},
+ 'jacket':{title:'JACKET',kicker:'BUILT FOR MORE',description:'A structured outer layer designed to bring a refined finish to the modern wardrobe.',count:'02 / 03',price:1499,colors:['Black'],images:['file_00000000849881fa85662703429f1d46.png']},
+ 'jeans':{title:'JEANS',kicker:'MADE TO MOVE',description:'A versatile denim essential built around a clean, timeless silhouette.',count:'03 / 03',price:999,colors:['Black'],images:['file_00000000891c81faa012a266720b48fb.png']}
+};
+const type=new URLSearchParams(location.search).get('type')||'t-shirt';
+const item=categories[type]||categories['t-shirt'];
+document.title='WEIREN | '+item.title;
+document.getElementById('category-count').textContent=item.count;
+const area=document.getElementById('product-area');
+
+function productInfo(){
+ const colorButtons=item.colors.map((color,i)=>`<button class="color-option${i===0?' selected':''}" type="button" data-color="${color}">${color}</button>`).join('');
+ return `<div class="product-intro"><div><p class="category-label">${item.kicker}</p><h1 class="product-title">${item.title}</h1></div><div class="product-copy"><p>${item.description}</p><div class="product-price">₹${item.price}</div><div class="product-meta"><div class="meta-block"><span class="meta-label">SIZE</span><div class="size-options"><button class="size-option selected" type="button">M</button><button class="size-option" type="button">L</button><button class="size-option" type="button">XL</button></div></div><div class="meta-block"><span class="meta-label">COLOUR</span><div class="color-options">${colorButtons}</div></div><button class="product-add" id="product-add" type="button">ADD TO BAG <span>→</span></button></div></div></div>`;
+}
+
+if(type==='t-shirt'){
+ const pairs=[];
+ for(let i=0;i<item.images.length;i+=2){
+   const first=item.images[i],second=item.images[i+1];
+   pairs.push(`<div class="gallery-pair"><figure class="gallery-card"><img src="${encodeURI(first)}" alt="Weiren T shirt product photo ${i+1}" loading="lazy"><figcaption><span>WEIREN</span><span>${String(i+1).padStart(2,'0')}</span></figcaption></figure><figure class="gallery-card"><img src="${encodeURI(second)}" alt="Weiren T shirt product photo ${i+2}" loading="lazy"><figcaption><span>WEIREN</span><span>${String(i+2).padStart(2,'0')}</span></figcaption></figure></div>`);
+ }
+ area.innerHTML=productInfo()+`<div class="gallery">${pairs.join('')}</div>`;
+}else{
+ area.innerHTML=productInfo()+`<div class="single-product"><img src="${encodeURI(item.images[0])}" alt="Weiren ${item.title.toLowerCase()}"><div class="product-copy"><p class="product-note">PRODUCT IMAGES FOR THIS CATEGORY CAN BE EXPANDED WITH ADDITIONAL ASSETS. THE CURRENT LAYOUT IS READY FOR MULTIPLE PHOTOS WITHOUT CHANGING THE PRODUCT DETAILS.</p></div></div>`;
+}
+
+document.querySelectorAll('.size-option,.color-option').forEach(button=>button.addEventListener('click',()=>{const group=button.parentElement;group.querySelectorAll('button').forEach(b=>b.classList.remove('selected'));button.classList.add('selected');}));
+document.getElementById('product-add').addEventListener('click',()=>{const size=document.querySelector('.size-option.selected')?.textContent||'M';const color=document.querySelector('.color-option.selected')?.dataset.color||item.colors[0];if(window.WeirenStore)window.WeirenStore.addToCart({name:item.title,price:item.price,size,color});});
 </script>
 <script src="store-ui.js"></script>
 </body>
